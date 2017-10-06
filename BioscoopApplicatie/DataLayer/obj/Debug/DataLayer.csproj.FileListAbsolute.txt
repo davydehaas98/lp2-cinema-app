@@ -1,0 +1,6 @@
+D:\Davy\Documents\Visual Studio Projects\BioscoopApplicatie\DataLayer\bin\Debug\DataLayer.dll
+D:\Davy\Documents\Visual Studio Projects\BioscoopApplicatie\DataLayer\bin\Debug\DataLayer.pdb
+D:\Davy\Documents\Visual Studio Projects\BioscoopApplicatie\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+D:\Davy\Documents\Visual Studio Projects\BioscoopApplicatie\DataLayer\obj\Debug\DataLayer.csproj.CoreCompileInputs.cache
+D:\Davy\Documents\Visual Studio Projects\BioscoopApplicatie\DataLayer\obj\Debug\DataLayer.dll
+D:\Davy\Documents\Visual Studio Projects\BioscoopApplicatie\DataLayer\obj\Debug\DataLayer.pdb

@@ -1,0 +1,8 @@
+D:\Davy\Documents\Visual Studio Projects\BioscoopApplicatie\LogicLayer\obj\Debug\LogicLayer.csprojResolveAssemblyReference.cache
+D:\Davy\Documents\Visual Studio Projects\BioscoopApplicatie\LogicLayer\obj\Debug\LogicLayer.csproj.CoreCompileInputs.cache
+D:\Davy\Documents\Visual Studio Projects\BioscoopApplicatie\LogicLayer\bin\Debug\LogicLayer.dll
+D:\Davy\Documents\Visual Studio Projects\BioscoopApplicatie\LogicLayer\bin\Debug\LogicLayer.pdb
+D:\Davy\Documents\Visual Studio Projects\BioscoopApplicatie\LogicLayer\bin\Debug\DataLayer.dll
+D:\Davy\Documents\Visual Studio Projects\BioscoopApplicatie\LogicLayer\bin\Debug\DataLayer.pdb
+D:\Davy\Documents\Visual Studio Projects\BioscoopApplicatie\LogicLayer\obj\Debug\LogicLayer.dll
+D:\Davy\Documents\Visual Studio Projects\BioscoopApplicatie\LogicLayer\obj\Debug\LogicLayer.pdb
