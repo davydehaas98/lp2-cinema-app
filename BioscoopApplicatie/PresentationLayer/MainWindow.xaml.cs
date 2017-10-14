@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using LogicLayer;
 
 namespace PresentationLayer
 {
@@ -20,10 +21,17 @@ namespace PresentationLayer
     /// </summary>
     public partial class MainWindow : Window
     {
+        private MovieTheatreLogic movieTheatreLogic;
         public MainWindow()
         {
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("nl");
             InitializeComponent();
+            movieTheatreLogic = new MovieTheatreLogic();
+        }
+
+        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show((movieTheatreLogic.MovieTheatres.Count()).ToString());
         }
     }
 }

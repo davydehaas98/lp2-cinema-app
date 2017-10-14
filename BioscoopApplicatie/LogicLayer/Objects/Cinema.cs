@@ -10,16 +10,17 @@ namespace LogicLayer
     {
         private int id;
         private string name;
-        private string type;
+        private bool imax;
         private List<Seat> seats;
         public int Id { get { return this.id; } set { this.id = value; } }
         public string Name { get { return this.name; } set { this.name = value; } }
-        public string Type { get { return this.type; } set { this.type = value; } }
+        public bool IMAX { get { return this.imax; } set { this.imax = value; } }
         public List<Seat> Seats { get { return this.seats; } set { this.seats = value; } }
-        public Cinema(int id, string name, string type, List<Seat> seats)
+        public Cinema(int id, string name, bool imax, List<Seat> seats)
         {
+            this.id = id;
             this.name = name;
-            this.type = type;
+            this.imax = imax;
             this.seats = seats;
         }
     }

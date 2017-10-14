@@ -20,13 +20,13 @@ namespace DataLayer
             DataTable result = ExecSelectQuery(query);
             return result;
         }
-        public DataTable GetCinemas(string movietheatre)
+        public DataTable GetCinemas(int id)
         {
-            string query = "SELECT * FROM [Cinemas] WHERE MovieTheatreID = (SELECT MovieTheatreID FROM MovieTheatres WHERE MovieTheatre.Name = '@movietheatre')";
+            string query = "SELECT * FROM [Cinemas] WHERE MovieTheatreID = (SELECT MovieTheatreID FROM MovieTheatres WHERE MovieTheatre.ID = '@id')";
             SqlParameter[] pars = new SqlParameter[1];
 
-            pars[0] = new SqlParameter("@movietheatre", SqlDbType.VarChar);
-            pars[0].Value = movietheatre;
+            pars[0] = new SqlParameter("@movietheatre", SqlDbType.Int);
+            pars[0].Value = id;
 
             DataTable result = ExecSelectQuery(query, pars);
 

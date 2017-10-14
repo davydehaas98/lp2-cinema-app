@@ -11,7 +11,7 @@ namespace LogicLayer
     public class CinemaLogic
     {
         private Cinema cinema;
-        private CinemaLogic cinemadata;
+        private CinemaData cinemadata;
         private List<Cinema> cinemas;
         public List<Cinema> Cinemas
         {
@@ -20,7 +20,23 @@ namespace LogicLayer
         }
         public CinemaLogic()
         {
-            //cinemadata = new CinemaData();
+            cinemadata = new CinemaData();
+        }
+        public List<Cinema> GetCinemas()
+        {
+            DataTable result = cinemadata.GetCinemas();
+            cinemas = new List<Cinema>();
+            if (result != null)
+            {
+                //loop through datatable results
+                foreach (DataRow row in result.Rows)
+                {
+                    //cinema = new Cinema((int)row["id"],(string)row["name"],(string)row["type"]);
+                    //cinemas.Add(cinema);
+                }
+                return cinemas;
+            }
+            return null;
         }
     }
 }
