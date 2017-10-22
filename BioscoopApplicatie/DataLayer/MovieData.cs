@@ -31,5 +31,16 @@ namespace DataLayer
             DataTable result = ExecSelectQuery(query, pars);
             return result;
         }
+        public DataTable GetGenres(int idmovie)
+        {
+            string query = "SELECT  Genre.* FROM Movie_Genre INNER JOIN Movie ON Movie_Genre.MovieID = Movie.id INNER JOIN Genre ON Movie_Genre.GenreID = Genre.id WHERE Movie.id = @idmovie";
+            SqlParameter[] pars = new SqlParameter[1];
+
+            pars[0] = new SqlParameter("@idmovie", SqlDbType.Int);
+            pars[0].Value = idmovie;
+
+            DataTable result = ExecSelectQuery(query, pars);
+            return result;
+        }
     }
 }

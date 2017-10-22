@@ -31,16 +31,5 @@ namespace DataLayer
             DataTable result = ExecSelectQuery(query, pars);
             return result;
         }
-        public DataTable GetCinemasInMovieTheatre(int id)
-        {
-            string query = "SELECT c.id, c.Name, c.IMAX FROM [Cinema] c, MovieTheatre mt WHERE c.MovieTheatreID = @id";
-
-            SqlParameter[] pars = new SqlParameter[1];
-
-            pars[0] = new SqlParameter("@id", SqlDbType.Int);
-            pars[0].Value = id;
-            DataTable result = ExecSelectQuery(query, pars);
-            return result;
-        }
     }
 }

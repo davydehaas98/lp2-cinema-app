@@ -16,12 +16,15 @@ namespace LogicLayer
         public string Name { get { return this.name; } set { this.name = value; } }
         public bool IMAX { get { return this.imax; } set { this.imax = value; } }
         public List<Seat> Seats { get { return this.seats; } set { this.seats = value; } }
-        public Cinema(int id, string name, bool imax, List<Seat> seats)
+        public Cinema(int id, string name, bool imax)
         {
             this.id = id;
             this.name = name;
             this.imax = imax;
-            this.seats = seats;
+        }
+        public void AddSeat(Seat s)
+        {
+            seats.Add(s);
         }
     }
 }

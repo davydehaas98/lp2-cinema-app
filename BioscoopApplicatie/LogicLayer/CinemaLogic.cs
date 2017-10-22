@@ -31,8 +31,8 @@ namespace LogicLayer
                 //loop through datatable results
                 foreach (DataRow row in result.Rows)
                 {
-                    //cinema = new Cinema((int)row["id"],(string)row["name"],(string)row["type"]);
-                    //cinemas.Add(cinema);
+                    cinema = new Cinema((int)row["id"], (string)row["name"], (bool)row["imax"]);
+                    cinemas.Add(cinema);
                 }
                 return cinemas;
             }

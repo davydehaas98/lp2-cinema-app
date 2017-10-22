@@ -22,7 +22,7 @@ namespace DataLayer
         }
         public DataTable GetCinemas(int id)
         {
-            string query = "SELECT * FROM [Cinemas] WHERE MovieTheatreID = (SELECT MovieTheatreID FROM MovieTheatres WHERE MovieTheatre.ID = '@id')";
+            string query = "SELECT * FROM [Cinemas] WHERE MovieTheatreID = @id";
             SqlParameter[] pars = new SqlParameter[1];
 
             pars[0] = new SqlParameter("@movietheatre", SqlDbType.Int);

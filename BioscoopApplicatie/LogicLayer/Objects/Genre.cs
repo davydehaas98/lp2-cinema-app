@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogicLayer.Objects
+namespace LogicLayer
 {
-    class Genre
+    public class Genre
     {
         private int id;
         private string name;

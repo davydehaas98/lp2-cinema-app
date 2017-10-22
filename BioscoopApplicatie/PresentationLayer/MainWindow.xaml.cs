@@ -22,16 +22,22 @@ namespace PresentationLayer
     public partial class MainWindow : Window
     {
         private MovieTheatreLogic movieTheatreLogic;
+        private CinemaLogic cinemalogic;
+        private BookingLogic bookingLogic;
+        private MovieLogic movielogic;
         public MainWindow()
         {
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("nl");
             InitializeComponent();
             movieTheatreLogic = new MovieTheatreLogic();
+            movielogic = new MovieLogic();
         }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
         {
+            movieTheatreLogic.GetMovieTheatres();
             MessageBox.Show((movieTheatreLogic.MovieTheatres.Count()).ToString());
+            movielogic.GetMovies();
         }
     }
 }

@@ -21,7 +21,7 @@ namespace LogicLayer
             this.id = id;
             this.number = number;
             this.price = price;
-            this.booked = booked;
+            this.booked = false;
         }
     }
 }
