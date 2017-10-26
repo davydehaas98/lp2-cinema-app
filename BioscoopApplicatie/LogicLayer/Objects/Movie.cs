@@ -33,5 +33,9 @@ namespace LogicLayer
         {
             genres.Add(genre);
         }
+        public override string ToString()
+        {
+            return $"{name}";
+        }
     }
 }

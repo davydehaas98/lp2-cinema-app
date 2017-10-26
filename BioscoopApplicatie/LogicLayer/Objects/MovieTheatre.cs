@@ -18,12 +18,13 @@ namespace LogicLayer
         public string Adress { get { return this.adress; } set { this.adress = value; } }
         public string City { get { return this.city; } set { this.city = value; } }
         public List<Cinema> Cinemas { get { return this.cinemas; } set { this.cinemas = value; } }
-        public MovieTheatre(int id, string name, string adress, string city)
+        public MovieTheatre(int id, string name, string adress, string city, List<Cinema> cinemas)
         {
             this.id = id;
             this.name = name;
             this.adress = adress;
             this.city = city;
+            this.cinemas = cinemas;
         }
 
         public void AddCinema(Cinema c)

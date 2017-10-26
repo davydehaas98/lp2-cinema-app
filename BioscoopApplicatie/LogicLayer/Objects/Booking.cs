@@ -19,12 +19,13 @@ namespace LogicLayer
         public Event Event_ { get { return this.event_; } set { this.event_ = value; } }
         public List<Seat> SeatsBooked { get { return this.seatsbooked; } set { this.seatsbooked = value; } }
         public int TotalPrice { get { return this.totalprice; } set { this.totalprice = value; } }
-        public Booking(int id,  string name, Event event_, int totalprice)
+        public Booking(int id,  string name, Event event_, int totalprice, List<Seat> seatsbooked)
         {
             this.id = id;
             this.name = name;
             this.event_ = event_;
             this.totalprice = totalprice;
+            this.seatsbooked = seatsbooked;
         }
         public void BookSeat(Seat seat)
         {

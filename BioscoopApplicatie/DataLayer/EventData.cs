@@ -16,7 +16,7 @@ namespace DataLayer
         }
         public DataTable GetEvents()
         {
-            string query = "SELECT * FROM [Events]";
+            string query = "SELECT * FROM [Event]";
             DataTable result = ExecSelectQuery(query);
             return result;
         }
@@ -27,6 +27,31 @@ namespace DataLayer
 
             pars[0] = new SqlParameter("@filter", SqlDbType.VarChar);
             pars[0].Value = filter;
+
+            DataTable result = ExecSelectQuery(query, pars);
+
+            return result;
+        }
+        public DataTable GetCinema(int id)
+        {
+            string query = "SELECT * FROM [Cinema] WHERE id = @id";
+            SqlParameter[] pars = new SqlParameter[1];
+
+            pars[0] = new SqlParameter("@id", SqlDbType.Int);
+            pars[0].Value = id;
+
+            DataTable result = ExecSelectQuery(query, pars);
+
+            return result;
+        }
+
+        public DataTable GetMovie(int id)
+        {
+            string query = "SELECT * FROM [Movie] WHERE id = @id";
+            SqlParameter[] pars = new SqlParameter[1];
+
+            pars[0] = new SqlParameter("@id", SqlDbType.Int);
+            pars[0].Value = id;
 
             DataTable result = ExecSelectQuery(query, pars);
 

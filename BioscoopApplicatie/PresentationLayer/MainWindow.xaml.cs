@@ -23,14 +23,18 @@ namespace PresentationLayer
     {
         private MovieTheatreLogic movieTheatreLogic;
         private CinemaLogic cinemalogic;
-        private BookingLogic bookingLogic;
         private MovieLogic movielogic;
+        private EventLogic eventlogic;
+        private BookingLogic bookingLogic;
         public MainWindow()
         {
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("nl");
             InitializeComponent();
             movieTheatreLogic = new MovieTheatreLogic();
+            cinemalogic = new CinemaLogic();
             movielogic = new MovieLogic();
+            eventlogic = new EventLogic();
+            bookingLogic = new BookingLogic();
         }
 
         private void btnSearch_Click(object sender, RoutedEventArgs e)
@@ -38,6 +42,12 @@ namespace PresentationLayer
             movieTheatreLogic.GetMovieTheatres();
             MessageBox.Show((movieTheatreLogic.MovieTheatres.Count()).ToString());
             movielogic.GetMovies();
+        }
+
+        private void dgEvents_Loaded(object sender, RoutedEventArgs e)
+        {
+            dgEvents.ItemsSource = eventlogic.GetEvents();
+            dgEvents.Items.Refresh();
         }
     }
 }

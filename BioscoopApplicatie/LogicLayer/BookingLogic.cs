@@ -10,7 +10,6 @@ namespace LogicLayer
 {
     public class BookingLogic
     {
-        private Booking booking;
         private BookingData bookingdata;
         private List<Booking> bookings;
         public List<Booking> Bookings

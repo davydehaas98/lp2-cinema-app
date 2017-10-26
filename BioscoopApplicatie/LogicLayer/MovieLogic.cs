@@ -11,8 +11,6 @@ namespace LogicLayer
     public class MovieLogic
     {
         private MovieData moviedata;
-        private Movie movie;
-        private Genre genre;
         private List<Movie> movies;
         private List<Genre> genres;
         public List<Movie> Movies
@@ -38,14 +36,15 @@ namespace LogicLayer
                 //loop through datatable results
                 foreach (DataRow row in result.Rows)
                 {
-                    movie = new Movie((int)row["id"], (string)row["Name"], (string)row["Type"], (int)row["Length"], (int)row["MinimumAge"], GetGenres((int)row["id"]));
+                    Movie movie = new Movie((int)row["id"], (string)row["Name"], (string)row["Type"], (int)row["Length"], (int)row["MinimumAge"], GetGenres((int)row["id"]));
                     movies.Add(movie);
                 }
                 return movies;
             }
             return null;
         }
-        public List<Genre> GetGenres(int idmovie)
+
+        private List<Genre> GetGenres(int idmovie)
         {
             DataTable result = moviedata.GetGenres(idmovie);
             genres = new List<Genre>();
@@ -54,7 +53,7 @@ namespace LogicLayer
                 //loop through datatable results
                 foreach (DataRow row in result.Rows)
                 {
-                    genre = new Genre((int)row["id"], (string)row["Name"]);
+                    Genre genre = new Genre((int)row["id"], (string)row["Name"]);
                     genres.Add(genre);
                 }
                 return genres;
