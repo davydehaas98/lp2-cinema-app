@@ -11,6 +11,7 @@ namespace LogicLayer
         private int id;
         private string name;
         private string adress;
+        private string postalcode;
         private string city;
         private List<Cinema> cinemas;
         public int Id { get { return this.id; } set { this.id = value; } }
@@ -18,13 +19,21 @@ namespace LogicLayer
         public string Adress { get { return this.adress; } set { this.adress = value; } }
         public string City { get { return this.city; } set { this.city = value; } }
         public List<Cinema> Cinemas { get { return this.cinemas; } set { this.cinemas = value; } }
-        public MovieTheatre(int id, string name, string adress, string city, List<Cinema> cinemas)
+        public MovieTheatre(int id, string name, string adress, string postalcode, string city, List<Cinema> cinemas)
+        {
+            this.id = id;
+            this.name = name;
+            this.adress = adress;
+            this.postalcode = postalcode;
+            this.city = city;
+            this.cinemas = cinemas;
+        }
+        public MovieTheatre(int id, string name, string adress, string city)
         {
             this.id = id;
             this.name = name;
             this.adress = adress;
             this.city = city;
-            this.cinemas = cinemas;
         }
 
         public void AddCinema(Cinema c)

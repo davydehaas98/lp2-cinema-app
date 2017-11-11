@@ -18,13 +18,13 @@ namespace LogicLayer
         public int Number { get { return this.number; } set { this.number = value; } }
         public decimal Price { get { return this.price; } set { this.price = value; } }
         public bool Booked { get { return this.booked; } set { this.booked = value; } }
-        public Seat(int id, int row, int number, decimal price)
+        public Seat(int id, int row, int number, decimal price, bool booked)
         {
             this.id = id;
             this.row = row;
             this.number = number;
             this.price = price;
-            this.booked = false;
+            this.booked = booked;
         }
     }
 }

@@ -11,51 +11,45 @@ namespace LogicLayer
     public class CinemaLogic
     {
         private CinemaData cinemadata;
-        private List<Cinema> cinemas;
-        private List<Seat> seats;
-        public List<Cinema> Cinemas
-        {
-            get { return this.cinemas; }
-            set { this.cinemas = value; }
-        }
-        public List<Seat> Seats
-        {
-            get { return this.seats; }
-            set { this.seats = value; }
-        }
         public CinemaLogic()
         {
             cinemadata = new CinemaData();
         }
-        public List<Cinema> GetCinemas()
+        public MovieTheatre GetMovieTheatre(int idcinema)
         {
-            DataTable result = cinemadata.GetCinemas();
-            cinemas = new List<Cinema>();
+            DataTable result = cinemadata.GetMovieTheatre(idcinema);
             if (result != null)
             {
-                //loop through datatable results
-                foreach (DataRow row in result.Rows)
-                {
-                    Cinema cinema = new Cinema((int)row["id"], (int)row["name"], (bool)row["imax"]);
-                    cinemas.Add(cinema);
-                }
-                return cinemas;
+                DataRow row = result.Rows[0];
+                return new MovieTheatre((int)row["id"], (string)row["Name"], (string)row["Adress"], (string)row["city"]);
             }
             return null;
         }
-        public List<Seat> GetSeats(int idcinema)
+        public List<MovieTheatre> GetMovieTheatres() 
         {
-            DataTable result = cinemadata.GetSeat();
-            seats = new List<Seat>();
+            DataTable result = cinemadata.GetMovieTheatres();
+            List<MovieTheatre> movietheatres = new List<MovieTheatre>();
             if (result != null)
             {
-                //loop through datatable results
                 foreach (DataRow row in result.Rows)
                 {
-                    Seat seat = new Seat((int)row["id"], (int)row["Row"], (int)row["Number"], (decimal)row["Price"]);
-                    seats.Add(seat);
+                    movietheatres.Add(new MovieTheatre((int)row["id"], (string)row["Name"], (string)row["Adress"], (string)row["PostalCode"], (string)row["City"], GetCinemas((int)row["id"])));
                 }
-                return seats;
+                return movietheatres;
+            }
+            return null;
+        }
+        private List<Cinema> GetCinemas(int idmovietheatre)
+        {
+            DataTable result = cinemadata.GetCinemas(idmovietheatre);
+            List<Cinema> cinemas = new List<Cinema>();
+            if (result != null)
+            {
+                foreach (DataRow row in result.Rows)
+                {
+                    cinemas.Add(new Cinema((int)row["id"], (int)row["Name"], (bool)row["IMAX"]));
+                }
+                return cinemas;
             }
             return null;
         }

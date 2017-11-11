@@ -13,25 +13,31 @@ namespace LogicLayer
         private string type;
         private int length;
         private int minimalage;
+        private byte[] image;
+        private DateTime releasedate;
         private List<Genre> genres;
-        public int Id { get { return this.id; } set { this.id = value; } }
-        public string Name { get { return this.name; } set { this.name = value; } }
-        public string Type { get { return this.type; } set { this.type = value; } }
-        public int Length { get { return this.length; } set { this.length = value; } }
-        public int MinimalAge { get { return this.minimalage; } set { this.minimalage = value; } }
-        public List<Genre> Genres { get { return this.genres; } set { this.genres = value; } }
-        public Movie(int id, string name, string type, int length, int minimalage, List<Genre> genres)
+        public int Id { get { return this.id; } }
+        public string Name { get { return this.name; } }
+        public string Type { get { return this.type; } }
+        public int Length { get { return this.length; } }
+        public int MinimalAge { get { return this.minimalage; } }
+        public byte[] Image { get { return this.image; } }
+        public List<Genre> Genres { get { return this.genres; } }
+        public DateTime ReleaseDate { get { return this.releasedate; } }
+        public Movie(int id, string name, string type, int length, int minimalage, DateTime releasedate, byte[] image, List<Genre> genres)
         {
             this.id = id;
             this.name = name;
             this.type = type;
             this.length = length;
             this.minimalage = minimalage;
+            this.releasedate = releasedate;
+            this.image = image;
             this.genres = genres;
         }
-        public void AddGenre(Genre genre)
+        public string GetInfo()
         {
-            genres.Add(genre);
+            return $" Title: {name} {Environment.NewLine} Length: {length} min {Environment.NewLine} Minimal Age: {minimalage} {Environment.NewLine} Released: {releasedate.ToString("dd MMMM yyyy")}";
         }
         public override string ToString()
         {

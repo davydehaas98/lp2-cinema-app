@@ -12,7 +12,7 @@ namespace DataLayer
     {
         private SqlDataAdapter adapter;
         private SqlConnection connection;
-        private string ConnectionString = @"Server=mssql.fhict.local;Database=dbi369008;User Id=dbi369008;Password=Pannenkoek123";
+        private string ConnectionString = @"Server=mssql.fhict.local;Database=dbi369008;User Id=dbi369008;Password=Pannenkoek123;Connection Timeout=2;";
         public DataAccess()
         {
             adapter = new SqlDataAdapter();

@@ -10,51 +10,34 @@ namespace DataLayer
 {
     public class EventData : DataAccess
     {
-        public EventData()
-        {
-
-        }
         public DataTable GetEvents()
         {
             string query = "SELECT * FROM [Event]";
             DataTable result = ExecSelectQuery(query);
             return result;
         }
-        public DataTable GetEvents(string filter)
+        public DataTable GetEventByID(int idevent)
         {
-            string query = "";
+            string query = "SELECT * FROM [Event] WHERE id = @idevent";
             SqlParameter[] pars = new SqlParameter[1];
 
-            pars[0] = new SqlParameter("@filter", SqlDbType.VarChar);
-            pars[0].Value = filter;
+            pars[0] = new SqlParameter("@idevent", SqlDbType.Int);
+            pars[0].Value = idevent;
 
             DataTable result = ExecSelectQuery(query, pars);
 
             return result;
         }
-        public DataTable GetCinema(int id)
+        
+        public DataTable GetSeats(int idevent)
         {
-            string query = "SELECT * FROM [Cinema] WHERE id = @id";
+            string query = "SELECT s.id, s.[Row], s.Number, s.Price, es.Booked FROM [Event_Seat] es INNER JOIN [Event] e ON es.EventID = e.id INNER JOIN [Seat] s ON es.SeatID = s.id WHERE e.id = @idevent";
             SqlParameter[] pars = new SqlParameter[1];
 
-            pars[0] = new SqlParameter("@id", SqlDbType.Int);
-            pars[0].Value = id;
+            pars[0] = new SqlParameter("@idevent", SqlDbType.Int);
+            pars[0].Value = idevent;
 
             DataTable result = ExecSelectQuery(query, pars);
-
-            return result;
-        }
-
-        public DataTable GetMovie(int id)
-        {
-            string query = "SELECT * FROM [Movie] WHERE id = @id";
-            SqlParameter[] pars = new SqlParameter[1];
-
-            pars[0] = new SqlParameter("@id", SqlDbType.Int);
-            pars[0].Value = id;
-
-            DataTable result = ExecSelectQuery(query, pars);
-
             return result;
         }
     }

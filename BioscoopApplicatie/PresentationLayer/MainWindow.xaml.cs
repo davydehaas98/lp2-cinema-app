@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Forms;
 using LogicLayer;
 
 namespace PresentationLayer
@@ -21,33 +22,61 @@ namespace PresentationLayer
     /// </summary>
     public partial class MainWindow : Window
     {
-        private MovieTheatreLogic movieTheatreLogic;
         private CinemaLogic cinemalogic;
         private MovieLogic movielogic;
         private EventLogic eventlogic;
-        private BookingLogic bookingLogic;
+        private BookingLogic bookinglogic;
         public MainWindow()
         {
-            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("nl");
+            System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
             InitializeComponent();
-            movieTheatreLogic = new MovieTheatreLogic();
             cinemalogic = new CinemaLogic();
             movielogic = new MovieLogic();
             eventlogic = new EventLogic();
-            bookingLogic = new BookingLogic();
+            bookinglogic = new BookingLogic();
         }
-
-        private void btnSearch_Click(object sender, RoutedEventArgs e)
+        private void dgEvents_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            movieTheatreLogic.GetMovieTheatres();
-            MessageBox.Show((movieTheatreLogic.MovieTheatres.Count()).ToString());
-            movielogic.GetMovies();
+            if (dgEvents.SelectedIndex > -1)
+            {
+                
+            }
         }
 
-        private void dgEvents_Loaded(object sender, RoutedEventArgs e)
+        private void dgMovies_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dgMovies.SelectedIndex > -1)
+            {
+                tbMovieInfo.Text = ((Movie)dgMovies.SelectedItem).GetInfo() + Environment.NewLine + Environment.NewLine + "Genres:";
+                foreach (Genre g in ((Movie)dgMovies.SelectedItem).Genres)
+                {
+                    tbMovieInfo.Text += Environment.NewLine + g.Name;
+                }
+                try
+                {
+                    imgMovie.Source = movielogic.GetImageFromMovie(((Movie)dgMovies.SelectedItem).Image);
+                }
+                catch
+                {
+                    imgMovie.Source = null;
+                }
+            }
+        }
+
+        private void btnMovieAdd_Click(object sender, RoutedEventArgs e)
+        {
+            //List<Genre> allgenres = movielogic.GetGenres();
+            //List<Genre> genres = new List<Genre>();
+            //genres.Add(allgenres[3]);
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.ShowDialog();
+            movielogic.InsertMovie("King Kong", "2D", 200, 16, DateTime.Now, System.Drawing.Image.FromFile(dialog.FileName), movielogic.GetGenres());
+        }
+
+        private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             dgEvents.ItemsSource = eventlogic.GetEvents();
-            dgEvents.Items.Refresh();
+            dgMovies.ItemsSource = movielogic.GetMovies();
         }
     }
 }

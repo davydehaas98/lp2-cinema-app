@@ -5,24 +5,17 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using DataLayer;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.IO;
+using System.Drawing;
+using System.Drawing.Imaging;
 
 namespace LogicLayer
 {
     public class MovieLogic
     {
         private MovieData moviedata;
-        private List<Movie> movies;
-        private List<Genre> genres;
-        public List<Movie> Movies
-        {
-            get { return this.movies; }
-            set { this.movies = value; }
-        }
-        public List<Genre> Genres
-        {
-            get { return this.genres; }
-            set { this.genres = value; }
-        }
         public MovieLogic()
         {
             moviedata = new MovieData();
@@ -30,35 +23,69 @@ namespace LogicLayer
         public List<Movie> GetMovies()
         {
             DataTable result = moviedata.GetMovies();
-            movies = new List<Movie>();
+            List<Movie> movies = new List<Movie>();
             if (result != null)
             {
-                //loop through datatable results
                 foreach (DataRow row in result.Rows)
                 {
-                    Movie movie = new Movie((int)row["id"], (string)row["Name"], (string)row["Type"], (int)row["Length"], (int)row["MinimumAge"], GetGenres((int)row["id"]));
-                    movies.Add(movie);
+                    movies.Add(new Movie((int)row["id"], (string)row["Name"], (string)row["Type"], (int)row["Length"], (int)row["MinimumAge"], (DateTime)row["ReleaseDate"], (byte[])row["Image"], GetGenres((int)row["id"])));
                 }
                 return movies;
             }
             return null;
         }
-
-        private List<Genre> GetGenres(int idmovie)
+        public List<Genre> GetGenres()
         {
-            DataTable result = moviedata.GetGenres(idmovie);
-            genres = new List<Genre>();
+            DataTable result = moviedata.GetGenres();
+            List<Genre> genres = new List<Genre>();
             if (result != null)
             {
-                //loop through datatable results
                 foreach (DataRow row in result.Rows)
                 {
-                    Genre genre = new Genre((int)row["id"], (string)row["Name"]);
-                    genres.Add(genre);
+                    genres.Add(new Genre((int)row["id"], (string)row["Name"]));
                 }
                 return genres;
             }
             return null;
+        }
+        private List<Genre> GetGenres(int idmovie)
+        {
+            DataTable result = moviedata.GetGenres(idmovie);
+            List<Genre> genres = new List<Genre>();
+            if (result != null)
+            {
+                foreach (DataRow row in result.Rows)
+                {
+                    genres.Add(new Genre((int)row["id"], (string)row["Name"]));
+                }
+                return genres;
+            }
+            return null;
+        }
+        public void InsertMovie(string name, string type, int length, int minimumage, DateTime releasedate, Image image, List<Genre> genres)
+        {
+
+            List<int> genreids = new List<int>();
+            genres.ForEach(g => genreids.Add(g.Id));
+
+            moviedata.InsertMovie(name, type, length, minimumage, releasedate, ImageToByteArray(image), genreids);
+        }
+        public byte[] ImageToByteArray(Image image)
+        {
+            using (var ms = new MemoryStream())
+            {
+                image.Save(ms, ImageFormat.Jpeg);
+                return ms.ToArray();
+            }
+        }
+        public ImageSource GetImageFromMovie(byte[] imagebytes)
+        {
+            BitmapImage bmi = new BitmapImage();
+            MemoryStream ms = new MemoryStream(imagebytes);
+            bmi.BeginInit();
+            bmi.StreamSource = ms;
+            bmi.EndInit();
+            return bmi as ImageSource;
         }
     }
 }

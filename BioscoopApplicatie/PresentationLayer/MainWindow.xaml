@@ -7,10 +7,33 @@
         xmlns:p="clr-namespace:PresentationLayer.Properties"
         
         mc:Ignorable="d"
-        Title="{x:Static p:Resources.Title}" Height="350" Width="525">
+        Title="{x:Static p:Resources.Title}" Height="419.075" Width="789" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
     <Grid>
-        <Button x:Name="btnSearch" Content="Button" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="75" Click="btnSearch_Click"/>
-        <DataGrid x:Name="dgEvents" HorizontalAlignment="Left" Height="274" VerticalAlignment="Top" Width="497" Margin="10,35,0,0" Loaded="dgEvents_Loaded"/>
+        <TabControl HorizontalAlignment="Left" Height="370" Margin="10,10,0,0" VerticalAlignment="Top" Width="763">
+            <TabItem Header="Events">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="dgEvents" HorizontalAlignment="Left" Height="246" VerticalAlignment="Top" Width="405" Margin="10,10,0,0" SelectionChanged="dgEvents_SelectionChanged" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding DateTime}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.Date}" MinWidth="100" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding Movie}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.Movie}" MinWidth="100" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding Cinema}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.Cinema}" MinWidth="100" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </Grid>
+            </TabItem>
+            <TabItem Header="Movies">
+                <Grid Background="#FFE5E5E5">
+                    <DataGrid x:Name="dgMovies" HorizontalAlignment="Left" Height="246" VerticalAlignment="Top" Width="346" Margin="10,10,0,0" SelectionChanged="dgMovies_SelectionChanged" AutoGenerateColumns="False">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Binding="{Binding Name}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.Movie}" MinWidth="100" Width="*"/>
+                        </DataGrid.Columns>
+                    </DataGrid>
+                    <TextBlock x:Name="tbMovieInfo" HorizontalAlignment="Left" Margin="536,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="246" Width="211"/>
+                    <Image x:Name="imgMovie" HorizontalAlignment="Left" Height="246" Margin="361,10,0,0" VerticalAlignment="Top" Width="170"/>
+                    <Button x:Name="btnMovieAdd" Content="Add New Movie" HorizontalAlignment="Left" Margin="647,312,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.653,-1.2" Click="btnMovieAdd_Click"/>
+                </Grid>
+            </TabItem>
+        </TabControl>
 
     </Grid>
 </Window>

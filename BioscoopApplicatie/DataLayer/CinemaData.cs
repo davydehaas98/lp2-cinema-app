@@ -10,45 +10,52 @@ namespace DataLayer
 {
     public class CinemaData : DataAccess
     {
-        public CinemaData()
-        {
-
-        }
         public DataTable GetCinemas()
         {
             string query = "SELECT * FROM [Cinema]";
             DataTable result = ExecSelectQuery(query);
             return result;
         }
-        public DataTable GetCinemas(int movietheatreid)
+        public DataTable GetCinemaByID(int idcinema)
         {
-            string query = "SELECT * FROM [Cinema] WHERE MovieTheatreID = @id";
+            string query = "SELECT * FROM [Cinema] WHERE id = @idcinema";
             SqlParameter[] pars = new SqlParameter[1];
 
-            pars[0] = new SqlParameter("@movietheatre", SqlDbType.Int);
-            pars[0].Value = movietheatreid;
+            pars[0] = new SqlParameter("@idcinema", SqlDbType.Int);
+            pars[0].Value = idcinema;
 
             DataTable result = ExecSelectQuery(query, pars);
 
             return result;
         }
-        public DataTable GetCinema(int id)
+        public DataTable GetMovieTheatre(int idcinema)
         {
-            string query = "SELECT * FROM [Cinema] WHERE id = @id";
+            string query = "SELECT * FROM [MovieTheatre] WHERE id = (SELECT MovieTheatreID FROM [Cinema] WHERE Cinema.id = @idcinema)";
             SqlParameter[] pars = new SqlParameter[1];
 
-            pars[0] = new SqlParameter("@id", SqlDbType.Int);
-            pars[0].Value = id;
+            pars[0] = new SqlParameter("@idcinema", SqlDbType.Int);
+            pars[0].Value = idcinema;
 
             DataTable result = ExecSelectQuery(query, pars);
 
             return result;
         }
-
-        public DataTable GetSeat()
+        public DataTable GetMovieTheatres()
         {
-            string query = "SELECT * FROM [Seat]";
+            string query = "SELECT * FROM [MovieTheatre]";
             DataTable result = ExecSelectQuery(query);
+            return result;
+        }
+        public DataTable GetCinemas(int idmovietheatre)
+        {
+            string query = "SELECT * FROM [Cinema] WHERE MovieTheatreID = @idmovietheatre";
+            SqlParameter[] pars = new SqlParameter[1];
+
+            pars[0] = new SqlParameter("@idmovietheatre", SqlDbType.Int);
+            pars[0].Value = idmovietheatre;
+
+            DataTable result = ExecSelectQuery(query, pars);
+
             return result;
         }
     }

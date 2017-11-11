@@ -42,11 +42,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="BookingData.cs" />
-    <Compile Include="CinemaData.cs" />
     <Compile Include="DataAccess.cs" />
     <Compile Include="EventData.cs" />
     <Compile Include="MovieData.cs" />
-    <Compile Include="MovieTheatreData.cs" />
+    <Compile Include="CinemaData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

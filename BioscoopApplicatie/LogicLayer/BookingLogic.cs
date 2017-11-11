@@ -11,12 +11,6 @@ namespace LogicLayer
     public class BookingLogic
     {
         private BookingData bookingdata;
-        private List<Booking> bookings;
-        public List<Booking> Bookings
-        {
-            get { return this.bookings; }
-            set { this.bookings = value; }
-        }
         public BookingLogic()
         {
             bookingdata = new BookingData();

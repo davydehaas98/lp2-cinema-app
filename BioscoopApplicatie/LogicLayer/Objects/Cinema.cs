@@ -22,9 +22,9 @@ namespace LogicLayer
             this.name = name;
             this.imax = imax;
         }
-        public void AddSeat(Seat s)
+        public string GetInfo()
         {
-            seats.Add(s);
+            return $"Screen: {name} - IMAX {imax}"; ;
         }
         public override string ToString()
         {

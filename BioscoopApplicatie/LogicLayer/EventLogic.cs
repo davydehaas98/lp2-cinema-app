@@ -11,77 +11,73 @@ namespace LogicLayer
     public class EventLogic
     {
         private EventData eventdata;
-        private CinemaData cinemadata;
         private MovieData moviedata;
-        private List<Event> events;
-        public List<Event> Events
-        {
-            get { return this.events; }
-            set { this.events = value; }
-        }
+        private CinemaData cinemadata;
         public EventLogic()
         {
             eventdata = new EventData();
-            cinemadata = new CinemaData();
             moviedata = new MovieData();
+            cinemadata = new CinemaData();
         }
         public List<Event> GetEvents()
         {
             DataTable result = eventdata.GetEvents();
-            events = new List<Event>();
+            List<Event> events = new List<Event>();
             if (result != null)
             {
-                //loop through datatable results
                 foreach (DataRow row in result.Rows)
                 {
-                    Event event_ = new Event((int)row["id"], (DateTime)row["DateTime"], GetCinema((int)row["CinemaID"]), GetMovie((int)row["MovieID"]));
-                    events.Add(event_);
+                    events.Add(new Event((int)row["id"], (DateTime)row["DateTime"], GetCinema((int)row["CinemaID"]), GetMovie((int)row["MovieID"]), GetSeats((int)row["id"])));
                 }
                 return events;
             }
             return null;
         }
-        private Cinema GetCinema(int id)
+        private Cinema GetCinema(int idcinema)
         {
-            DataTable result = cinemadata.GetCinema(id);
+            DataTable result = cinemadata.GetCinemaByID(idcinema);
             if (result != null)
             {
-                //loop through datatable results
-                foreach (DataRow row in result.Rows)
-                {
-                    Cinema cinema = new Cinema((int)row["id"], (int)row["Name"], (bool)row["IMAX"]);
-                    return cinema;
-                }
+                DataRow row = result.Rows[0];
+                return new Cinema((int)row["id"], (int)row["Name"], (bool)row["IMAX"]);
             }
             return null;
         }
-        private Movie GetMovie(int id)
+        private Movie GetMovie(int idmovie)
         {
-            DataTable result = moviedata.GetMovie(id);
+            DataTable result = moviedata.GetMovieByID(idmovie);
             if (result != null)
             {
-                //loop through datatable results
-                foreach (DataRow row in result.Rows)
-                {
-                    Movie movie = new Movie((int)row["id"], (string)row["Name"], (string)row["Type"], (int)row["Length"], (int)row["MinimumAge"], GetGenres((int)row["id"]));
-                    return movie;
-                }
+                DataRow row = result.Rows[0];
+                return new Movie((int)row["id"], (string)row["Name"], (string)row["Type"], (int)row["Length"], (int)row["MinimumAge"], (DateTime)row["ReleaseDate"], (byte[])row["Image"], GetGenres((int)row["id"]));
             }
             return null;
         }
-        public List<Genre> GetGenres(int idmovie)
+        private List<Genre> GetGenres(int idmovie)
         {
             DataTable result = moviedata.GetGenres(idmovie);
             List<Genre> genres = new List<Genre>();
             if (result != null)
             {
-                //loop through datatable results
                 foreach (DataRow row in result.Rows)
                 {
-                    Genre genre = new Genre((int)row["id"], (string)row["Name"]);
-                    genres.Add(genre);
+                    genres.Add(new Genre((int)row["id"], (string)row["Name"]));
                 }
                 return genres;
+            }
+            return null;
+        }
+        private List<Seat> GetSeats(int idEvent)
+        {
+            DataTable result = eventdata.GetSeats(idEvent);
+            List<Seat> seats = new List<Seat>();
+            if (result != null)
+            {
+                foreach (DataRow row in result.Rows)
+                {
+                    seats.Add(new Seat((int)row["id"], (int)row["Row"], (int)row["Number"], (decimal)row["Price"], (bool)row["Booked"]));
+                }
+                return seats;
             }
             return null;
         }

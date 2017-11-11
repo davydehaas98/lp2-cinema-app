@@ -64,3 +64,5 @@ D:\Documenten\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\obj\De
 D:\Documenten\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\obj\Debug\nl\PresentationLayer.resources.dll
 D:\Documenten\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\obj\Debug\PresentationLayer.exe
 D:\Documenten\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\obj\Debug\PresentationLayer.pdb
+C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\obj\Debug\WindowAddMovie.g.cs
+C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\obj\Debug\WindowAddMovie.baml
