@@ -44,7 +44,7 @@ namespace LogicLayer
             if (result != null)
             {
                 DataRow row = result.Rows[0];
-                return new Cinema((int)row["id"], (int)row["Name"], (bool)row["IMAX"]);
+                return new Cinema((int)row["id"], (int)row["MovieTheatreID"], (int)row["Name"], (bool)row["3D"]);
             }
             return null;
         }

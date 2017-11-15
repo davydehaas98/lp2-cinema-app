@@ -15,12 +15,10 @@ using System.Windows.Shapes;
 using System.Windows.Forms;
 using System.Collections.ObjectModel;
 using LogicLayer;
+using System.ComponentModel;
 
 namespace PresentationLayer
 {
-    /// <summary>
-    /// Interaction logic for Window1.xaml
-    /// </summary>
     public partial class WindowAddMovie : Window
     {
         private MovieLogic movielogic;
@@ -54,10 +52,17 @@ namespace PresentationLayer
         }
         private void btnMovieConfirm_Click(object sender, RoutedEventArgs e)
         {
-            movielogic.InsertMovie(tbMovieTitle.Text, tbMovieType.Text, Convert.ToInt32(tbMovieLength.Text), Convert.ToInt32(tbMovieMinimumAge.Text), dpMovieReleaseDate.SelectedDate.Value, image, SelectedGenresID);
-            this.Hide();
-            MainWindow mainwindow = new MainWindow();
-            mainwindow.Show();
+            try
+            {
+                movielogic.InsertMovie(tbMovieTitle.Text, cbMovieType.SelectedValue.ToString(), Convert.ToInt32(tbMovieLength.Text), Convert.ToInt32(tbMovieMinimumAge.Text), dpMovieReleaseDate.SelectedDate.Value, image, SelectedGenresID);
+                this.Hide();
+                MainWindow mainwindow = new MainWindow();
+                mainwindow.Show();
+            }
+            catch
+            {
+                System.Windows.MessageBox.Show("Something went wrong!");
+            }
         }
 
         private void CheckBox_Checked(object sender, RoutedEventArgs e)
@@ -70,6 +75,12 @@ namespace PresentationLayer
         {
             var cb = sender as System.Windows.Controls.CheckBox;
             SelectedGenresID.Remove(((Genre)cb.DataContext).Id);
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            MainWindow mainwindow = new MainWindow();
+            mainwindow.Show();
         }
     }
 }

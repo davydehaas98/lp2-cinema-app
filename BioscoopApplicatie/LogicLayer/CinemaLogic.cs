@@ -47,7 +47,7 @@ namespace LogicLayer
             {
                 foreach (DataRow row in result.Rows)
                 {
-                    cinemas.Add(new Cinema((int)row["id"], (int)row["Name"], (bool)row["IMAX"]));
+                    cinemas.Add(new Cinema((int)row["id"], (int)row["MovieTheatreID"], (int)row["Name"], (bool)row["3D"]));
                 }
                 return cinemas;
             }
