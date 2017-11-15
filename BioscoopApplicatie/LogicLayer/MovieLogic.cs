@@ -16,9 +16,11 @@ namespace LogicLayer
     public class MovieLogic
     {
         private MovieData moviedata;
+        private ImageLogic imagelogic;
         public MovieLogic()
         {
             moviedata = new MovieData();
+            imagelogic = new ImageLogic();
         }
         public List<Movie> GetMovies()
         {
@@ -28,7 +30,7 @@ namespace LogicLayer
             {
                 foreach (DataRow row in result.Rows)
                 {
-                    movies.Add(new Movie((int)row["id"], (string)row["Name"], (string)row["Type"], (int)row["Length"], (int)row["MinimumAge"], (DateTime)row["ReleaseDate"], (byte[])row["Image"], GetGenres((int)row["id"])));
+                    movies.Add(new Movie((int)row["id"], (string)row["Name"], (string)row["Type"], (int)row["Length"], (int)row["MinimumAge"], (DateTime)row["ReleaseDate"], imagelogic.ByteToImageSource((byte[])row["Image"]), GetGenres((int)row["id"])));
                 }
                 return movies;
             }
@@ -62,30 +64,13 @@ namespace LogicLayer
             }
             return null;
         }
-        public void InsertMovie(string name, string type, int length, int minimumage, DateTime releasedate, Image image, List<Genre> genres)
+        public void InsertMovie(string name, string type, int length, int minimumage, DateTime releasedate, Image image, List<int> genresID)
         {
-
-            List<int> genreids = new List<int>();
-            genres.ForEach(g => genreids.Add(g.Id));
-
-            moviedata.InsertMovie(name, type, length, minimumage, releasedate, ImageToByteArray(image), genreids);
+            moviedata.InsertMovie(name, type, length, minimumage, releasedate, imagelogic.ImageToByteArray(image), genresID);
         }
-        public byte[] ImageToByteArray(Image image)
+        public void UpdateMovie(int idmovie, Image image)
         {
-            using (var ms = new MemoryStream())
-            {
-                image.Save(ms, ImageFormat.Jpeg);
-                return ms.ToArray();
-            }
-        }
-        public ImageSource GetImageFromMovie(byte[] imagebytes)
-        {
-            BitmapImage bmi = new BitmapImage();
-            MemoryStream ms = new MemoryStream(imagebytes);
-            bmi.BeginInit();
-            bmi.StreamSource = ms;
-            bmi.EndInit();
-            return bmi as ImageSource;
+            moviedata.UpdateMovie(idmovie, imagelogic.ImageToByteArray(image));
         }
     }
 }

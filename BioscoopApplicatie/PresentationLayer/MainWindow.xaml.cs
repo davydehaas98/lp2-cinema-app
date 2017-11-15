@@ -54,7 +54,7 @@ namespace PresentationLayer
                 }
                 try
                 {
-                    imgMovie.Source = movielogic.GetImageFromMovie(((Movie)dgMovies.SelectedItem).Image);
+                    imgMovie.Source = ((Movie)dgMovies.SelectedItem).Image;
                 }
                 catch
                 {
@@ -68,9 +68,12 @@ namespace PresentationLayer
             //List<Genre> allgenres = movielogic.GetGenres();
             //List<Genre> genres = new List<Genre>();
             //genres.Add(allgenres[3]);
-            OpenFileDialog dialog = new OpenFileDialog();
-            dialog.ShowDialog();
-            movielogic.InsertMovie("King Kong", "2D", 200, 16, DateTime.Now, System.Drawing.Image.FromFile(dialog.FileName), movielogic.GetGenres());
+            //OpenFileDialog dialog = new OpenFileDialog();
+            //dialog.ShowDialog();
+            //movielogic.InsertMovie("King Kong", "2D", 200, 16, DateTime.Now, System.Drawing.Image.FromFile(dialog.FileName), movielogic.GetGenres());
+            this.Hide();
+            WindowAddMovie waddmovie = new WindowAddMovie();
+            waddmovie.Show();
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)

@@ -13,6 +13,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Forms;
+using System.Collections.ObjectModel;
 using LogicLayer;
 
 namespace PresentationLayer
@@ -24,29 +25,51 @@ namespace PresentationLayer
     {
         private MovieLogic movielogic;
         private System.Drawing.Image image;
+
+        public ObservableCollection<Genre> GenreList { get; set; }
+        private List<int> SelectedGenresID;
+
         public WindowAddMovie()
         {
             InitializeComponent();
             movielogic = new MovieLogic();
-            movielogic.GetGenres().ForEach(genre => lbMovieGenres.Items.Add(genre));
+            GenreList = new ObservableCollection<Genre>();
+            SelectedGenresID = new List<int>();
+            GetAllGenres();
         }
-
+        public void GetAllGenres()
+        {
+            movielogic.GetGenres().ForEach(genre => GenreList.Add(new Genre(genre.Id, genre.Name)));
+            this.DataContext = this;
+        }
         private void btnMovieImage_Click(object sender, RoutedEventArgs e)
         {
             OpenFileDialog dialog = new OpenFileDialog();
             dialog.ShowDialog();
-            image = System.Drawing.Image.FromFile(dialog.FileName);
+            try
+            {
+                image = System.Drawing.Image.FromFile(dialog.FileName);
+            }
+            catch {  }
         }
-        private void CheckBox_Click(object sender, RoutedEventArgs e)
-        {
-            var cb = sender as System.Windows.Controls.CheckBox;
-            var item = cb.DataContext;
-            lbMovieGenres.SelectedItem = item;
-        }
-
         private void btnMovieConfirm_Click(object sender, RoutedEventArgs e)
         {
-            //movielogic.InsertMovie(tbMovieTitle.Text,tbMovieType.Text,Convert.ToInt32(tbMovieLength.Text), Convert.ToInt32(tbMovieMinimumAge.Text),dpMovieReleaseDate.SelectedDate,image,)
+            movielogic.InsertMovie(tbMovieTitle.Text, tbMovieType.Text, Convert.ToInt32(tbMovieLength.Text), Convert.ToInt32(tbMovieMinimumAge.Text), dpMovieReleaseDate.SelectedDate.Value, image, SelectedGenresID);
+            this.Hide();
+            MainWindow mainwindow = new MainWindow();
+            mainwindow.Show();
+        }
+
+        private void CheckBox_Checked(object sender, RoutedEventArgs e)
+        {
+            var cb = sender as System.Windows.Controls.CheckBox;
+            SelectedGenresID.Add(((Genre)cb.DataContext).Id);
+        }
+
+        private void CheckBox_Unchecked(object sender, RoutedEventArgs e)
+        {
+            var cb = sender as System.Windows.Controls.CheckBox;
+            SelectedGenresID.Remove(((Genre)cb.DataContext).Id);
         }
     }
 }

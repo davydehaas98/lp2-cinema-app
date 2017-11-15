@@ -5,6 +5,9 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using DataLayer;
+using System.Windows.Media;
+using System.Windows.Media.Imaging;
+using System.IO;
 
 namespace LogicLayer
 {
@@ -13,11 +16,13 @@ namespace LogicLayer
         private EventData eventdata;
         private MovieData moviedata;
         private CinemaData cinemadata;
+        private ImageLogic imagelogic;
         public EventLogic()
         {
             eventdata = new EventData();
             moviedata = new MovieData();
             cinemadata = new CinemaData();
+            imagelogic = new ImageLogic();
         }
         public List<Event> GetEvents()
         {
@@ -49,7 +54,7 @@ namespace LogicLayer
             if (result != null)
             {
                 DataRow row = result.Rows[0];
-                return new Movie((int)row["id"], (string)row["Name"], (string)row["Type"], (int)row["Length"], (int)row["MinimumAge"], (DateTime)row["ReleaseDate"], (byte[])row["Image"], GetGenres((int)row["id"]));
+                return new Movie((int)row["id"], (string)row["Name"], (string)row["Type"], (int)row["Length"], (int)row["MinimumAge"], (DateTime)row["ReleaseDate"], imagelogic.ByteToImageSource((byte[])row["Image"]), GetGenres((int)row["id"]));
             }
             return null;
         }

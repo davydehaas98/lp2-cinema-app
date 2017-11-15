@@ -94,9 +94,9 @@ namespace DataLayer
         /// <returns></returns>
         public int? ExecInsertQuery(string query, SqlParameter[] parameter)
         {
-            int id;
+            int id = 0;
             using (connection = new SqlConnection(ConnectionString))
-            using (SqlCommand cmd = new SqlCommand(query + "SELECT CAST(SCOPE_IDENTITY() AS INT)", connection))
+            using (SqlCommand cmd = new SqlCommand(query + " SELECT CAST(SCOPE_IDENTITY() AS INT)", connection))
             {
                 try
                 {
@@ -104,14 +104,13 @@ namespace DataLayer
                     connection.Open();
                     cmd.Parameters.AddRange(parameter);
                     id = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+                    return id;
                 }
-                catch (Exception)
+                catch
                 {
                     return null;
                 }
-
             }
-            return id;
         }
 
         /// <summary>

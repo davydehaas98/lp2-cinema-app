@@ -23,14 +23,14 @@
             </TabItem>
             <TabItem Header="Movies">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="dgMovies" HorizontalAlignment="Left" Height="246" VerticalAlignment="Top" Width="346" Margin="10,10,0,0" SelectionChanged="dgMovies_SelectionChanged" AutoGenerateColumns="False">
+                    <DataGrid x:Name="dgMovies" HorizontalAlignment="Left" Height="322" VerticalAlignment="Top" Width="346" Margin="10,10,0,0" SelectionChanged="dgMovies_SelectionChanged" AutoGenerateColumns="False">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Name}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.Movie}" MinWidth="100" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
                     <TextBlock x:Name="tbMovieInfo" HorizontalAlignment="Left" Margin="536,10,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Height="246" Width="211"/>
                     <Image x:Name="imgMovie" HorizontalAlignment="Left" Height="246" Margin="361,10,0,0" VerticalAlignment="Top" Width="170"/>
-                    <Button x:Name="btnMovieAdd" Content="Add New Movie" HorizontalAlignment="Left" Margin="647,312,0,0" VerticalAlignment="Top" Width="100" RenderTransformOrigin="0.653,-1.2" Click="btnMovieAdd_Click"/>
+                    <Button x:Name="btnMovieAdd" Content="Add New Movie" HorizontalAlignment="Left" Margin="536,261,0,0" VerticalAlignment="Top" Width="211" RenderTransformOrigin="0.653,-1.2" Click="btnMovieAdd_Click" Height="71"/>
                 </Grid>
             </TabItem>
         </TabControl>

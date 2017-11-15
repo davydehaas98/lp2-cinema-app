@@ -7,10 +7,10 @@
         mc:Ignorable="d"
         Title="Window1" Height="443.025" Width="300">
     <Grid>
-        <TextBox x:Name="tbMovieTitle" HorizontalAlignment="Left" Height="23" Margin="125,14,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="157"/>
-        <TextBox x:Name="tbMovieLength" HorizontalAlignment="Left" Height="23" Margin="125,76,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="157"/>
-        <TextBox x:Name="tbMovieMinimumAge" HorizontalAlignment="Left" Height="23" Margin="125,107,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="157"/>
-        <TextBox x:Name="tbMovieType" HorizontalAlignment="Left" Height="23" Margin="125,45,0,0" TextWrapping="Wrap" Text="TextBox" VerticalAlignment="Top" Width="157"/>
+        <TextBox x:Name="tbMovieTitle" HorizontalAlignment="Left" Height="23" Margin="125,14,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
+        <TextBox x:Name="tbMovieLength" HorizontalAlignment="Left" Height="23" Margin="125,76,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
+        <TextBox x:Name="tbMovieMinimumAge" HorizontalAlignment="Left" Height="23" Margin="125,107,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
+        <TextBox x:Name="tbMovieType" HorizontalAlignment="Left" Height="23" Margin="125,45,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="157"/>
         <DatePicker x:Name="dpMovieReleaseDate" HorizontalAlignment="Left" Margin="125,135,0,0" VerticalAlignment="Top" Width="157"/>
         <Button x:Name="btnMovieImage" Content="Browse..." HorizontalAlignment="Left" VerticalAlignment="Top" Width="157" Margin="125,165,0,0" Height="26" Click="btnMovieImage_Click"/>
         <Label x:Name="lblMovieTitle" Content="Title" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="110"/>
@@ -20,11 +20,10 @@
         <Label x:Name="lblMovieReleaseDate" Content="Release Date" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Width="110"/>
         <Label x:Name="lblMovieImage" Content="Image" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Width="110"/>
         <Button x:Name="btnMovieConfirm" Content="Confirm" HorizontalAlignment="Left" VerticalAlignment="Top" Width="157" Margin="125,376,0,0" Height="26" Click="btnMovieConfirm_Click"/>
-        <ListBox x:Name="lbMovieGenres" HorizontalAlignment="Left" Height="175" Margin="125,196,0,0" VerticalAlignment="Top" Width="157">
+        <ListBox x:Name="lbMovieGenres" HorizontalAlignment="Left" Height="175" Margin="125,196,0,0" VerticalAlignment="Top" Width="157" ItemsSource="{Binding GenreList}">
             <ListBox.ItemTemplate>
                 <DataTemplate>
-                    <CheckBox Content="{Binding Text}"
-                              IsChecked="{Binding Checked, Mode=TwoWay}" Click="CheckBox_Click"/>
+                    <CheckBox x:Name="chkitem" Content="{Binding Name}" Tag="{Binding ID}" IsChecked="{Binding Checked, Mode=TwoWay}" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
                 </DataTemplate>
             </ListBox.ItemTemplate>
             

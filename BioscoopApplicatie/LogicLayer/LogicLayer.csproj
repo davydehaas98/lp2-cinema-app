@@ -47,6 +47,7 @@
   <ItemGroup>
     <Compile Include="BookingLogic.cs" />
     <Compile Include="CinemaLogic.cs" />
+    <Compile Include="ImageLogic.cs" />
     <Compile Include="Objects\Booking.cs" />
     <Compile Include="Objects\Cinema.cs" />
     <Compile Include="Objects\Client.cs" />

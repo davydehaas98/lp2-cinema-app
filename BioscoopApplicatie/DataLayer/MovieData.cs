@@ -82,5 +82,17 @@ namespace DataLayer
                 ExecInsertQuery(query2, pars2);
             }
         }
+        public void UpdateMovie(int idmovie, byte[] image)
+        {
+            string query = "UPDATE [Movie] SET Movie.[Image] = @image WHERE id = @idmovie";
+            SqlParameter[] pars = new SqlParameter[2];
+
+            pars[0] = new SqlParameter("@idmovie", SqlDbType.Int);
+            pars[0].Value = idmovie;
+
+            pars[1] = new SqlParameter("@image", SqlDbType.VarBinary);
+            pars[1].Value = image;
+            ExecInsertQuery(query, pars);
+        }
     }
 }

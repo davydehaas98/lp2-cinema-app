@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Media;
 
 namespace LogicLayer
 {
@@ -13,7 +14,7 @@ namespace LogicLayer
         private string type;
         private int length;
         private int minimalage;
-        private byte[] image;
+        private ImageSource image;
         private DateTime releasedate;
         private List<Genre> genres;
         public int Id { get { return this.id; } }
@@ -21,10 +22,10 @@ namespace LogicLayer
         public string Type { get { return this.type; } }
         public int Length { get { return this.length; } }
         public int MinimalAge { get { return this.minimalage; } }
-        public byte[] Image { get { return this.image; } }
+        public ImageSource Image { get { return this.image; } }
         public List<Genre> Genres { get { return this.genres; } }
         public DateTime ReleaseDate { get { return this.releasedate; } }
-        public Movie(int id, string name, string type, int length, int minimalage, DateTime releasedate, byte[] image, List<Genre> genres)
+        public Movie(int id, string name, string type, int length, int minimalage, DateTime releasedate, ImageSource image, List<Genre> genres)
         {
             this.id = id;
             this.name = name;
