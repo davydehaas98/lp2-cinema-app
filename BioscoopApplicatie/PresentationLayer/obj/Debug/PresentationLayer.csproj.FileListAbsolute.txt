@@ -84,3 +84,5 @@ C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationL
 C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\bin\Debug\zh-Hans\Xceed.Wpf.AvalonDock.resources.dll
 C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\obj\Debug\WindowMovieAdd.baml
 C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\obj\Debug\WindowEventAdd.baml
+C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\obj\Debug\WindowBooking.g.cs
+C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\obj\Debug\WindowBooking.baml

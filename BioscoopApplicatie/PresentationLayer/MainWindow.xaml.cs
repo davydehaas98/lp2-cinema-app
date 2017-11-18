@@ -40,11 +40,36 @@ namespace PresentationLayer
             dgEvents.ItemsSource = eventlogic.GetEvents();
             dgMovies.ItemsSource = movielogic.GetMovies();
         }
+        public void GenerateSeats(int eventid)
+        {
+            int x = 0;
+            int y = 0;
+            foreach (Seat seat in eventlogic.GetEvents().First(eve => eve.Id == eventid).Seats)
+            {
+                Ellipse ell = new Ellipse();
+                ell.Height = 20;
+                ell.Width = 20;
+                ell.Fill = Brushes.Black;
+                if (seat.Booked == true)
+                {
+                    ell.Fill = Brushes.Gray;
+                }
+                Canvas.SetLeft(ell, x);
+                Canvas.SetTop(ell, y);
+                canvasEventSeats.Children.Add(ell);
+                x += 20;
+                if (seat.Number % 10 == 0)
+                {
+                    x = 0;
+                    y += 20;
+                }
+            }
+        }
         private void dgEvents_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dgEvents.SelectedIndex > -1)
             {
-                
+                GenerateSeats(((Event)dgEvents.SelectedItem).Id);
             }
         }
 
@@ -90,6 +115,13 @@ namespace PresentationLayer
         private void Window_Closed(object sender, EventArgs e)
         {
             System.Windows.Application.Current.Shutdown();
+        }
+
+        private void btnBookSeats_Click(object sender, RoutedEventArgs e)
+        {
+            WindowBooking w = new WindowBooking();
+            this.Hide();
+            w.Show();
         }
     }
 }
