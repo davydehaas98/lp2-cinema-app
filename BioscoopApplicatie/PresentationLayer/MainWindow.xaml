@@ -5,25 +5,25 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         xmlns:p="clr-namespace:PresentationLayer.Properties"
-        
         mc:Ignorable="d"
-        Title="{x:Static p:Resources.Title}" Height="419.075" Width="789" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded">
+        Title="{x:Static p:Resources.Title}" Height="419.075" Width="789" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded" Closed="Window_Closed">
     <Grid>
         <TabControl HorizontalAlignment="Left" Height="370" Margin="10,10,0,0" VerticalAlignment="Top" Width="763">
             <TabItem Header="Events">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="dgEvents" HorizontalAlignment="Left" Height="246" VerticalAlignment="Top" Width="405" Margin="10,10,0,0" SelectionChanged="dgEvents_SelectionChanged" AutoGenerateColumns="False">
+                    <DataGrid x:Name="dgEvents" HorizontalAlignment="Left" Height="246" VerticalAlignment="Top" Width="405" Margin="10,10,0,0" SelectionChanged="dgEvents_SelectionChanged" AutoGenerateColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding DateTime}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.Date}" MinWidth="100" Width="*"/>
                             <DataGridTextColumn Binding="{Binding Movie}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.Movie}" MinWidth="100" Width="*"/>
                             <DataGridTextColumn Binding="{Binding Cinema}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.Cinema}" MinWidth="100" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
+                    <Button x:Name="btnEventAdd" Content="Add new Event" HorizontalAlignment="Left" Margin="536,261,0,0" VerticalAlignment="Top" Width="211" RenderTransformOrigin="0.653,-1.2" Click="btnEventAdd_Click" Height="71"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Movies">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="dgMovies" HorizontalAlignment="Left" Height="322" VerticalAlignment="Top" Width="346" Margin="10,10,0,0" SelectionChanged="dgMovies_SelectionChanged" AutoGenerateColumns="False">
+                    <DataGrid x:Name="dgMovies" HorizontalAlignment="Left" Height="322" VerticalAlignment="Top" Width="346" Margin="10,10,0,0" SelectionChanged="dgMovies_SelectionChanged" AutoGenerateColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding Name}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.Movie}" MinWidth="100" Width="*"/>
                         </DataGrid.Columns>
@@ -34,6 +34,5 @@
                 </Grid>
             </TabItem>
         </TabControl>
-
     </Grid>
 </Window>

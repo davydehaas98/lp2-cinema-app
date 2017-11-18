@@ -10,20 +10,20 @@ namespace LogicLayer
     {
         private int id;
         private string name;
-        private string adress;
+        private string address;
         private string postalcode;
         private string city;
         private List<Cinema> cinemas;
         public int Id { get { return this.id; } set { this.id = value; } }
         public string Name { get { return this.name; } set { this.name = value; } }
-        public string Adress { get { return this.adress; } set { this.adress = value; } }
+        public string Address { get { return this.address; } set { this.address = value; } }
         public string City { get { return this.city; } set { this.city = value; } }
         public List<Cinema> Cinemas { get { return this.cinemas; } set { this.cinemas = value; } }
-        public MovieTheatre(int id, string name, string adress, string postalcode, string city, List<Cinema> cinemas)
+        public MovieTheatre(int id, string name, string address, string postalcode, string city, List<Cinema> cinemas)
         {
             this.id = id;
             this.name = name;
-            this.adress = adress;
+            this.address = address;
             this.postalcode = postalcode;
             this.city = city;
             this.cinemas = cinemas;
@@ -32,13 +32,17 @@ namespace LogicLayer
         {
             this.id = id;
             this.name = name;
-            this.adress = adress;
+            this.address = adress;
             this.city = city;
         }
 
         public void AddCinema(Cinema c)
         {
             cinemas.Add(c);
+        }
+        public override string ToString()
+        {
+            return $"{name} - {city}";
         }
     }
 }

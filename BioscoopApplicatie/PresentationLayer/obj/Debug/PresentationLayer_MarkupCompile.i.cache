@@ -10,11 +10,11 @@ none
 false
 DEBUG;TRACE
 C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\App.xaml
-21533145670
+3-1137460551
 
-112000677146
-16-205216204
-MainWindow.xaml;WindowAddMovie.xaml;
+12-1291738335
+22671613357
+MainWindow.xaml;WindowMovieAdd.xaml;WindowEventAdd.xaml;
 
-True
+False
 

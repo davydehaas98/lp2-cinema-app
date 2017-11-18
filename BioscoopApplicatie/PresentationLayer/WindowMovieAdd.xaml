@@ -1,0 +1,34 @@
+﻿<Window x:Class="PresentationLayer.WindowMovieAdd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PresentationLayer"
+        xmlns:p="clr-namespace:PresentationLayer.Properties"
+        mc:Ignorable="d"
+        Title="{x:Static p:Resources.Title}" Height="443.025" Width="300" Closed="Window_Closed" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+    <Grid>
+        <TextBox x:Name="tbMovieTitle" Height="23" Margin="125,14,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <TextBox x:Name="tbMovieLength" Height="23" Margin="125,45,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
+        <ComboBox x:Name="cbMovieMinimumAge" HorizontalAlignment="Left" VerticalAlignment="Top" Width="159" Margin="125,76,0,0" Height="22" IsTextSearchEnabled="False"/>
+        <CheckBox x:Name="chkb3D" Content="3D" Margin="125,104,10,0" VerticalAlignment="Top" Height="26" VerticalContentAlignment="Center"/>
+        <DatePicker x:Name="dpMovieReleaseDate" Margin="125,135,10,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" IsTodayHighlighted="True"/>
+        <ListBox x:Name="lbMovieGenres" Height="175" Margin="125,164,10,0" VerticalAlignment="Top" ItemsSource="{Binding GenreList}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <CheckBox x:Name="chkitem" Content="{Binding Name}" Tag="{Binding ID}" IsChecked="{Binding Checked, Mode=TwoWay}" Checked="CheckBox_Checked" Unchecked="CheckBox_Unchecked"/>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button x:Name="btnMovieImage" Content="Browse..." VerticalAlignment="Top" Margin="125,345,10,0" Height="26" Click="btnMovieImage_Click"/>
+        <Button x:Name="btnMovieConfirm" Content="Confirm" Margin="125,378,10,0" Click="btnMovieConfirm_Click" IsEnabled="False" Height="26" VerticalAlignment="Top"/>
+
+        <Label x:Name="lblMovieTitle" Content="Title" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="110"/>
+        <Label x:Name="lblMovieLength" Content="Length" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="110"/>
+        <Label x:Name="lblMovieMinimumAge" Content="Minimum Age" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="110"/>
+        <Label x:Name="lblMovieType" Content="Type" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Width="110"/>
+        <Label x:Name="lblMovieReleaseDate" Content="Release Date" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Width="110"/>
+        <Label x:Name="lblMovieGenres" Content="Select Genres:" HorizontalAlignment="Left" Margin="10,165,0,0" VerticalAlignment="Top" Width="110"/>
+        <Label x:Name="lblMovieImage" Content="Select Image" HorizontalAlignment="Left" Margin="10,345,0,0" VerticalAlignment="Top" Width="110"/>
+    </Grid>
+</Window>

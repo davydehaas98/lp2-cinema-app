@@ -1,0 +1,24 @@
+﻿<Window x:Class="PresentationLayer.WindowEventAdd"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:PresentationLayer"
+        xmlns:p="clr-namespace:PresentationLayer.Properties"
+        mc:Ignorable="d"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
+        Title="{x:Static p:Resources.Title}" Height="300" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closed="Window_Closed">
+    <Grid>
+        <DatePicker x:Name="dpEventDate" Margin="139,10,10,0" VerticalAlignment="Top" Height="26" FirstDayOfWeek="Monday" SelectedDateChanged="dpEventDate_SelectedDateChanged"/>
+        <xctk:TimePicker x:Name="tpEventTime" Margin="139,41,10,196" CultureInfo="(Default)" DefaultValue="11/18/2017 14:00:00" DisplayDefaultValueOnEmptyText="True" CurrentDateTimePart="Hour24"/>
+        <Label x:Name="lblEventDate" Content="Date" HorizontalAlignment="Left" Margin="10,10,0,0" VerticalAlignment="Top" Width="53"/>
+        <Label x:Name="lblEventTime" Content="Time" HorizontalAlignment="Left" Margin="10,41,0,0" VerticalAlignment="Top" Width="53"/>
+        <Label x:Name="lblEventMovie" Content="Movie" HorizontalAlignment="Left" Margin="10,72,0,0" VerticalAlignment="Top" Width="53"/>
+        <ComboBox x:Name="cbEventMovie" Margin="139,72,10,0" VerticalAlignment="Top" Height="26" IsEnabled="False" SelectionChanged="cbEventMovie_SelectionChanged"/>
+        <Label x:Name="lblEventMovieTheatre" Content="MovieTheatre" HorizontalAlignment="Left" Margin="10,103,0,0" VerticalAlignment="Top" Width="82"/>
+        <ComboBox x:Name="cbEventMovieTheatre" Margin="139,103,10,0" VerticalAlignment="Top" Height="26" IsTextSearchEnabled="False" SelectionChanged="cbEventMovieTheatre_SelectionChanged" IsEnabled="False"/>
+        <Label x:Name="lblEventCinema" Content="Cinema" HorizontalAlignment="Left" Margin="10,134,0,0" VerticalAlignment="Top" Width="82"/>
+        <ComboBox x:Name="cbEventCinema" Margin="139,134,10,0" VerticalAlignment="Top" Height="26" IsTextSearchEnabled="False" IsEnabled="False" SelectionChanged="cbEventCinema_SelectionChanged"/>
+        <Button x:Name="btnEventConfirm" Content="Confirm" Margin="139,235,10,0" IsEnabled="False" Height="26" VerticalAlignment="Top" Click="btnEventConfirm_Click"/>
+    </Grid>
+</Window>

@@ -19,26 +19,25 @@ using System.ComponentModel;
 
 namespace PresentationLayer
 {
-    public partial class WindowAddMovie : Window
+    public partial class WindowMovieAdd : Window
     {
         private MovieLogic movielogic;
-        private System.Drawing.Image image;
-
         public ObservableCollection<Genre> GenreList { get; set; }
         private List<int> SelectedGenresID;
-
-        public WindowAddMovie()
+        private System.Drawing.Image image;
+        public WindowMovieAdd()
         {
             InitializeComponent();
             movielogic = new MovieLogic();
             GenreList = new ObservableCollection<Genre>();
             SelectedGenresID = new List<int>();
-            GetAllGenres();
-        }
-        public void GetAllGenres()
-        {
+            new int[5] { 0, 6, 9, 12, 16 }.ToList().ForEach(age => cbMovieMinimumAge.Items.Add(age));
             movielogic.GetGenres().ForEach(genre => GenreList.Add(new Genre(genre.Id, genre.Name)));
-            this.DataContext = this;
+            DataContext = this;
+        }
+        private bool CheckFields()
+        {
+            return movielogic.CheckFields(tbMovieTitle.Text, tbMovieLength.Text, dpMovieReleaseDate.SelectedDate.Value, image, SelectedGenresID);
         }
         private void btnMovieImage_Click(object sender, RoutedEventArgs e)
         {
@@ -47,21 +46,23 @@ namespace PresentationLayer
             try
             {
                 image = System.Drawing.Image.FromFile(dialog.FileName);
+                if (image != null)
+                    btnMovieConfirm.IsEnabled = true;
             }
-            catch {  }
+            catch { }
         }
         private void btnMovieConfirm_Click(object sender, RoutedEventArgs e)
         {
-            try
+            if (CheckFields())
             {
-                movielogic.InsertMovie(tbMovieTitle.Text, cbMovieType.SelectedValue.ToString(), Convert.ToInt32(tbMovieLength.Text), Convert.ToInt32(tbMovieMinimumAge.Text), dpMovieReleaseDate.SelectedDate.Value, image, SelectedGenresID);
-                this.Hide();
-                MainWindow mainwindow = new MainWindow();
-                mainwindow.Show();
+                movielogic.InsertMovie(tbMovieTitle.Text, (bool)chkb3D.IsChecked, Convert.ToInt32(tbMovieLength.Text), Convert.ToInt32(cbMovieMinimumAge.SelectedValue), dpMovieReleaseDate.SelectedDate.Value, image, SelectedGenresID);
+                MainWindow w = new MainWindow();
+                this.Close();
+                w.Show();
             }
-            catch
+            else
             {
-                System.Windows.MessageBox.Show("Something went wrong!");
+                System.Windows.MessageBox.Show("Not all fields are filled in correctly!");
             }
         }
 
@@ -79,8 +80,8 @@ namespace PresentationLayer
 
         private void Window_Closed(object sender, EventArgs e)
         {
-            MainWindow mainwindow = new MainWindow();
-            mainwindow.Show();
+            MainWindow w = new MainWindow();
+            w.Show();
         }
     }
 }

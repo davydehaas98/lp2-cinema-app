@@ -35,6 +35,11 @@ namespace PresentationLayer
             eventlogic = new EventLogic();
             bookinglogic = new BookingLogic();
         }
+        public void RefreshData()
+        {
+            dgEvents.ItemsSource = eventlogic.GetEvents();
+            dgMovies.ItemsSource = movielogic.GetMovies();
+        }
         private void dgEvents_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dgEvents.SelectedIndex > -1)
@@ -63,23 +68,28 @@ namespace PresentationLayer
             }
         }
 
+        private void btnEventAdd_Click(object sender, RoutedEventArgs e)
+        {
+            WindowEventAdd windoweventadd = new WindowEventAdd();
+            this.Hide();
+            windoweventadd.Show();
+        }
         private void btnMovieAdd_Click(object sender, RoutedEventArgs e)
         {
-            //List<Genre> allgenres = movielogic.GetGenres();
-            //List<Genre> genres = new List<Genre>();
-            //genres.Add(allgenres[3]);
-            //OpenFileDialog dialog = new OpenFileDialog();
-            //dialog.ShowDialog();
-            //movielogic.InsertMovie("King Kong", "2D", 200, 16, DateTime.Now, System.Drawing.Image.FromFile(dialog.FileName), movielogic.GetGenres());
+            WindowMovieAdd windowmovieadd = new WindowMovieAdd();
             this.Hide();
-            WindowAddMovie waddmovie = new WindowAddMovie();
-            waddmovie.Show();
+            windowmovieadd.Show();
+            
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            dgEvents.ItemsSource = eventlogic.GetEvents();
-            dgMovies.ItemsSource = movielogic.GetMovies();
+            RefreshData();
+        }
+
+        private void Window_Closed(object sender, EventArgs e)
+        {
+            System.Windows.Application.Current.Shutdown();
         }
     }
 }

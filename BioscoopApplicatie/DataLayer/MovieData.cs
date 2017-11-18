@@ -12,7 +12,7 @@ namespace DataLayer
     {
         public DataTable GetMovies()
         {
-            string query = "SELECT * FROM [Movie]";
+            string query = "SELECT * FROM [Movie] ORDER BY [Name]";
             DataTable result = ExecSelectQuery(query);
             return result;
         }
@@ -45,15 +45,15 @@ namespace DataLayer
             DataTable result = ExecSelectQuery(query, pars);
             return result;
         }
-        public void InsertMovie(string name, string type, int length, int minimumage, DateTime releasedate, byte[] image, List<int> genreids)
+        public void InsertMovie(string name, bool d3, int length, int minimumage, DateTime releasedate, byte[] image, List<int> genreids)
         {
-            string query = "INSERT INTO [Movie] ([Name], [Type], [Length], [MinimumAge], [ReleaseDate], [Image]) VALUES (@name, @type, @length, @minimumage, @releasedate, @image)";
+            string query = "INSERT INTO [Movie] ([Name], [D3], [Length], [MinimumAge], [ReleaseDate], [Image]) VALUES (@name, @d3, @length, @minimumage, @releasedate, @image)";
             SqlParameter[] pars = new SqlParameter[6];
             pars[0] = new SqlParameter("@name", SqlDbType.NVarChar);
             pars[0].Value = name;
 
-            pars[1] = new SqlParameter("@type", SqlDbType.NVarChar);
-            pars[1].Value = type;
+            pars[1] = new SqlParameter("@d3", SqlDbType.NVarChar);
+            pars[1].Value = d3;
 
             pars[2] = new SqlParameter("@length", SqlDbType.Int);
             pars[2].Value = length;

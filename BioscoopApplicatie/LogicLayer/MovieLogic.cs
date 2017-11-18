@@ -30,12 +30,22 @@ namespace LogicLayer
             {
                 foreach (DataRow row in result.Rows)
                 {
-                    movies.Add(new Movie((int)row["id"], (string)row["Name"], (string)row["Type"], (int)row["Length"], (int)row["MinimumAge"], (DateTime)row["ReleaseDate"], imagelogic.ByteToImageSource((byte[])row["Image"]), GetGenres((int)row["id"])));
+                    movies.Add(new Movie((int)row["id"], (string)row["Name"], (bool)row["D3"], (int)row["Length"], (int)row["MinimumAge"], (DateTime)row["ReleaseDate"], imagelogic.ByteToImageSource((byte[])row["Image"]), GetGenres((int)row["id"])));
                 }
                 return movies;
             }
             return null;
         }
+
+        public bool CheckFields(string name, string length, DateTime releasedate, Image image, List<int> genres)
+        {
+            Int32.TryParse(length, out int result);
+            if (String.IsNullOrWhiteSpace(name) || result <= 0 || image == null || GetMovies().Exists(movie => movie.Name == name && movie.ReleaseDate == releasedate) || genres.Count < 1)
+                return false;
+            else
+                return true;
+        }
+
         public List<Genre> GetGenres()
         {
             DataTable result = moviedata.GetGenres();
@@ -64,9 +74,9 @@ namespace LogicLayer
             }
             return null;
         }
-        public void InsertMovie(string name, string type, int length, int minimumage, DateTime releasedate, Image image, List<int> genresID)
+        public void InsertMovie(string name, bool d3, int length, int minimumage, DateTime releasedate, Image image, List<int> genresID)
         {
-            moviedata.InsertMovie(name, type, length, minimumage, releasedate, imagelogic.ImageToByteArray(image), genresID);
+            moviedata.InsertMovie(name, d3, length, minimumage, releasedate, imagelogic.ImageToByteArray(image), genresID);
         }
         public void UpdateMovie(int idmovie, Image image)
         {

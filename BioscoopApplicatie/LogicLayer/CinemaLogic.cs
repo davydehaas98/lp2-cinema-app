@@ -21,7 +21,7 @@ namespace LogicLayer
             if (result != null)
             {
                 DataRow row = result.Rows[0];
-                return new MovieTheatre((int)row["id"], (string)row["Name"], (string)row["Adress"], (string)row["city"]);
+                return new MovieTheatre((int)row["id"], (string)row["Name"], (string)row["Address"], (string)row["City"]);
             }
             return null;
         }
@@ -33,7 +33,7 @@ namespace LogicLayer
             {
                 foreach (DataRow row in result.Rows)
                 {
-                    movietheatres.Add(new MovieTheatre((int)row["id"], (string)row["Name"], (string)row["Adress"], (string)row["PostalCode"], (string)row["City"], GetCinemas((int)row["id"])));
+                    movietheatres.Add(new MovieTheatre((int)row["id"], (string)row["Name"], (string)row["Address"], (string)row["PostalCode"], (string)row["City"], GetCinemas((int)row["id"])));
                 }
                 return movietheatres;
             }
@@ -47,7 +47,7 @@ namespace LogicLayer
             {
                 foreach (DataRow row in result.Rows)
                 {
-                    cinemas.Add(new Cinema((int)row["id"], (int)row["MovieTheatreID"], (int)row["Name"], (bool)row["3D"]));
+                    cinemas.Add(new Cinema((int)row["id"], (int)row["MovieTheatreID"], (int)row["Name"], (bool)row["D3"]));
                 }
                 return cinemas;
             }

@@ -44,7 +44,7 @@ namespace LogicLayer
             if (result != null)
             {
                 DataRow row = result.Rows[0];
-                return new Cinema((int)row["id"], (int)row["MovieTheatreID"], (int)row["Name"], (bool)row["3D"]);
+                return new Cinema((int)row["id"], (int)row["MovieTheatreID"], (int)row["Name"], (bool)row["D3"]);
             }
             return null;
         }
@@ -54,7 +54,7 @@ namespace LogicLayer
             if (result != null)
             {
                 DataRow row = result.Rows[0];
-                return new Movie((int)row["id"], (string)row["Name"], (string)row["Type"], (int)row["Length"], (int)row["MinimumAge"], (DateTime)row["ReleaseDate"], imagelogic.ByteToImageSource((byte[])row["Image"]), GetGenres((int)row["id"]));
+                return new Movie((int)row["id"], (string)row["Name"], (bool)row["D3"], (int)row["Length"], (int)row["MinimumAge"], (DateTime)row["ReleaseDate"], imagelogic.ByteToImageSource((byte[])row["Image"]), GetGenres((int)row["id"]));
             }
             return null;
         }
@@ -85,6 +85,10 @@ namespace LogicLayer
                 return seats;
             }
             return null;
+        }
+        public void InsertEvent(DateTime date, int cinemaid, int movieid)
+        {
+            eventdata.InsertEvent(date, cinemaid, movieid);
         }
     }
 }
