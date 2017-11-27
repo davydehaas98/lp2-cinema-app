@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PresentationLayer"
         xmlns:p="clr-namespace:PresentationLayer.Properties"
         mc:Ignorable="d"
-        Title="{x:Static p:Resources.Title}" Height="419.075" Width="789" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded" Closed="Window_Closed" Background="{x:Null}">
+        Title="{x:Static p:Resources.Title}" Height="419.075" Width="789" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Loaded="Window_Loaded" Background="{x:Null}">
     <Grid Background="#E5FFFF00">
         <TabControl Margin="10">
             <TabItem Header="Events">
@@ -19,7 +19,7 @@
                         </DataGrid.Columns>
                     </DataGrid>
                     <Button x:Name="btnEventAdd" Content="Add new Event" Margin="536,261,10,10" RenderTransformOrigin="0.653,-1.2" Click="btnEventAdd_Click"/>
-                    <Button x:Name="btnBookSeats" Content="Button" Margin="536,186,10,0" VerticalAlignment="Top" Height="70" Click="btnBookSeats_Click"/>
+                    <Button x:Name="btnBookSeats" Content="Button" Margin="420,261,226,11" Click="btnBookSeats_Click"/>
                     <Canvas x:Name="canvasEventSeats" HorizontalAlignment="Left" Height="119" Margin="536,10,0,0" VerticalAlignment="Top" Width="211"/>
                 </Grid>
             </TabItem>
@@ -36,5 +36,6 @@
                 </Grid>
             </TabItem>
         </TabControl>
+        <Button x:Name="btnRefresh" Content="Refresh" Margin="698,10,10,0" VerticalAlignment="Top" Click="btnRefresh_Click"/>
     </Grid>
 </Window>

@@ -46,6 +46,15 @@ namespace DataLayer
             DataTable result = ExecSelectQuery(query);
             return result;
         }
+        public DataTable GetMovieTheatresByType(bool d3)
+        {
+            string query = "SELECT Distinct MovieTheatre.* FROM [MovieTheatre] INNER JOIN [Cinema] ON [MovieTheatre].id = [Cinema].MovietheatreID WHERE EXISTS (SELECT * FROM MovieTheatre WHERE D3 = @d3)";
+            SqlParameter[] pars = new SqlParameter[1];
+            pars[0] = new SqlParameter("@d3", SqlDbType.Bit);
+            pars[0].Value = d3;
+            DataTable result = ExecSelectQuery(query, pars);
+            return result;
+        }
         public DataTable GetCinemas(int idmovietheatre)
         {
             string query = "SELECT * FROM [Cinema] WHERE MovieTheatreID = @idmovietheatre";

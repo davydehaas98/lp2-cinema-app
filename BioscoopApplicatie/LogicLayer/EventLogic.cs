@@ -16,12 +16,14 @@ namespace LogicLayer
         private EventData eventdata;
         private MovieData moviedata;
         private CinemaData cinemadata;
+        private CinemaLogic cinemalogic;
         private ImageLogic imagelogic;
         public EventLogic()
         {
             eventdata = new EventData();
             moviedata = new MovieData();
             cinemadata = new CinemaData();
+            cinemalogic = new CinemaLogic();
             imagelogic = new ImageLogic();
         }
         public List<Event> GetEvents()
@@ -32,19 +34,19 @@ namespace LogicLayer
             {
                 foreach (DataRow row in result.Rows)
                 {
-                    events.Add(new Event((int)row["id"], (DateTime)row["DateTime"], GetCinema((int)row["CinemaID"]), GetMovie((int)row["MovieID"]), GetSeats((int)row["id"])));
+                    events.Add(new Event((int)row["id"], (DateTime)row["DateTime"], GetMovie((int)row["MovieID"]), GetCinema((int)row["CinemaID"]), GetMovieTheatre((int)row["CinemaID"]), GetSeats((int)row["id"])));
                 }
                 return events;
             }
             return null;
         }
-        private Cinema GetCinema(int idcinema)
+        public Event GetEvent(int id)
         {
-            DataTable result = cinemadata.GetCinemaByID(idcinema);
+            DataTable result = eventdata.GetEvent(id);
             if (result != null)
             {
                 DataRow row = result.Rows[0];
-                return new Cinema((int)row["id"], (int)row["MovieTheatreID"], (int)row["Name"], (bool)row["D3"]);
+                return new Event((int)row["id"], (DateTime)row["DateTime"], GetMovie((int)row["MovieID"]), GetCinema((int)row["CinemaID"]), GetMovieTheatre((int)row["CinemaID"]), GetSeats((int)row["id"]));
             }
             return null;
         }
@@ -55,6 +57,26 @@ namespace LogicLayer
             {
                 DataRow row = result.Rows[0];
                 return new Movie((int)row["id"], (string)row["Name"], (bool)row["D3"], (int)row["Length"], (int)row["MinimumAge"], (DateTime)row["ReleaseDate"], imagelogic.ByteToImageSource((byte[])row["Image"]), GetGenres((int)row["id"]));
+            }
+            return null;
+        }
+        private Cinema GetCinema(int idcinema)
+        {
+            DataTable result = cinemadata.GetCinemaByID(idcinema);
+            if (result != null)
+            {
+                DataRow row = result.Rows[0];
+                return new Cinema((int)row["id"], (int)row["Name"], (bool)row["D3"]);
+            }
+            return null;
+        }
+        private MovieTheatre GetMovieTheatre(int idcinema)
+        {
+            DataTable result = cinemadata.GetMovieTheatre(idcinema);
+            if (result != null)
+            {
+                DataRow row = result.Rows[0];
+                return new MovieTheatre((int)row["id"], (string)row["Name"], (string)row["Address"], (string)row["PostalCode"], (string)row["City"]);
             }
             return null;
         }
@@ -80,7 +102,7 @@ namespace LogicLayer
             {
                 foreach (DataRow row in result.Rows)
                 {
-                    seats.Add(new Seat((int)row["id"], (int)row["Row"], (int)row["Number"], (decimal)row["Price"], (bool)row["Booked"]));
+                    seats.Add(new Seat((int)row["id"], (int)row["Row"], (int)row["Number"]));
                 }
                 return seats;
             }

@@ -12,6 +12,7 @@ namespace LogicLayer
         private DateTime datetime;
         private Client client;
         private Event event_;
+        private List<Ticket> tickets;
         private List<Seat> seatsbooked;
         private decimal totalprice;
 
@@ -19,20 +20,22 @@ namespace LogicLayer
         public DateTime DateTime { get { return this.datetime; } set { this.datetime = value; } }
         public Client Client { get { return this.client; } set { this.client = value; } }
         public Event Event_ { get { return this.event_; } set { this.event_ = value; } }
+        public List<Ticket> Tickets { get { return this.tickets; } set { this.tickets = value; } }
         public List<Seat> SeatsBooked { get { return this.seatsbooked; } set { this.seatsbooked = value; } }
         public decimal TotalPrice { get { return this.totalprice; } set { this.totalprice = value; } }
-        public Booking(int id, DateTime datetime,  Client client, Event event_, int totalprice, List<Seat> seatsbooked)
+        public Booking(int id, DateTime datetime,  Client client, Event event_, List<Ticket> tickets, List<Seat> seatsbooked, int totalprice)
         {
             this.id = id;
             this.datetime = datetime;
             this.client = client;
             this.event_ = event_;
-            this.totalprice = totalprice;
+            this.tickets = tickets;
             this.seatsbooked = seatsbooked;
+            this.totalprice = totalprice;
         }
         public void CalcTotalPrice()
         {
-            seatsbooked.ForEach(seat => totalprice += seat.Price);
+            //seatsbooked.ForEach(seat => totalprice += seat.Price);
         }
     }
 }

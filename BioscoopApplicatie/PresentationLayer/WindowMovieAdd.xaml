@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:PresentationLayer"
         xmlns:p="clr-namespace:PresentationLayer.Properties"
         mc:Ignorable="d"
-        Title="{x:Static p:Resources.Title}" Height="443.025" Width="300" Closed="Window_Closed" WindowStartupLocation="CenterScreen" ResizeMode="NoResize">
+        Title="{x:Static p:Resources.Title}" Height="443.025" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closing="Window_Closing">
     <Grid>
         <TextBox x:Name="tbMovieTitle" Height="23" Margin="125,14,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>
         <TextBox x:Name="tbMovieLength" Height="23" Margin="125,45,10,0" TextWrapping="Wrap" VerticalAlignment="Top"/>

@@ -36,6 +36,20 @@ namespace LogicLayer
             }
             return null;
         }
+        public List<Movie> GetMoviesByReleaseDate(DateTime date)
+        {
+            DataTable result = moviedata.GetMoviesByReleaseDate(date);
+            List<Movie> movies = new List<Movie>();
+            if (result != null)
+            {
+                foreach (DataRow row in result.Rows)
+                {
+                    movies.Add(new Movie((int)row["id"], (string)row["Name"], (bool)row["D3"], (int)row["Length"], (int)row["MinimumAge"], (DateTime)row["ReleaseDate"], imagelogic.ByteToImageSource((byte[])row["Image"]), GetGenres((int)row["id"])));
+                }
+                return movies;
+            }
+            return null;
+        }
 
         public bool CheckFields(string name, string length, DateTime releasedate, Image image, List<int> genres)
         {

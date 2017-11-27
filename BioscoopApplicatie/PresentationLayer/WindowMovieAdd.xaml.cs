@@ -56,9 +56,7 @@ namespace PresentationLayer
             if (CheckFields())
             {
                 movielogic.InsertMovie(tbMovieTitle.Text, (bool)chkb3D.IsChecked, Convert.ToInt32(tbMovieLength.Text), Convert.ToInt32(cbMovieMinimumAge.SelectedValue), dpMovieReleaseDate.SelectedDate.Value, image, SelectedGenresID);
-                MainWindow w = new MainWindow();
                 this.Close();
-                w.Show();
             }
             else
             {
@@ -78,7 +76,7 @@ namespace PresentationLayer
             SelectedGenresID.Remove(((Genre)cb.DataContext).Id);
         }
 
-        private void Window_Closed(object sender, EventArgs e)
+        private void Window_Closing(object sender, CancelEventArgs e)
         {
             MainWindow w = new MainWindow();
             w.Show();

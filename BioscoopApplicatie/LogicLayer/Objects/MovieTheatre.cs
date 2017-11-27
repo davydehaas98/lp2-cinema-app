@@ -28,11 +28,12 @@ namespace LogicLayer
             this.city = city;
             this.cinemas = cinemas;
         }
-        public MovieTheatre(int id, string name, string adress, string city)
+        public MovieTheatre(int id, string name, string address, string postalcode, string city)
         {
             this.id = id;
             this.name = name;
-            this.address = adress;
+            this.address = address;
+            this.postalcode = postalcode;
             this.city = city;
         }
 

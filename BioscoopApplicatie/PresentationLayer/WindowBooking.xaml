@@ -5,9 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:PresentationLayer"
         mc:Ignorable="d"
-        Title="WindowBooking" Height="300" Width="300" Closed="Window_Closed">
+        Title="WindowBooking" Height="400" Width="517" Closed="Window_Closed">
     <Grid>
-        <Canvas x:Name="cnvsSeats" HorizontalAlignment="Left" Height="249" Margin="10,10,0,0" VerticalAlignment="Top" Width="272"/>
+        <Canvas x:Name="cnvsSeats" HorizontalAlignment="Left" Height="349" Margin="10,10,0,0" VerticalAlignment="Top" Width="489"/>
 
     </Grid>
 </Window>

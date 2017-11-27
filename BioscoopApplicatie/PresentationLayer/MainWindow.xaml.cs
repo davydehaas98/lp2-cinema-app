@@ -42,23 +42,29 @@ namespace PresentationLayer
         }
         public void GenerateSeats(int eventid)
         {
+            List<Seat> seats = new List<Seat>();
+            seats = eventlogic.GetEvent(eventid).Seats;
+            canvasEventSeats.Children.Clear();
             int x = 0;
             int y = 0;
-            foreach (Seat seat in eventlogic.GetEvents().First(eve => eve.Id == eventid).Seats)
+            for (int i = 1; i <= 100; i++)
             {
                 Ellipse ell = new Ellipse();
                 ell.Height = 20;
                 ell.Width = 20;
-                ell.Fill = Brushes.Black;
-                if (seat.Booked == true)
+                if (seats.Exists(seat => seat.Id == i))
                 {
-                    ell.Fill = Brushes.Gray;
+                    ell.Fill = Brushes.Yellow;
+                }
+                else
+                {
+                    ell.Fill = Brushes.Black;
                 }
                 Canvas.SetLeft(ell, x);
                 Canvas.SetTop(ell, y);
                 canvasEventSeats.Children.Add(ell);
                 x += 20;
-                if (seat.Number % 10 == 0)
+                if (i % 10 == 0)
                 {
                     x = 0;
                     y += 20;
@@ -95,16 +101,16 @@ namespace PresentationLayer
 
         private void btnEventAdd_Click(object sender, RoutedEventArgs e)
         {
-            WindowEventAdd windoweventadd = new WindowEventAdd();
-            this.Hide();
-            windoweventadd.Show();
+            WindowEventAdd w = new WindowEventAdd();
+            w.Show();
+            this.Close();
         }
         private void btnMovieAdd_Click(object sender, RoutedEventArgs e)
         {
-            WindowMovieAdd windowmovieadd = new WindowMovieAdd();
-            this.Hide();
-            windowmovieadd.Show();
-            
+            WindowMovieAdd w = new WindowMovieAdd();
+            w.Show();
+            this.Close();
+
         }
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
@@ -112,16 +118,16 @@ namespace PresentationLayer
             RefreshData();
         }
 
-        private void Window_Closed(object sender, EventArgs e)
-        {
-            System.Windows.Application.Current.Shutdown();
-        }
-
         private void btnBookSeats_Click(object sender, RoutedEventArgs e)
         {
             WindowBooking w = new WindowBooking();
-            this.Hide();
             w.Show();
+            this.Close();
+        }
+
+        private void btnRefresh_Click(object sender, RoutedEventArgs e)
+        {
+            RefreshData();
         }
     }
 }

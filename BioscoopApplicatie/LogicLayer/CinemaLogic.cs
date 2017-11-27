@@ -15,19 +15,23 @@ namespace LogicLayer
         {
             cinemadata = new CinemaData();
         }
-        public MovieTheatre GetMovieTheatre(int idcinema)
-        {
-            DataTable result = cinemadata.GetMovieTheatre(idcinema);
-            if (result != null)
-            {
-                DataRow row = result.Rows[0];
-                return new MovieTheatre((int)row["id"], (string)row["Name"], (string)row["Address"], (string)row["City"]);
-            }
-            return null;
-        }
         public List<MovieTheatre> GetMovieTheatres() 
         {
             DataTable result = cinemadata.GetMovieTheatres();
+            List<MovieTheatre> movietheatres = new List<MovieTheatre>();
+            if (result != null)
+            {
+                foreach (DataRow row in result.Rows)
+                {
+                    movietheatres.Add(new MovieTheatre((int)row["id"], (string)row["Name"], (string)row["Address"], (string)row["PostalCode"], (string)row["City"], GetCinemas((int)row["id"])));
+                }
+                return movietheatres;
+            }
+            return null;
+        }
+        public List<MovieTheatre> GetMovieTheatresByType(bool d3)
+        {
+            DataTable result = cinemadata.GetMovieTheatresByType(d3);
             List<MovieTheatre> movietheatres = new List<MovieTheatre>();
             if (result != null)
             {
@@ -47,7 +51,7 @@ namespace LogicLayer
             {
                 foreach (DataRow row in result.Rows)
                 {
-                    cinemas.Add(new Cinema((int)row["id"], (int)row["MovieTheatreID"], (int)row["Name"], (bool)row["D3"]));
+                    cinemas.Add(new Cinema((int)row["id"], (int)row["Name"], (bool)row["D3"]));
                 }
                 return cinemas;
             }

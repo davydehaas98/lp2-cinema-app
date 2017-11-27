@@ -59,6 +59,7 @@
     <Compile Include="Objects\Movie.cs" />
     <Compile Include="MovieLogic.cs" />
     <Compile Include="Objects\MovieTheatre.cs" />
+    <Compile Include="Objects\Ticket.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Objects\Seat.cs" />
   </ItemGroup>

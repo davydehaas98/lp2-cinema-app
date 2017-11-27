@@ -7,7 +7,7 @@
         xmlns:p="clr-namespace:PresentationLayer.Properties"
         mc:Ignorable="d"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit" 
-        Title="{x:Static p:Resources.Title}" Height="300" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closed="Window_Closed">
+        Title="{x:Static p:Resources.Title}" Height="300" Width="300" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Closing="Window_Closing">
     <Grid>
         <DatePicker x:Name="dpEventDate" Margin="139,10,10,0" VerticalAlignment="Top" Height="26" FirstDayOfWeek="Monday" SelectedDateChanged="dpEventDate_SelectedDateChanged"/>
         <xctk:TimePicker x:Name="tpEventTime" Margin="139,41,10,196" CultureInfo="(Default)" DefaultValue="11/18/2017 14:00:00" DisplayDefaultValueOnEmptyText="True" CurrentDateTimePart="Hour24"/>

@@ -28,6 +28,18 @@ namespace DataLayer
 
             return result;
         }
+        public DataTable GetMoviesByReleaseDate(DateTime date)
+        {
+            string query = "SELECT * FROM [Movie] WHERE ReleaseDate <= @date";
+            SqlParameter[] pars = new SqlParameter[1];
+
+            pars[0] = new SqlParameter("@date", SqlDbType.Date);
+            pars[0].Value = date;
+
+            DataTable result = ExecSelectQuery(query, pars);
+
+            return result;
+        }
         public DataTable GetGenres()
         {
             string query = "SELECT Genre.id, Genre.Name FROM [Genre]";

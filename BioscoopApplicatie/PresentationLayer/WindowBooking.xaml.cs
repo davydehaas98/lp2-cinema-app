@@ -30,7 +30,7 @@ namespace PresentationLayer
         }
         public void GenerateSeats()
         {
-            seats = eventlogic.GetEvents().Single(eve => eve.Id == 5).Seats.ToArray();
+            seats = eventlogic.GetEvents().Single(eve => eve.Id == 1).Seats.ToArray();
             int x = 0;
             int y = 0;
             foreach(Seat seat in seats)
@@ -38,15 +38,17 @@ namespace PresentationLayer
                 Ellipse ell = new Ellipse();
                 ell.Height = 30;
                 ell.Width = 30;
-                if (seat.Booked == false)
-                {
-                    ell.Fill = Brushes.Black;
-                    ell.MouseLeftButtonDown += ellipse_MouseLeftButtonDown;
-                }
-                else
-                {
-                    ell.Fill = Brushes.Gray;
-                }
+                //if (seat.Booked == false)
+                //{
+                //    ell.Fill = Brushes.Black;
+                //    ell.MouseLeftButtonDown += ellipse_MouseLeftButtonDown;
+                //    ell.MouseEnter += ellipse_MouseEnter;
+                //    ell.MouseLeave += ellipse_MouseLeave;
+                //}
+                //else
+                //{
+                //    ell.Fill = Brushes.Gray;
+                //}
                 Canvas.SetLeft(ell, x);
                 Canvas.SetTop(ell, y);
                 cnvsSeats.Children.Add(ell);
@@ -67,11 +69,20 @@ namespace PresentationLayer
             }
             else { el.Fill = Brushes.Black; }
         }
-
+        private void ellipse_MouseEnter(object sender, MouseEventArgs e)
+        {
+            Ellipse el = (Ellipse)sender;
+            el.Stroke = Brushes.Yellow;
+        }
+        private void ellipse_MouseLeave(object sender, MouseEventArgs e)
+        {
+            Ellipse el = (Ellipse)sender;
+            el.Stroke = Brushes.Black;
+        }
         private void Window_Closed(object sender, EventArgs e)
         {
             List<int> seatsint = new List<int>();
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 100; i++)
             {
                 Ellipse ellipsechild = cnvsSeats.Children[i] as Ellipse;
                 if (ellipsechild.Fill == Brushes.Yellow)

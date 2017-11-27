@@ -12,14 +12,13 @@ namespace DataLayer
     {
         private SqlDataAdapter adapter;
         private SqlConnection connection;
-        private string ConnectionString = @"Server=mssql.fhict.local;Database=dbi369008;User Id=dbi369008;Password=Pannenkoek123;Connection Timeout=2;";
-        //private string ConnectionString = @"Server=tcp:davydehaas.database.windows.net,1433;Initial Catalog=CinemaApplication;Persist Security Info=False;User ID=Davy98;Password=Pannenkoek123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=30;";
+        //private string ConnectionString = @"Server=mssql.fhict.local;Database=dbi369008;User Id=dbi369008;Password=Pannenkoek123;Connection Timeout=2;";
+        private string ConnectionString = @"Server=tcp:davydehaas.database.windows.net,1433;Initial Catalog=CinemaApplicationDB;Persist Security Info=False;User ID=Davy98;Password=Pannenkoek123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=5;";
         public DataAccess()
         {
             adapter = new SqlDataAdapter();
             connection = new SqlConnection(ConnectionString);
         }
-
         /// <summary>
         /// Select query with parameterized query
         /// </summary>
@@ -31,30 +30,29 @@ namespace DataLayer
             DataTable table = new DataTable();
             table = null;
             DataSet set = new DataSet();
-
             using (connection = new SqlConnection(ConnectionString))
-            using (SqlCommand cmd = new SqlCommand(query, connection))
             {
-                try
+                using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
-                    connection.ConnectionString = ConnectionString;
-                    connection.Open();
-                    cmd.Parameters.AddRange(parameter);
-                    cmd.ExecuteNonQuery();
-                    adapter.SelectCommand = cmd;
-                    adapter.Fill(set);
-                    table = set.Tables[0];
-                }
+                    try
+                    {
+                        connection.ConnectionString = ConnectionString;
+                        connection.Open();
+                        cmd.Parameters.AddRange(parameter);
+                        cmd.ExecuteNonQuery();
+                        adapter.SelectCommand = cmd;
+                        adapter.Fill(set);
+                        table = set.Tables[0];
+                    }
 
-                catch (SqlException e)
-                {
-                    throw e;
+                    catch (SqlException e)
+                    {
+                        throw e;
+                    }
                 }
             }
-
             return table;
         }
-
         /// <summary>
         /// Select query without parameterized query
         /// </summary>
@@ -64,29 +62,28 @@ namespace DataLayer
         {
             DataTable table = new DataTable();
             DataSet set = new DataSet();
-
             using (connection = new SqlConnection(ConnectionString))
-            using (SqlCommand cmd = new SqlCommand(query, connection))
             {
-                try
+                using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
-                    connection.ConnectionString = ConnectionString;
-                    connection.Open();
-                    cmd.ExecuteNonQuery();
-                    adapter.SelectCommand = cmd;
-                    adapter.Fill(set);
-                    table = set.Tables[0];
-                }
+                    try
+                    {
+                        connection.ConnectionString = ConnectionString;
+                        connection.Open();
+                        cmd.ExecuteNonQuery();
+                        adapter.SelectCommand = cmd;
+                        adapter.Fill(set);
+                        table = set.Tables[0];
+                    }
 
-                catch (SqlException e)
-                {
-                    throw e;
+                    catch (SqlException e)
+                    {
+                        throw e;
+                    }
                 }
             }
             return table;
         }
-
-
         /// <summary>
         /// Executes an insert query
         /// </summary>
@@ -97,23 +94,24 @@ namespace DataLayer
         {
             int id = 0;
             using (connection = new SqlConnection(ConnectionString))
-            using (SqlCommand cmd = new SqlCommand(query + " SELECT CAST(SCOPE_IDENTITY() AS INT)", connection))
             {
-                try
+                using (SqlCommand cmd = new SqlCommand(query + " SELECT CAST(SCOPE_IDENTITY() AS INT)", connection))
                 {
-                    connection.ConnectionString = ConnectionString;
-                    connection.Open();
-                    cmd.Parameters.AddRange(parameter);
-                    id = Convert.ToInt32(cmd.ExecuteScalar().ToString());
-                    return id;
-                }
-                catch
-                {
-                    return null;
+                    try
+                    {
+                        connection.ConnectionString = ConnectionString;
+                        connection.Open();
+                        cmd.Parameters.AddRange(parameter);
+                        id = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+                        return id;
+                    }
+                    catch
+                    {
+                        return null;
+                    }
                 }
             }
         }
-
         /// <summary>
         /// Executes an update query
         /// </summary>
@@ -123,22 +121,24 @@ namespace DataLayer
         public bool ExecUpdateQuery(string query, SqlParameter[] parameter)
         {
             using (connection = new SqlConnection(ConnectionString))
-            using (SqlCommand cmd = new SqlCommand(query, connection))
             {
-                try
+                using (SqlCommand cmd = new SqlCommand(query, connection))
                 {
-                    connection.ConnectionString = ConnectionString;
-                    connection.Open();
-                    cmd.Parameters.AddRange(parameter);
-                    cmd.ExecuteNonQuery();
-                }
-                catch (StackOverflowException)
-                {
-                    throw new StackOverflowException();
-                }
-                catch (SqlException e)
-                {
-                    throw e;
+                    try
+                    {
+                        connection.ConnectionString = ConnectionString;
+                        connection.Open();
+                        cmd.Parameters.AddRange(parameter);
+                        cmd.ExecuteNonQuery();
+                    }
+                    catch (StackOverflowException)
+                    {
+                        throw new StackOverflowException();
+                    }
+                    catch (SqlException e)
+                    {
+                        throw e;
+                    }
                 }
             }
             return true;

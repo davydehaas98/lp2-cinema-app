@@ -29,9 +29,11 @@ namespace PresentationLayer
             movielogic = new MovieLogic();
             cinemalogic = new CinemaLogic();
             eventlogic = new EventLogic();
+            dpEventDate.SelectedDate = DateTime.Today;
             dpEventDate.DisplayDateStart = DateTime.Today;
         }
-        private void Window_Closed(object sender, EventArgs e)
+
+        private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
         {
             MainWindow w = new MainWindow();
             w.Show();
@@ -64,7 +66,7 @@ namespace PresentationLayer
         private void dpEventDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             ClearComboBoxes(3);
-            movielogic.GetMovies().Where(movie => movie.ReleaseDate < dpEventDate.SelectedDate).ToList().ForEach(movie => cbEventMovie.Items.Add(movie));
+            movielogic.GetMoviesByReleaseDate(dpEventDate.SelectedDate.Value).ForEach(movie => cbEventMovie.Items.Add(movie));
             EnableButtons(true, false, false, false);
         }
         private void cbEventMovie_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -72,7 +74,7 @@ namespace PresentationLayer
             if(cbEventMovie.SelectedIndex > -1)
             {
                 ClearComboBoxes(2);
-                cinemalogic.GetMovieTheatres().Where(movietheatre => movietheatre.Cinemas.Exists(cinema => cinema.D3 == ((Movie)cbEventMovie.SelectedItem).D3)).ToList().ForEach(movietheatre => cbEventMovieTheatre.Items.Add(movietheatre));
+                cinemalogic.GetMovieTheatresByType(((Movie)cbEventMovie.SelectedItem).D3).ForEach(movietheatre => cbEventMovieTheatre.Items.Add(movietheatre));
                 EnableButtons(true, true, false, false);
             }
         }
@@ -97,9 +99,7 @@ namespace PresentationLayer
         private void btnEventConfirm_Click(object sender, RoutedEventArgs e)
         {
             eventlogic.InsertEvent(dpEventDate.SelectedDate.Value.Add(((DateTime)tpEventTime.Value).TimeOfDay),((Cinema)cbEventCinema.SelectedItem).Id,((Movie)cbEventMovie.SelectedItem).Id);
-            MainWindow w = new MainWindow();
             this.Close();
-            w.Show();
         }
     }
 }
