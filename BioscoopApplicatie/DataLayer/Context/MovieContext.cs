@@ -5,18 +5,26 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using Models;
+using DataLayer.Interfaces;
 
-namespace DataLayer
+namespace DataLayer.Context
 {
-    public class MovieData : DataAccess
+    public class MovieContext : IMovieContext
     {
-        public DataTable GetMovies()
+        DataAccess db;
+        public MovieContext()
+        {
+            db = new DataAccess();
+        }
+
+        public IQueryable<Movie> GetAll()
         {
             string query = "SELECT * FROM [Movie] ORDER BY [Name]";
-            DataTable result = ExecSelectQuery(query);
-            return result;
+            DataTable result = db.ExecSelectQuery(query);
+            return ObjectBuilder.CreateMovieList(result);
         }
-        public DataTable GetMovieByID(int idmovie)
+        public Movie GetMovie(int idmovie)
         {
             string query = "SELECT * FROM [Movie] WHERE id = @idmovie";
             SqlParameter[] pars = new SqlParameter[1];
@@ -24,11 +32,11 @@ namespace DataLayer
             pars[0] = new SqlParameter("@idmovie", SqlDbType.Int);
             pars[0].Value = idmovie;
 
-            DataTable result = ExecSelectQuery(query, pars);
+            DataRow result = db.ExecSelectQuery(query, pars).Rows[0];
 
-            return result;
+            return ObjectBuilder.CreateMovie(result);
         }
-        public DataTable GetMoviesByReleaseDate(DateTime date)
+        public IQueryable<Movie> GetMoviesByReleaseDate(DateTime date)
         {
             string query = "SELECT * FROM [Movie] WHERE ReleaseDate <= @date";
             SqlParameter[] pars = new SqlParameter[1];
@@ -36,17 +44,17 @@ namespace DataLayer
             pars[0] = new SqlParameter("@date", SqlDbType.Date);
             pars[0].Value = date;
 
-            DataTable result = ExecSelectQuery(query, pars);
+            DataTable result = db.ExecSelectQuery(query, pars);
 
-            return result;
+            return ObjectBuilder.CreateMovieList(result);
         }
-        public DataTable GetGenres()
+        public IQueryable<Genre> GetGenres()
         {
             string query = "SELECT Genre.id, Genre.Name FROM [Genre]";
-            DataTable result = ExecSelectQuery(query);
-            return result;
+            DataTable result = db.ExecSelectQuery(query);
+            return ObjectBuilder.CreateGenreList(result);
         }
-        public DataTable GetGenres(int idmovie)
+        public IQueryable<Genre> GetGenres(int idmovie)
         {
             string query = "SELECT Genre.id, Genre.Name FROM Movie_Genre INNER JOIN Movie ON Movie_Genre.MovieID = Movie.id INNER JOIN Genre ON Movie_Genre.GenreID = Genre.id WHERE Movie.id = @idmovie";
             SqlParameter[] pars = new SqlParameter[1];
@@ -54,8 +62,8 @@ namespace DataLayer
             pars[0] = new SqlParameter("@idmovie", SqlDbType.Int);
             pars[0].Value = idmovie;
 
-            DataTable result = ExecSelectQuery(query, pars);
-            return result;
+            DataTable result = db.ExecSelectQuery(query, pars);
+            return ObjectBuilder.CreateGenreList(result);
         }
         public void InsertMovie(string name, bool d3, int length, int minimumage, DateTime releasedate, byte[] image, List<int> genreids)
         {
@@ -79,7 +87,7 @@ namespace DataLayer
             pars[5] = new SqlParameter("@image", SqlDbType.VarBinary);
             pars[5].Value = image;
 
-            int? movieid = ExecInsertQuery(query, pars);
+            int? movieid = db.ExecInsertQuery(query, pars);
             foreach(int genreid in genreids)
             {
                 string query2 = "INSERT INTO [Movie_Genre] (MovieID, GenreID) VALUES (@movieid, @genreid)";
@@ -91,7 +99,7 @@ namespace DataLayer
 
                 pars2[1] = new SqlParameter("@genreid", SqlDbType.Int);
                 pars2[1].Value = genreid;
-                ExecInsertQuery(query2, pars2);
+                db.ExecInsertQuery(query2, pars2);
             }
         }
         public void UpdateMovie(int idmovie, byte[] image)
@@ -104,7 +112,7 @@ namespace DataLayer
 
             pars[1] = new SqlParameter("@image", SqlDbType.VarBinary);
             pars[1].Value = image;
-            ExecInsertQuery(query, pars);
+            db.ExecInsertQuery(query, pars);
         }
     }
 }

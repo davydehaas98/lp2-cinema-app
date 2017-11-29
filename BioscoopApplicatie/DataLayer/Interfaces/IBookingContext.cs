@@ -3,13 +3,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Data;
-using System.Data.SqlClient;
+using Models;
 
-namespace DataLayer
+namespace DataLayer.Interfaces
 {
-    public class BookingData : DataAccess
+    public interface IBookingContext : IContext<Booking>
     {
-
     }
 }

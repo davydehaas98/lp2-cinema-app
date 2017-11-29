@@ -10,20 +10,20 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.IO;
 
-namespace LogicLayer
+namespace Repository
 {
     public class EventLogic
     {
-        private EventData eventdata;
-        private MovieData moviedata;
-        private CinemaData cinemadata;
+        private IEventContext eventdata;
+        private IMovieContext moviedata;
+        private ICinemaContext cinemadata;
         private CinemaLogic cinemalogic;
         private ImageLogic imagelogic;
         public EventLogic()
         {
-            eventdata = new EventData();
-            moviedata = new MovieData();
-            cinemadata = new CinemaData();
+            eventdata = new IEventContext();
+            moviedata = new IMovieContext();
+            cinemadata = new ICinemaContext();
             cinemalogic = new CinemaLogic();
             imagelogic = new ImageLogic();
         }

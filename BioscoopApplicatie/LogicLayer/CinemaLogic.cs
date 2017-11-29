@@ -7,14 +7,14 @@ using System.Data;
 using DataLayer;
 using Models;
 
-namespace LogicLayer
+namespace Repository
 {
     public class CinemaLogic
     {
-        private CinemaData cinemadata;
+        private CinemaContext cinemadata;
         public CinemaLogic()
         {
-            cinemadata = new CinemaData();
+            cinemadata = new CinemaContext();
         }
         public List<MovieTheatre> GetMovieTheatres() 
         {

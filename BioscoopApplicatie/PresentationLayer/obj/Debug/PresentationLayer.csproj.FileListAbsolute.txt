@@ -31,9 +31,7 @@ C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationL
 C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\bin\Debug\PresentationLayer.exe
 C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\bin\Debug\PresentationLayer.pdb
 C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\bin\Debug\nl\PresentationLayer.resources.dll
-C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\bin\Debug\LogicLayer.dll
 C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\bin\Debug\DataLayer.dll
-C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\bin\Debug\LogicLayer.pdb
 C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\bin\Debug\DataLayer.pdb
 C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\obj\Debug\MainWindow.baml
 C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\obj\Debug\PresentationLayer.g.resources
@@ -88,3 +86,7 @@ C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationL
 C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\obj\Debug\WindowBooking.baml
 C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\bin\Debug\Models.dll
 C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\bin\Debug\Models.pdb
+C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\bin\Debug\ImageConverter.dll
+C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\bin\Debug\Repository.dll
+C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\bin\Debug\ImageConverter.pdb
+C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\bin\Debug\Repository.pdb

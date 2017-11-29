@@ -7,8 +7,8 @@
     <ProjectGuid>{944ED985-21A3-4A98-96CB-6D272F4DC13E}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>LogicLayer</RootNamespace>
-    <AssemblyName>LogicLayer</AssemblyName>
+    <RootNamespace>Repository</RootNamespace>
+    <AssemblyName>Repository</AssemblyName>
     <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <TargetFrameworkProfile />
@@ -47,11 +47,10 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BookingLogic.cs" />
-    <Compile Include="CinemaLogic.cs" />
-    <Compile Include="ImageLogic.cs" />
-    <Compile Include="EventLogic.cs" />
-    <Compile Include="MovieLogic.cs" />
+    <Compile Include="BookingRepository.cs" />
+    <Compile Include="CinemaRepository.cs" />
+    <Compile Include="EventRepository.cs" />
+    <Compile Include="MovieRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -64,8 +63,6 @@
       <Name>Models</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Objects\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

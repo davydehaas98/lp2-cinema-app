@@ -14,31 +14,32 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Forms;
 using System.Collections.ObjectModel;
-using LogicLayer;
+using Repository;
 using Models;
 using System.ComponentModel;
+using ImageConverter;
 
 namespace PresentationLayer
 {
     public partial class WindowMovieAdd : Window
     {
-        private MovieLogic movielogic;
+        private MovieRepository movierepo;
         public ObservableCollection<Genre> GenreList { get; set; }
         private List<int> SelectedGenresID;
         private System.Drawing.Image image;
         public WindowMovieAdd()
         {
             InitializeComponent();
-            movielogic = new MovieLogic();
+            movierepo = new MovieRepository();
             GenreList = new ObservableCollection<Genre>();
             SelectedGenresID = new List<int>();
             new int[5] { 0, 6, 9, 12, 16 }.ToList().ForEach(age => cbMovieMinimumAge.Items.Add(age));
-            movielogic.GetGenres().ForEach(genre => GenreList.Add(new Genre(genre.Id, genre.Name)));
+            movierepo.GetGenres().ForEach(genre => GenreList.Add(new Genre(genre.Id, genre.Name)));
             DataContext = this;
         }
         private bool CheckFields()
         {
-            return movielogic.CheckFields(tbMovieTitle.Text, tbMovieLength.Text, dpMovieReleaseDate.SelectedDate.Value, image, SelectedGenresID);
+            return movierepo.CheckFields(tbMovieTitle.Text, tbMovieLength.Text, dpMovieReleaseDate.SelectedDate.Value, image, SelectedGenresID);
         }
         private void btnMovieImage_Click(object sender, RoutedEventArgs e)
         {
@@ -56,7 +57,7 @@ namespace PresentationLayer
         {
             if (CheckFields())
             {
-                movielogic.InsertMovie(tbMovieTitle.Text, (bool)chkb3D.IsChecked, Convert.ToInt32(tbMovieLength.Text), Convert.ToInt32(cbMovieMinimumAge.SelectedValue), dpMovieReleaseDate.SelectedDate.Value, image, SelectedGenresID);
+                movierepo.InsertMovie(tbMovieTitle.Text, (bool)chkb3D.IsChecked, Convert.ToInt32(tbMovieLength.Text), Convert.ToInt32(cbMovieMinimumAge.SelectedValue), dpMovieReleaseDate.SelectedDate.Value, ImageBuilder.ImageToByteArray(image), SelectedGenresID);
                 this.Close();
             }
             else

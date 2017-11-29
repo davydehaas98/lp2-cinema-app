@@ -5,18 +5,27 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
+using Models;
+using DataLayer.Interfaces;
 
-namespace DataLayer
+namespace DataLayer.Context
 {
-    public class EventData : DataAccess
+    public class EventContext : IEventContext
     {
-        public DataTable GetEvents()
+        DataAccess db;
+
+        public EventContext()
+        {
+            db = new DataAccess();
+        }
+
+        public IQueryable<Event> GetAll()
         {
             string query = "SELECT * FROM [Event]";
-            DataTable result = ExecSelectQuery(query);
-            return result;
+            DataTable result = db.ExecSelectQuery(query);
+            return ObjectBuilder.CreateEventList(result);
         }
-        public DataTable GetEvent(int idevent)
+        public Event GetEvent(int idevent)
         {
             string query = "SELECT * FROM [Event] WHERE id = @idevent";
             SqlParameter[] pars = new SqlParameter[1];
@@ -24,12 +33,12 @@ namespace DataLayer
             pars[0] = new SqlParameter("@idevent", SqlDbType.Int);
             pars[0].Value = idevent;
 
-            DataTable result = ExecSelectQuery(query, pars);
+            DataRow result = db.ExecSelectQuery(query, pars).Rows[0];
 
-            return result;
+            return ObjectBuilder.CreateEvent(result);
         }
         
-        public DataTable GetSeats(int idevent)
+        public IQueryable<Seat> GetSeats(int idevent)
         {
             string query = "SELECT s.id, s.[Row], s.Number FROM [Event_Seat] es INNER JOIN [Event] e ON es.EventID = e.id INNER JOIN [Seat] s ON es.SeatID = s.id WHERE e.id = @idevent";
             SqlParameter[] pars = new SqlParameter[1];
@@ -37,8 +46,8 @@ namespace DataLayer
             pars[0] = new SqlParameter("@idevent", SqlDbType.Int);
             pars[0].Value = idevent;
 
-            DataTable result = ExecSelectQuery(query, pars);
-            return result;
+            DataTable result = db.ExecSelectQuery(query, pars);
+            return ObjectBuilder.CreateSeatList(result);
         }
         public void InsertEvent(DateTime datetime, int cinemaid, int movieid)
         {
@@ -53,7 +62,7 @@ namespace DataLayer
             pars[2] = new SqlParameter("@movieid", SqlDbType.Int);
             pars[2].Value = movieid;
 
-            int? eventid = ExecInsertQuery(query, pars);
+            int? eventid = db.ExecInsertQuery(query, pars);
             //for (int seatid = 0; seatid < 101; seatid++)
             //{
             //    string query2 = "INSERT INTO [Event_Seat] (EventID, SeatID) VALUES (@eventid, @seatid)";

@@ -11,7 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using LogicLayer;
+using Repository;
 using Models;
 
 namespace PresentationLayer
@@ -21,17 +21,17 @@ namespace PresentationLayer
     /// </summary>
     public partial class WindowBooking : Window
     {
-        private EventLogic eventlogic;
+        private EventRepository eventrepo;
         private Seat[] seats;
         public WindowBooking()
         {
             InitializeComponent();
-            eventlogic = new EventLogic();
+            eventrepo = new EventRepository();
             GenerateSeats();
         }
         public void GenerateSeats()
         {
-            seats = eventlogic.GetEvents().Single(eve => eve.Id == 1).Seats.ToArray();
+            seats = eventrepo.GetAll().Single(eve => eve.Id == 1).Seats.ToArray();
             int x = 0;
             int y = 0;
             for (int i = 1; i < 101; i++)

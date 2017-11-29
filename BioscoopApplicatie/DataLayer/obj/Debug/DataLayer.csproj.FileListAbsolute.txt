@@ -15,3 +15,8 @@ D:\Documenten\Visual Studio Projects\BioscoopApplicatie\DataLayer\obj\Debug\Data
 D:\Documenten\Visual Studio Projects\BioscoopApplicatie\DataLayer\obj\Debug\DataLayer.csproj.CoreCompileInputs.cache
 D:\Documenten\Visual Studio Projects\BioscoopApplicatie\DataLayer\obj\Debug\DataLayer.dll
 D:\Documenten\Visual Studio Projects\BioscoopApplicatie\DataLayer\obj\Debug\DataLayer.pdb
+C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\DataLayer\bin\Debug\Models.dll
+C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\DataLayer\bin\Debug\Models.pdb
+C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\DataLayer\obj\Debug\DataLayer.csprojResolveAssemblyReference.cache
+C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\DataLayer\bin\Debug\ImageConverter.dll
+C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\DataLayer\bin\Debug\ImageConverter.pdb

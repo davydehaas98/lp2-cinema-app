@@ -13,7 +13,7 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Forms;
-using LogicLayer;
+using Repository;
 using Models;
 
 namespace PresentationLayer
@@ -23,28 +23,28 @@ namespace PresentationLayer
     /// </summary>
     public partial class MainWindow : Window
     {
-        private CinemaLogic cinemalogic;
-        private MovieLogic movielogic;
-        private EventLogic eventlogic;
-        private BookingLogic bookinglogic;
+        private CinemaRepository cinemalogic;
+        private MovieRepository movierepo;
+        private EventRepository eventrepo;
+        private BookingRepository bookingrepo;
         public MainWindow()
         {
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
             InitializeComponent();
-            cinemalogic = new CinemaLogic();
-            movielogic = new MovieLogic();
-            eventlogic = new EventLogic();
-            bookinglogic = new BookingLogic();
+            cinemalogic = new CinemaRepository();
+            movierepo = new MovieRepository();
+            eventrepo = new EventRepository();
+            bookingrepo = new BookingRepository();
         }
         public void RefreshData()
         {
-            dgEvents.ItemsSource = eventlogic.GetEvents();
-            dgMovies.ItemsSource = movielogic.GetMovies();
+            dgEvents.ItemsSource = eventrepo.GetAll();
+            dgMovies.ItemsSource = movierepo.GetAll();
         }
         public void GenerateSeats(int eventid)
         {
             List<Seat> seats = new List<Seat>();
-            seats = eventlogic.GetEvent(eventid).Seats;
+            seats = eventrepo.GetEvent(eventid).Seats;
             canvasEventSeats.Children.Clear();
             int x = 0;
             int y = 0;

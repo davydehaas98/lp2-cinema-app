@@ -12,15 +12,15 @@ using System.Drawing;
 using System.Drawing.Imaging;
 using Models;
 
-namespace LogicLayer
+namespace Repository
 {
     public class MovieLogic
     {
-        private MovieData moviedata;
+        private MovieContext moviedata;
         private ImageLogic imagelogic;
         public MovieLogic()
         {
-            moviedata = new MovieData();
+            moviedata = new MovieContext();
             imagelogic = new ImageLogic();
         }
         public List<Movie> GetMovies()

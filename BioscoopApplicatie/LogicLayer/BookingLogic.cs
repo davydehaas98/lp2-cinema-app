@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.Data;
 using DataLayer;
 
-namespace LogicLayer
+namespace Repository
 {
     public class BookingLogic
     {

@@ -1,22 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.Specialized;
+using System.Drawing;
+using System.Drawing.Imaging;
 using System.IO;
 using System.Linq;
-using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Media;
-using System.Drawing;
-using System.Drawing.Imaging;
 using System.Windows.Media.Imaging;
 
-
-namespace Repository
+namespace ImageConverter
 {
-    public class ImageLogic
+    public static class ImageBuilder
     {
-        public byte[] ImageToByteArray(System.Drawing.Image imageIn)
+        public static byte[] ImageToByteArray(Image imageIn)
         {
             using (var ms = new MemoryStream())
             {
@@ -24,7 +21,7 @@ namespace Repository
                 return ms.ToArray();
             }
         }
-        public ImageSource ByteToImageSource(byte[] imgBytes)
+        public static ImageSource ByteToImageSource(byte[] imgBytes)
         {
             BitmapImage bmi = new BitmapImage();
             bmi.BeginInit();
