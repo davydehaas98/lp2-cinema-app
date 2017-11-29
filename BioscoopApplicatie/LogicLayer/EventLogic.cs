@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Data;
 using DataLayer;
+using Models;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.IO;
@@ -49,6 +50,10 @@ namespace LogicLayer
                 return new Event((int)row["id"], (DateTime)row["DateTime"], GetMovie((int)row["MovieID"]), GetCinema((int)row["CinemaID"]), GetMovieTheatre((int)row["CinemaID"]), GetSeats((int)row["id"]));
             }
             return null;
+        }
+        public void InsertEvent(DateTime date, int cinemaid, int movieid)
+        {
+            eventdata.InsertEvent(date, cinemaid, movieid);
         }
         private Movie GetMovie(int idmovie)
         {
@@ -107,10 +112,6 @@ namespace LogicLayer
                 return seats;
             }
             return null;
-        }
-        public void InsertEvent(DateTime date, int cinemaid, int movieid)
-        {
-            eventdata.InsertEvent(date, cinemaid, movieid);
         }
     }
 }

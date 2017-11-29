@@ -22,3 +22,5 @@ D:\Documenten\Visual Studio Projects\BioscoopApplicatie\LogicLayer\bin\Debug\Log
 D:\Documenten\Visual Studio Projects\BioscoopApplicatie\LogicLayer\bin\Debug\LogicLayer.pdb
 D:\Documenten\Visual Studio Projects\BioscoopApplicatie\LogicLayer\bin\Debug\DataLayer.dll
 D:\Documenten\Visual Studio Projects\BioscoopApplicatie\LogicLayer\bin\Debug\DataLayer.pdb
+C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\LogicLayer\bin\Debug\Models.dll
+C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\LogicLayer\bin\Debug\Models.pdb

@@ -14,6 +14,7 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Forms;
 using LogicLayer;
+using Models;
 
 namespace PresentationLayer
 {

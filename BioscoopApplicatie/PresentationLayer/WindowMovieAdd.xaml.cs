@@ -15,6 +15,7 @@ using System.Windows.Shapes;
 using System.Windows.Forms;
 using System.Collections.ObjectModel;
 using LogicLayer;
+using Models;
 using System.ComponentModel;
 
 namespace PresentationLayer

@@ -10,6 +10,7 @@ using System.Windows.Media.Imaging;
 using System.IO;
 using System.Drawing;
 using System.Drawing.Imaging;
+using Models;
 
 namespace LogicLayer
 {

@@ -12,6 +12,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using LogicLayer;
+using Models;
 
 namespace PresentationLayer
 {
@@ -33,27 +34,20 @@ namespace PresentationLayer
             seats = eventlogic.GetEvents().Single(eve => eve.Id == 1).Seats.ToArray();
             int x = 0;
             int y = 0;
-            foreach(Seat seat in seats)
+            for (int i = 1; i < 101; i++)
             {
                 Ellipse ell = new Ellipse();
                 ell.Height = 30;
                 ell.Width = 30;
-                //if (seat.Booked == false)
-                //{
-                //    ell.Fill = Brushes.Black;
-                //    ell.MouseLeftButtonDown += ellipse_MouseLeftButtonDown;
-                //    ell.MouseEnter += ellipse_MouseEnter;
-                //    ell.MouseLeave += ellipse_MouseLeave;
-                //}
-                //else
-                //{
-                //    ell.Fill = Brushes.Gray;
-                //}
+                ell.Fill = Brushes.Black;
+                ell.MouseLeftButtonDown += ellipse_MouseLeftButtonDown;
+                ell.MouseEnter += ellipse_MouseEnter;
+                ell.MouseLeave += ellipse_MouseLeave;
                 Canvas.SetLeft(ell, x);
                 Canvas.SetTop(ell, y);
                 cnvsSeats.Children.Add(ell);
                 x += 30;
-                if(seat.Number % 10 == 0)
+                if (i % 10 == 0)
                 {
                     x = 0;
                     y += 30;

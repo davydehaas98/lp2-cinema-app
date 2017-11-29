@@ -86,3 +86,5 @@ C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationL
 C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\obj\Debug\WindowEventAdd.baml
 C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\obj\Debug\WindowBooking.g.cs
 C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\obj\Debug\WindowBooking.baml
+C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\bin\Debug\Models.dll
+C:\Users\davyd\Documents\Visual Studio Projects\BioscoopApplicatie\PresentationLayer\bin\Debug\Models.pdb

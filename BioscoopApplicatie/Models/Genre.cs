@@ -4,21 +4,22 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LogicLayer
+namespace Models
 {
-    public class Ticket
+    public class Genre
     {
         private int id;
         private string name;
-        private decimal price;
-        public int ID { get { return this.id; } set { this.id = value; } }
+        public int Id { get { return this.id; } set { this.id = value; } }
         public string Name { get { return this.name; } set { this.name = value; } }
-        public decimal Price { get { return this.price; } set { this.price = value; } }
-        public Ticket(int id, string name, decimal price)
+        public Genre(int id,string name)
         {
             this.id = id;
             this.name = name;
-            this.price = price;
+        }
+        public override string ToString()
+        {
+            return $"{name}";
         }
     }
 }

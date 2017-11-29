@@ -153,6 +153,10 @@
       <Project>{944ed985-21a3-4a98-96cb-6d272f4dc13e}</Project>
       <Name>LogicLayer</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Models\Models.csproj">
+      <Project>{23a745c5-1146-4094-bb8a-b9d0490f2832}</Project>
+      <Name>Models</Name>
+    </ProjectReference>
   </ItemGroup>
   <ItemGroup>
     <Resource Include="unnamed.ico" />
