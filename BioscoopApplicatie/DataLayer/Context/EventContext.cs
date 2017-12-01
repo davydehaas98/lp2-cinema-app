@@ -25,26 +25,26 @@ namespace DataLayer.Context
             DataTable result = db.ExecSelectQuery(query);
             return ObjectBuilder.CreateEventList(result);
         }
-        public Event GetEvent(int idevent)
+        public Event GetEvent(int eventid)
         {
-            string query = "SELECT * FROM [Event] WHERE id = @idevent";
+            string query = "SELECT * FROM [Event] WHERE id = @eventid";
             SqlParameter[] pars = new SqlParameter[1];
 
-            pars[0] = new SqlParameter("@idevent", SqlDbType.Int);
-            pars[0].Value = idevent;
+            pars[0] = new SqlParameter("@eventid", SqlDbType.Int);
+            pars[0].Value = eventid;
 
             DataRow result = db.ExecSelectQuery(query, pars).Rows[0];
 
             return ObjectBuilder.CreateEvent(result);
         }
         
-        public IQueryable<Seat> GetSeats(int idevent)
+        public IQueryable<Seat> GetSeats(int eventid)
         {
-            string query = "SELECT s.id, s.[Row], s.Number FROM [Event_Seat] es INNER JOIN [Event] e ON es.EventID = e.id INNER JOIN [Seat] s ON es.SeatID = s.id WHERE e.id = @idevent";
+            string query = "SELECT s.id, s.[Row], s.Number FROM [Event_Seat] es INNER JOIN [Event] e ON es.EventID = e.id INNER JOIN [Seat] s ON es.SeatID = s.id WHERE e.id = @eventid";
             SqlParameter[] pars = new SqlParameter[1];
 
-            pars[0] = new SqlParameter("@idevent", SqlDbType.Int);
-            pars[0].Value = idevent;
+            pars[0] = new SqlParameter("@eventid", SqlDbType.Int);
+            pars[0].Value = eventid;
 
             DataTable result = db.ExecSelectQuery(query, pars);
             return ObjectBuilder.CreateSeatList(result);

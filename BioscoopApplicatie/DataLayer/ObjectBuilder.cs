@@ -42,7 +42,7 @@ namespace DataLayer
         }
         internal static Booking CreateBooking(DataRow row)
         {
-            return new Booking((int)row["id"], (DateTime)row["Datetime"], bookingcontext.GetClient((int)row["ClientID"]), eventcontext.GetEvent((int)row["EventID"]), bookingcontext.GetTickets((int)row["id"]).ToList(), bookingcontext.GetSeats((int)row["id"]).ToList(), (decimal)row["TotalPrice"]);
+            return new Booking((int)row["id"], (DateTime)row["DateTime"], bookingcontext.GetClient((int)row["ClientID"]), eventcontext.GetEvent((int)row["EventID"]), bookingcontext.GetTickets((int)row["id"]).ToList(), bookingcontext.GetSeats((int)row["id"]).ToList(), (decimal)row["TotalPrice"]);
         }
         internal static Client CreateClient(DataRow row)
         {

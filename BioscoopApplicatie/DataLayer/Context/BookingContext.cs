@@ -62,5 +62,9 @@ namespace DataLayer.Context
 
             return ObjectBuilder.CreateSeatList(result);
         }
+        public void InsertClient()
+        {
+            string query = "INSERT INTO [Client] ([Name], [D3], [Length], [MinimumAge], [ReleaseDate], [Image]) VALUES (@name, @d3, @length, @minimumage, @releasedate, @image))";
+        }
     }
 }

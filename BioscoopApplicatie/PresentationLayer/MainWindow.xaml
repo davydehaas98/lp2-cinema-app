@@ -14,7 +14,7 @@
                     <DataGrid x:Name="dgEvents" HorizontalAlignment="Left" Width="405" Margin="10,10,0,10" SelectionChanged="dgEvents_SelectionChanged" AutoGenerateColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding DateTime}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.Date}" MinWidth="100" Width="*"/>
-                            <DataGridTextColumn Binding="{Binding Movie}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.Movie}" MinWidth="100" Width="*"/>
+                            <DataGridTextColumn Binding="{Binding Movie.Name}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.Movie}" MinWidth="100" Width="*"/>
                             <DataGridTextColumn Binding="{Binding Cinema}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.Cinema}" MinWidth="100" Width="*"/>
                         </DataGrid.Columns>
                     </DataGrid>
