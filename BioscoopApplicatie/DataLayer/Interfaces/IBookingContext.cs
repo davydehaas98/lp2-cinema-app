@@ -9,5 +9,8 @@ namespace DataLayer.Interfaces
 {
     public interface IBookingContext : IContext<Booking>
     {
+        Client GetClient(int id);
+        IQueryable<Ticket> GetTickets(int bookingid);
+        IQueryable<Seat> GetSeats(int bookingid);
     }
 }

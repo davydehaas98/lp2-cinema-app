@@ -15,6 +15,7 @@ namespace DataLayer
         private static MovieContext moviecontext = new MovieContext();
         private static CinemaContext cinemacontext = new CinemaContext();
         private static EventContext eventcontext = new EventContext();
+        private static BookingContext bookingcontext = new BookingContext();
         internal static Movie CreateMovie(DataRow row)
         {
             return new Movie((int)row["id"], (string)row["Name"], (bool)row["D3"], (int)row["Length"], (int)row["MinimumAge"], (DateTime)row["ReleaseDate"], ImageBuilder.ByteToImageSource((byte[])row["Image"]), moviecontext.GetGenres((int)row["id"]).ToList());
@@ -38,6 +39,18 @@ namespace DataLayer
         private static Seat CreateSeat(DataRow row)
         {
             return new Seat((int)row["id"], (int)row["Row"], (int)row["Number"]);
+        }
+        internal static Booking CreateBooking(DataRow row)
+        {
+            return new Booking((int)row["id"], (DateTime)row["Datetime"], bookingcontext.GetClient((int)row["ClientID"]), eventcontext.GetEvent((int)row["EventID"]), bookingcontext.GetTickets((int)row["id"]).ToList(), bookingcontext.GetSeats((int)row["id"]).ToList(), (decimal)row["TotalPrice"]);
+        }
+        internal static Client CreateClient(DataRow row)
+        {
+            return new Client((int)row["id"], (string)row["FirstName"], (string)row["LastName"], (DateTime)row["Birthday"], (string)row["Gender"], (string)row["Email"]);
+        }
+        internal static Ticket CreateTicket(DataRow row)
+        {
+            return new Ticket((int)row["id"], (string)row["Name"], (decimal)row["Price"]);
         }
         internal static IQueryable<Movie> CreateMovieList(DataTable table)
         {
@@ -116,6 +129,45 @@ namespace DataLayer
                 return seats.AsQueryable();
             }
             return seats.AsQueryable();
+        }
+        internal static IQueryable<Booking> CreateBookingList(DataTable table)
+        {
+            List<Booking> bookings = new List<Booking>();
+            if (table.Rows.Count > 0)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    bookings.Add(CreateBooking(row));
+                }
+                return bookings.AsQueryable();
+            }
+            return bookings.AsQueryable();
+        }
+        internal static IQueryable<Client> CreateClientList(DataTable table)
+        {
+            List<Client> clients = new List<Client>();
+            if (table.Rows.Count > 0)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    clients.Add(CreateClient(row));
+                }
+                return clients.AsQueryable();
+            }
+            return clients.AsQueryable();
+        }
+        internal static IQueryable<Ticket> CreateTicketList(DataTable table)
+        {
+            List<Ticket> tickets = new List<Ticket>();
+            if (table.Rows.Count > 0)
+            {
+                foreach (DataRow row in table.Rows)
+                {
+                    tickets.Add(CreateTicket(row));
+                }
+                return tickets.AsQueryable();
+            }
+            return tickets.AsQueryable();
         }
     }
 }

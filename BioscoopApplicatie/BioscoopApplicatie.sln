@@ -7,7 +7,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "LogicLayer\Repository.csproj", "{944ED985-21A3-4A98-96CB-6D272F4DC13E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PresentationLayer", "PresentationLayer\PresentationLayer.csproj", "{01402DA2-6C3B-44C5-B42C-B9C63F0AC66E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdmintoolUI", "PresentationLayer\AdmintoolUI.csproj", "{01402DA2-6C3B-44C5-B42C-B9C63F0AC66E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaApplication", "CinemaApplication\CinemaApplication.csproj", "{1F86E95A-C7BC-47CC-B7CE-B5776C919480}"
 EndProject

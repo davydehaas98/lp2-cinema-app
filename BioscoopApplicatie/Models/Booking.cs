@@ -23,7 +23,7 @@ namespace Models
         public List<Ticket> Tickets { get { return this.tickets; } set { this.tickets = value; } }
         public List<Seat> SeatsBooked { get { return this.seatsbooked; } set { this.seatsbooked = value; } }
         public decimal TotalPrice { get { return this.totalprice; } set { this.totalprice = value; } }
-        public Booking(int id, DateTime datetime,  Client client, Event event_, List<Ticket> tickets, List<Seat> seatsbooked, int totalprice)
+        public Booking(int id, DateTime datetime, Client client, Event event_, List<Ticket> tickets, List<Seat> seatsbooked, decimal totalprice)
         {
             this.id = id;
             this.datetime = datetime;
