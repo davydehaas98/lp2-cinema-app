@@ -13,17 +13,19 @@ namespace CinemaApplication.Controllers
             return View();
         }
 
-        public ActionResult About()
+        public ActionResult Booking()
         {
-            ViewBag.Message = "Your application description page.";
-
+            ViewBag.Message = "Your application booking page.";
             return View();
         }
-
+        public ActionResult Movies()
+        {
+            ViewBag.Message = "Your application movies page.";
+            return View();
+        }
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
-
             return View();
         }
     }

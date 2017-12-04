@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataLayer.Context;
 using DataLayer.Interfaces;
 using Models;
+using Cryptography;
 
 namespace Repository
 {
@@ -25,6 +26,11 @@ namespace Repository
         public List<Seat> GetSeats(int bookingid)
         {
             return context.GetSeats(bookingid).ToList();
+        }
+        public void InsertClient(string firstname, string lastname, string email, DateTime birthday, string gender, string password)
+        {
+            string salt = Crypto.GenerateSalt();
+            context.InsertClient(firstname, lastname, email, birthday, gender, Crypto.GenerateHash(password, salt), salt);
         }
     }
 }

@@ -12,5 +12,6 @@ namespace DataLayer.Interfaces
         Client GetClient(int id);
         IQueryable<Ticket> GetTickets(int bookingid);
         IQueryable<Seat> GetSeats(int bookingid);
+        int? InsertClient(string firstname, string lastname, string email, DateTime birthday, string gender, string password, string salt);
     }
 }

@@ -7,13 +7,15 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DataLayer", "DataLayer\Data
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "LogicLayer\Repository.csproj", "{944ED985-21A3-4A98-96CB-6D272F4DC13E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AdmintoolUI", "PresentationLayer\AdmintoolUI.csproj", "{01402DA2-6C3B-44C5-B42C-B9C63F0AC66E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaTool", "PresentationLayer\CinemaTool.csproj", "{01402DA2-6C3B-44C5-B42C-B9C63F0AC66E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaApplication", "CinemaApplication\CinemaApplication.csproj", "{1F86E95A-C7BC-47CC-B7CE-B5776C919480}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaWebsite", "CinemaApplication\CinemaWebsite.csproj", "{1F86E95A-C7BC-47CC-B7CE-B5776C919480}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Models", "Models\Models.csproj", "{23A745C5-1146-4094-BB8A-B9D0490F2832}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ImageConverter", "ImageConverter\ImageConverter.csproj", "{2E427809-7611-439D-8E91-50FD6E57937B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cryptography", "Cryptography\Cryptography.csproj", "{814B59F8-5E5B-4D06-93B4-B8D2FAE6AEA2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -45,6 +47,10 @@ Global
 		{2E427809-7611-439D-8E91-50FD6E57937B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2E427809-7611-439D-8E91-50FD6E57937B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2E427809-7611-439D-8E91-50FD6E57937B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{814B59F8-5E5B-4D06-93B4-B8D2FAE6AEA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{814B59F8-5E5B-4D06-93B4-B8D2FAE6AEA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{814B59F8-5E5B-4D06-93B4-B8D2FAE6AEA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{814B59F8-5E5B-4D06-93B4-B8D2FAE6AEA2}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
