@@ -11,9 +11,9 @@ namespace Models
         private int id;
         private string name;
         private decimal price;
-        public int ID { get { return this.id; } set { this.id = value; } }
-        public string Name { get { return this.name; } set { this.name = value; } }
-        public decimal Price { get { return this.price; } set { this.price = value; } }
+        public int ID { get { return this.id; } }
+        public string Name { get { return this.name; } }
+        public decimal Price { get { return this.price; } }
         public Ticket(int id, string name, decimal price)
         {
             this.id = id;

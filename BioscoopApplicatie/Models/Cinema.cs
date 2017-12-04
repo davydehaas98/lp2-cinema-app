@@ -12,10 +12,10 @@ namespace Models
         private int name;
         private bool d3;
         private List<Seat> seats;
-        public int Id { get { return this.id; } set { this.id = value; } }
-        public int Name { get { return this.name; } set { this.name = value; } }
-        public bool D3 { get { return this.d3; } set { this.d3 = value; } }
-        public List<Seat> Seats { get { return this.seats; } set { this.seats = value; } }
+        public int Id { get { return this.id; } }
+        public int Name { get { return this.name; } }
+        public bool D3 { get { return this.d3; } }
+        public List<Seat> Seats { get { return this.seats; } }
         public Cinema(int id, int name, bool D3)
         {
             this.id = id;

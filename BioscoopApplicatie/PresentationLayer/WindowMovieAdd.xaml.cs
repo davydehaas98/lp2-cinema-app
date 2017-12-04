@@ -17,7 +17,6 @@ using System.Collections.ObjectModel;
 using Repository;
 using Models;
 using System.ComponentModel;
-using ImageConverter;
 
 namespace PresentationLayer
 {
@@ -57,7 +56,7 @@ namespace PresentationLayer
         {
             if (CheckFields())
             {
-                movierepo.InsertMovie(tbMovieTitle.Text, (bool)chkb3D.IsChecked, Convert.ToInt32(tbMovieLength.Text), Convert.ToInt32(cbMovieMinimumAge.SelectedValue), dpMovieReleaseDate.SelectedDate.Value, ImageBuilder.ImageToByteArray(image), SelectedGenresID);
+                movierepo.InsertMovie(tbMovieTitle.Text, (bool)chkb3D.IsChecked, Convert.ToInt32(tbMovieLength.Text), Convert.ToInt32(cbMovieMinimumAge.SelectedValue), dpMovieReleaseDate.SelectedDate.Value, image, SelectedGenresID);
                 this.Close();
             }
             else

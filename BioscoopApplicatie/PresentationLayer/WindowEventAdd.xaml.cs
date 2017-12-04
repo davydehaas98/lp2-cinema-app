@@ -24,7 +24,7 @@ namespace PresentationLayer
         private MovieRepository movierepo;
         private EventRepository eventrepo;
         private CinemaRepository cinemarepo;
-        public WindowEventAdd()
+        internal WindowEventAdd()
         {
             InitializeComponent();
             movierepo = new MovieRepository();

@@ -11,9 +11,9 @@ namespace Models
         private int id;
         private int row;
         private int number;
-        public int Id { get { return this.id; } set { this.id = value; } }
-        public int Row { get { return this.row; } set { this.row = value; } }
-        public int Number { get { return this.number; } set { this.number = value; } }
+        public int Id { get { return this.id; } }
+        public int Row { get { return row; } }
+        public int Number { get { return number; } }
         public Seat(int id, int row, int number)
         {
             this.id = id;

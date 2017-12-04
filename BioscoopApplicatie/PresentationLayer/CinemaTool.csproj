@@ -149,10 +149,6 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\ImageConverter\ImageConverter.csproj">
-      <Project>{2e427809-7611-439d-8e91-50fd6e57937b}</Project>
-      <Name>ImageConverter</Name>
-    </ProjectReference>
     <ProjectReference Include="..\LogicLayer\Repository.csproj">
       <Project>{944ed985-21a3-4a98-96cb-6d272f4dc13e}</Project>
       <Name>Repository</Name>

@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using DataLayer.Context;
 using DataLayer.Interfaces;
 using Models;
+using ImageConverter;
 using System.Drawing;
 
 namespace Repository
@@ -35,13 +36,13 @@ namespace Repository
         {
             return context.GetGenres(idmovie).ToList();
         }
-        public void InsertMovie(string name, bool d3, int length, int minimumage, DateTime releasedate, byte[] image, List<int> idgenres)
+        public void InsertMovie(string name, bool d3, int length, int minimumage, DateTime releasedate, Image image, List<int> idgenres)
         {
-            context.InsertMovie(name, d3, length, minimumage, releasedate, image, idgenres);
+            context.InsertMovie(name, d3, length, minimumage, releasedate, ImageBuilder.ImageToByteArray(image), idgenres);
         }
-        public void UpdateMovie(int idmovie, byte[] image)
+        public void UpdateMovie(int idmovie, Image image)
         {
-            context.UpdateMovie(idmovie, image);
+            context.UpdateMovie(idmovie, ImageBuilder.ImageToByteArray(image));
         }
         public bool CheckFields(string name, string length, DateTime releasedate, Image image, List<int> genres)
         {

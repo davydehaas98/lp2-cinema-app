@@ -48,21 +48,23 @@ namespace PresentationLayer
             canvasEventSeats.Children.Clear();
             int x = 0;
             int y = 0;
+            int currentseatid = 0;
             for (int i = 1; i <= 100; i++)
             {
                 Ellipse ell = new Ellipse();
                 ell.Height = 20;
                 ell.Width = 20;
-                if (seats.Exists(seat => seat.Id == i))
+                Canvas.SetLeft(ell, x);
+                Canvas.SetTop(ell, y);
+                if (seats.Count > currentseatid && seats[currentseatid].Id == i)
                 {
                     ell.Fill = Brushes.Yellow;
+                    currentseatid++;
                 }
                 else
                 {
                     ell.Fill = Brushes.Black;
                 }
-                Canvas.SetLeft(ell, x);
-                Canvas.SetTop(ell, y);
                 canvasEventSeats.Children.Add(ell);
                 x += 20;
                 if (i % 10 == 0)
@@ -77,6 +79,7 @@ namespace PresentationLayer
             if (dgEvents.SelectedIndex > -1)
             {
                 GenerateSeats(((Event)dgEvents.SelectedItem).Id);
+                imgEvent.Source = ((Event)dgEvents.SelectedItem).Movie.Image;
             }
         }
 

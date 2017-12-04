@@ -21,13 +21,13 @@ namespace DataLayer.Context
 
         public IQueryable<Event> GetAll()
         {
-            string query = "SELECT * FROM [Event]";
+            string query = "SELECT * FROM [Event] ORDER BY [DateTime]";
             DataTable result = db.ExecSelectQuery(query);
             return ObjectBuilder.CreateEventList(result);
         }
         public Event GetEvent(int eventid)
         {
-            string query = "SELECT * FROM [Event] WHERE id = @eventid";
+            string query = "SELECT * FROM [Event] WHERE id = @eventid ORDER BY [DateTime]";
             SqlParameter[] pars = new SqlParameter[1];
 
             pars[0] = new SqlParameter("@eventid", SqlDbType.Int);

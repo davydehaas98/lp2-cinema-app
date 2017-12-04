@@ -11,7 +11,8 @@
         <TabControl Margin="10">
             <TabItem Header="Events">
                 <Grid Background="#FFE5E5E5">
-                    <DataGrid x:Name="dgEvents" HorizontalAlignment="Left" Width="405" Margin="10,10,0,10" SelectionChanged="dgEvents_SelectionChanged" AutoGenerateColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" IsReadOnly="True">
+                    <Image x:Name="imgEvent" HorizontalAlignment="Left" Height="150" Margin="420,10,0,0" VerticalAlignment="Top" Width="111"/>
+                    <DataGrid x:Name="dgEvents" HorizontalAlignment="Left" Width="405" Margin="10,10,0,10" SelectionChanged="dgEvents_SelectionChanged" AutoGenerateColumns="False" CanUserResizeColumns="False" CanUserReorderColumns="False" CanUserSortColumns="False" IsReadOnly="True">
                         <DataGrid.Columns>
                             <DataGridTextColumn Binding="{Binding DateTime}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.Date}" MinWidth="100" Width="*"/>
                             <DataGridTextColumn Binding="{Binding Movie.Name}" ClipboardContentBinding="{x:Null}" Header="{x:Static p:Resources.Movie}" MinWidth="100" Width="*"/>
@@ -20,7 +21,7 @@
                     </DataGrid>
                     <Button x:Name="btnEventAdd" Content="Add new Event" Margin="536,261,10,10" RenderTransformOrigin="0.653,-1.2" Click="btnEventAdd_Click"/>
                     <Button x:Name="btnBookSeats" Content="Button" Margin="420,261,226,11" Click="btnBookSeats_Click"/>
-                    <Canvas x:Name="canvasEventSeats" HorizontalAlignment="Left" Height="119" Margin="536,10,0,0" VerticalAlignment="Top" Width="211"/>
+                    <Canvas x:Name="canvasEventSeats" HorizontalAlignment="Left" Height="173" Margin="536,10,0,0" VerticalAlignment="Top" Width="211"/>
                 </Grid>
             </TabItem>
             <TabItem Header="Movies">

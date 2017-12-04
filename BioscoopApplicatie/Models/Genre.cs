@@ -10,8 +10,8 @@ namespace Models
     {
         private int id;
         private string name;
-        public int Id { get { return this.id; } set { this.id = value; } }
-        public string Name { get { return this.name; } set { this.name = value; } }
+        public int Id { get { return this.id; } }
+        public string Name { get { return this.name; } }
         public Genre(int id,string name)
         {
             this.id = id;
