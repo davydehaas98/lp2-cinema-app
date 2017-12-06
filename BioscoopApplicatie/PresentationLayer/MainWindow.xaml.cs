@@ -13,7 +13,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Windows.Forms;
-using Repository;
+using Repository.Interfaces;
+using Repository.Repositories;
 using Models;
 
 namespace PresentationLayer
@@ -23,18 +24,19 @@ namespace PresentationLayer
     /// </summary>
     public partial class MainWindow : Window
     {
-        private CinemaRepository cinemalogic;
-        private MovieRepository movierepo;
-        private EventRepository eventrepo;
-        private BookingRepository bookingrepo;
-        public MainWindow()
+        private IBookingRepository bookingrepo;
+        private ICinemaRepository cinemarepo;
+        private IEventRepository eventrepo;
+        private IMovieRepository movierepo;
+        public MainWindow() : this(new BookingRepository(), new CinemaRepository(), new EventRepository(), new MovieRepository()) { }
+        public MainWindow(IBookingRepository bookingrepo, ICinemaRepository cinemarepo, IEventRepository eventrepo, IMovieRepository movierepo)
         {
             System.Threading.Thread.CurrentThread.CurrentUICulture = new System.Globalization.CultureInfo("en");
             InitializeComponent();
-            cinemalogic = new CinemaRepository();
-            movierepo = new MovieRepository();
-            eventrepo = new EventRepository();
-            bookingrepo = new BookingRepository();
+            this.bookingrepo = bookingrepo;
+            this.cinemarepo = cinemarepo;
+            this.eventrepo = eventrepo;
+            this.movierepo = movierepo;
         }
         public void RefreshData()
         {

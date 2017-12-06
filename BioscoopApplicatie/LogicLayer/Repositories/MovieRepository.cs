@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -7,11 +8,11 @@ using DataLayer.Context;
 using DataLayer.Interfaces;
 using Models;
 using ImageConverter;
-using System.Drawing;
+using Repository.Interfaces;
 
-namespace Repository
+namespace Repository.Repositories
 {
-    public class MovieRepository
+    public class MovieRepository : IMovieRepository
     {
         private IMovieContext context;
         public MovieRepository() : this(new MovieContext()) { }

@@ -1,7 +1,21 @@
-﻿@{
+﻿@using Models
+@model List<Movie>
+
+@{
     ViewBag.Title = "Movies";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
-
-<p>Use this area to provide additional information.</p>
+<div class="allmovies">
+    @foreach (Movie movie in Model)
+    {
+        @*<div class="single-movie">
+            <div class="movieinfo">
+                <h5>@movie.Name</h5>
+                <p>Release Date: @movie.ReleaseDate</p>
+                <p>Length: @movie.Length min</p>
+            </div>
+        </div>*@
+        @Html.ActionLink((string)movie.Name, "Movies", "Home", new { id = movie.Id }, new { @class = "list-group-item" })
+    }
+</div>

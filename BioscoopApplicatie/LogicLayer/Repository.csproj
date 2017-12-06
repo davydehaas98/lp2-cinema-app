@@ -47,10 +47,14 @@
     <Reference Include="WindowsBase" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="BookingRepository.cs" />
-    <Compile Include="CinemaRepository.cs" />
-    <Compile Include="EventRepository.cs" />
-    <Compile Include="MovieRepository.cs" />
+    <Compile Include="Interfaces\IBookingRepository.cs" />
+    <Compile Include="Interfaces\ICinemaRepository.cs" />
+    <Compile Include="Interfaces\IEventRepository.cs" />
+    <Compile Include="Interfaces\IMovieRepository.cs" />
+    <Compile Include="Repositories\BookingRepository.cs" />
+    <Compile Include="Repositories\CinemaRepository.cs" />
+    <Compile Include="Repositories\EventRepository.cs" />
+    <Compile Include="Repositories\MovieRepository.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

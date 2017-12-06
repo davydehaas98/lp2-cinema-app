@@ -3,18 +3,23 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Cryptography;
 using DataLayer.Context;
 using DataLayer.Interfaces;
 using Models;
-using Cryptography;
+using Repository.Interfaces;
 
-namespace Repository
+namespace Repository.Repositories
 {
-    public class BookingRepository
+    public class BookingRepository : IBookingRepository
     {
         private IBookingContext context;
         public BookingRepository():this(new BookingContext()) { }
         public BookingRepository(IBookingContext context) { this.context = context; }
+        public List<Booking> GetAll()
+        {
+            return context.GetAll().ToList();
+        }
         public Client GetClient(int id)
         {
             return context.GetClient(id);

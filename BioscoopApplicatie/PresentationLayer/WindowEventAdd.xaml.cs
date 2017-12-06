@@ -11,7 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Repository;
+using Repository.Interfaces;
+using Repository.Repositories;
 using Models;
 
 namespace PresentationLayer
@@ -21,17 +22,15 @@ namespace PresentationLayer
     /// </summary>
     public partial class WindowEventAdd : Window
     {
-        private MovieRepository movierepo;
-        private EventRepository eventrepo;
-        private CinemaRepository cinemarepo;
-        internal WindowEventAdd()
+        private ICinemaRepository cinemarepo;
+        private IEventRepository eventrepo;
+        private IMovieRepository movierepo;
+        public WindowEventAdd() : this(new CinemaRepository(), new EventRepository(), new MovieRepository()) { }
+        public WindowEventAdd( ICinemaRepository cinemarepo, IEventRepository eventrepo, IMovieRepository movierepo)
         {
-            InitializeComponent();
-            movierepo = new MovieRepository();
-            cinemarepo = new CinemaRepository();
-            eventrepo = new EventRepository();
-            dpEventDate.SelectedDate = DateTime.Today;
-            dpEventDate.DisplayDateStart = DateTime.Today;
+            this.cinemarepo = cinemarepo;
+            this.eventrepo = eventrepo;
+            this.movierepo = movierepo;
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)

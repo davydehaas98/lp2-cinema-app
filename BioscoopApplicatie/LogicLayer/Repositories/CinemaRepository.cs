@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 using DataLayer.Context;
 using DataLayer.Interfaces;
 using Models;
+using Repository.Interfaces;
 
-
-namespace Repository
+namespace Repository.Repositories
 {
-    public class CinemaRepository
+    public class CinemaRepository : ICinemaRepository
     {
         private ICinemaContext context;
         public CinemaRepository() : this(new CinemaContext()) { }

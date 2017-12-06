@@ -14,7 +14,8 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Windows.Forms;
 using System.Collections.ObjectModel;
-using Repository;
+using Repository.Interfaces;
+using Repository.Repositories;
 using Models;
 using System.ComponentModel;
 
@@ -22,14 +23,15 @@ namespace PresentationLayer
 {
     public partial class WindowMovieAdd : Window
     {
-        private MovieRepository movierepo;
+        private IMovieRepository movierepo;
         public ObservableCollection<Genre> GenreList { get; set; }
         private List<int> SelectedGenresID;
         private System.Drawing.Image image;
-        public WindowMovieAdd()
+        public WindowMovieAdd() : this(new MovieRepository()) { }
+        public WindowMovieAdd(IMovieRepository movierepo)
         {
             InitializeComponent();
-            movierepo = new MovieRepository();
+            this.movierepo = movierepo;
             GenreList = new ObservableCollection<Genre>();
             SelectedGenresID = new List<int>();
             new int[5] { 0, 6, 9, 12, 16 }.ToList().ForEach(age => cbMovieMinimumAge.Items.Add(age));

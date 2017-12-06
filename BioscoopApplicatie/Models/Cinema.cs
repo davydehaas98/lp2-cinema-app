@@ -16,11 +16,11 @@ namespace Models
         public int Name { get { return this.name; } }
         public bool D3 { get { return this.d3; } }
         public List<Seat> Seats { get { return this.seats; } }
-        public Cinema(int id, int name, bool D3)
+        public Cinema(int id, int name, bool d3)
         {
             this.id = id;
             this.name = name;
-            this.d3 = D3;
+            this.d3 = d3;
         }
         public string GetInfo()
         {

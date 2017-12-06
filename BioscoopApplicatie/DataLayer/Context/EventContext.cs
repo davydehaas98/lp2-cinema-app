@@ -21,13 +21,13 @@ namespace DataLayer.Context
 
         public IQueryable<Event> GetAll()
         {
-            string query = "SELECT * FROM [Event] ORDER BY [DateTime]";
+            string query = "SELECT * FROM [AllEvents]";
             DataTable result = db.ExecSelectQuery(query);
             return ObjectBuilder.CreateEventList(result);
         }
         public Event GetEvent(int eventid)
         {
-            string query = "SELECT * FROM [Event] WHERE id = @eventid ORDER BY [DateTime]";
+            string query = "SELECT * FROM [AllEvents] WHERE id = @eventid";
             SqlParameter[] pars = new SqlParameter[1];
 
             pars[0] = new SqlParameter("@eventid", SqlDbType.Int);
@@ -40,7 +40,7 @@ namespace DataLayer.Context
         
         public IQueryable<Seat> GetSeats(int eventid)
         {
-            string query = "SELECT s.id, s.[Row], s.Number FROM [Event_Seat] es INNER JOIN [Event] e ON es.EventID = e.id INNER JOIN [Seat] s ON es.SeatID = s.id WHERE e.id = @eventid";
+            string query = "SELECT * FROM [AllSeats] WHERE EventID = @eventid";
             SqlParameter[] pars = new SqlParameter[1];
 
             pars[0] = new SqlParameter("@eventid", SqlDbType.Int);
@@ -63,20 +63,6 @@ namespace DataLayer.Context
             pars[2].Value = movieid;
 
             int? eventid = db.ExecInsertQuery(query, pars);
-            //for (int seatid = 0; seatid < 101; seatid++)
-            //{
-            //    string query2 = "INSERT INTO [Event_Seat] (EventID, SeatID) VALUES (@eventid, @seatid)";
-
-            //    SqlParameter[] pars2 = new SqlParameter[2];
-
-            //    pars2[0] = new SqlParameter("@eventid", SqlDbType.Int);
-            //    pars2[0].Value = eventid;
-
-            //    pars2[1] = new SqlParameter("@seatid", SqlDbType.Int);
-            //    pars2[1].Value = seatid;
-            //    ExecInsertQuery(query2, pars2);
-
-            //}
         }
     }
 }

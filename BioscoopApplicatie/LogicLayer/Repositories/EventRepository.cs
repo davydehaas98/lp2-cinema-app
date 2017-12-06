@@ -6,10 +6,11 @@ using System.Threading.Tasks;
 using DataLayer.Context;
 using DataLayer.Interfaces;
 using Models;
+using Repository.Interfaces;
 
-namespace Repository
+namespace Repository.Repositories
 {
-    public class EventRepository
+    public class EventRepository : IEventRepository
     {
         private IEventContext context;
         public EventRepository() : this(new EventContext()) { }
