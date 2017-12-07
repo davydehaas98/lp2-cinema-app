@@ -209,7 +209,7 @@
     <Content Include="Scripts\jquery-1.10.2.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\LogicLayer\Repository.csproj">
+    <ProjectReference Include="..\Repository\Repository.csproj">
       <Project>{944ed985-21a3-4a98-96cb-6d272f4dc13e}</Project>
       <Name>Repository</Name>
     </ProjectReference>

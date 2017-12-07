@@ -17,7 +17,7 @@ using Repository.Interfaces;
 using Repository.Repositories;
 using Models;
 
-namespace PresentationLayer
+namespace CinemaTool
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml

@@ -19,7 +19,7 @@ using Repository.Repositories;
 using Models;
 using System.ComponentModel;
 
-namespace PresentationLayer
+namespace CinemaTool
 {
     public partial class WindowMovieAdd : Window
     {

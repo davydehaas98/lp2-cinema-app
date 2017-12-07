@@ -11,10 +11,11 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
-using Repository.Repositories;
-using Models;
 
-namespace PresentationLayer
+using Models;
+using Repository.Repositories;
+
+namespace CinemaTool
 {
     /// <summary>
     /// Interaction logic for WindowBooking.xaml

@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Models;
-using DataLayer.Context;
+using Context.Context;
 using System.Data;
 using ImageConverter;
 
-namespace DataLayer
+namespace Context
 {
     internal static class ObjectBuilder
     {

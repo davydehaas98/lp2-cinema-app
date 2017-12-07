@@ -6,19 +6,17 @@ using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using Models;
-using DataLayer.Interfaces;
+using Context.Interfaces;
 
-namespace DataLayer.Context
+namespace Context.Context
 {
     public class EventContext : IEventContext
     {
         DataAccess db;
-
         public EventContext()
         {
             db = new DataAccess();
         }
-
         public IQueryable<Event> GetAll()
         {
             string query = "SELECT * FROM [AllEvents]";
@@ -28,41 +26,25 @@ namespace DataLayer.Context
         public Event GetEvent(int eventid)
         {
             string query = "SELECT * FROM [AllEvents] WHERE id = @eventid";
-            SqlParameter[] pars = new SqlParameter[1];
-
-            pars[0] = new SqlParameter("@eventid", SqlDbType.Int);
-            pars[0].Value = eventid;
-
-            DataRow result = db.ExecSelectQuery(query, pars).Rows[0];
-
-            return ObjectBuilder.CreateEvent(result);
+            List<SqlParameter> pars = new List<SqlParameter>();
+            pars.Add(new SqlParameter("@eventid", SqlDbType.Int) { Value = eventid });
+            return ObjectBuilder.CreateEvent(db.ExecSelectQuery(query, pars).Rows[0]);
         }
-        
         public IQueryable<Seat> GetSeats(int eventid)
         {
             string query = "SELECT * FROM [AllSeats] WHERE EventID = @eventid";
-            SqlParameter[] pars = new SqlParameter[1];
-
-            pars[0] = new SqlParameter("@eventid", SqlDbType.Int);
-            pars[0].Value = eventid;
-
-            DataTable result = db.ExecSelectQuery(query, pars);
-            return ObjectBuilder.CreateSeatList(result);
+            List<SqlParameter> pars = new List<SqlParameter>();
+            pars.Add(new SqlParameter("@eventid", SqlDbType.Int) { Value = eventid });
+            return ObjectBuilder.CreateSeatList(db.ExecSelectQuery(query, pars));
         }
         public void InsertEvent(DateTime datetime, int cinemaid, int movieid)
         {
             string query = "INSERT INTO [Event] ([DateTime], [CinemaID], [MovieID]) VALUES (@datetime, @cinemaid, @movieid)";
-            SqlParameter[] pars = new SqlParameter[3];
-            pars[0] = new SqlParameter("@datetime", SqlDbType.DateTime);
-            pars[0].Value = datetime;
-
-            pars[1] = new SqlParameter("@cinemaid", SqlDbType.Int);
-            pars[1].Value = cinemaid;
-
-            pars[2] = new SqlParameter("@movieid", SqlDbType.Int);
-            pars[2].Value = movieid;
-
-            int? eventid = db.ExecInsertQuery(query, pars);
+            List<SqlParameter> pars = new List<SqlParameter>();
+            pars.Add(new SqlParameter("@datetime", SqlDbType.DateTime) { Value = datetime });
+            pars.Add(new SqlParameter("@cinemaid", SqlDbType.Int) { Value = cinemaid });
+            pars.Add(new SqlParameter("@movieid", SqlDbType.Int) { Value = movieid });
+            db.ExecInsertQuery(query, pars);
         }
     }
 }

@@ -11,11 +11,11 @@ namespace Models
         private int id;
         private int name;
         private bool d3;
-        private List<Seat> seats;
+        //private List<Seat> seats;
         public int Id { get { return this.id; } }
         public int Name { get { return this.name; } }
         public bool D3 { get { return this.d3; } }
-        public List<Seat> Seats { get { return this.seats; } }
+        //public List<Seat> Seats { get { return this.seats; } }
         public Cinema(int id, int name, bool d3)
         {
             this.id = id;

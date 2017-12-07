@@ -4,8 +4,8 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Cryptography;
-using DataLayer.Context;
-using DataLayer.Interfaces;
+using Context.Context;
+using Context.Interfaces;
 using Models;
 using Repository.Interfaces;
 

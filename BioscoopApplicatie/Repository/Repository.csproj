@@ -62,9 +62,9 @@
       <Project>{814b59f8-5e5b-4d06-93b4-b8d2fae6aea2}</Project>
       <Name>Cryptography</Name>
     </ProjectReference>
-    <ProjectReference Include="..\DataLayer\DataLayer.csproj">
+    <ProjectReference Include="..\DataLayer\Context.csproj">
       <Project>{9e09687c-0df6-40b1-bfcd-7ddf751006b3}</Project>
-      <Name>DataLayer</Name>
+      <Name>Context</Name>
     </ProjectReference>
     <ProjectReference Include="..\ImageConverter\ImageConverter.csproj">
       <Project>{2e427809-7611-439d-8e91-50fd6e57937b}</Project>

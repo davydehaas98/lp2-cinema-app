@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Models;
 
-namespace DataLayer.Interfaces
+namespace Context.Interfaces
 {
     public interface IBookingContext : IContext<Booking>
     {

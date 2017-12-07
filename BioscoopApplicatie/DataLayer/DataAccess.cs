@@ -1,23 +1,19 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace DataLayer
+namespace Context
 {
     public class DataAccess
     {
         private SqlDataAdapter adapter;
         private SqlConnection connection;
         //private string ConnectionString = @"Server=mssql.fhict.local;Database=dbi369008;User Id=dbi369008;Password=Pannenkoek123;Connection Timeout=2;";
-        private string ConnectionString = @"Server=tcp:davydehaas.database.windows.net,1433;Initial Catalog=CinemaApplicationDB;Persist Security Info=False;User ID=Davy98;Password=Pannenkoek123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=5;";
+        private string connectionstring = @"Server=tcp:davydehaas.database.windows.net,1433;Initial Catalog=CinemaApplicationDB;Persist Security Info=False;User ID=Davy98;Password=Pannenkoek123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=5;";
         public DataAccess()
         {
             adapter = new SqlDataAdapter();
-            connection = new SqlConnection(ConnectionString);
         }
         /// <summary>
         /// Select query with parameterized query
@@ -25,33 +21,33 @@ namespace DataLayer
         /// <param name="query"></param>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public DataTable ExecSelectQuery(string query, SqlParameter[] parameter)
+        public DataTable ExecSelectQuery(string query, List<SqlParameter> parameters)
         {
             DataTable table = new DataTable();
-            table = null;
             DataSet set = new DataSet();
-            using (connection = new SqlConnection(ConnectionString))
+            using (connection = new SqlConnection(connectionstring))
+            using (SqlCommand cmd = new SqlCommand(query, connection))
             {
-                using (SqlCommand cmd = new SqlCommand(query, connection))
+                try
                 {
-                    try
-                    {
-                        connection.ConnectionString = ConnectionString;
-                        connection.Open();
-                        cmd.Parameters.AddRange(parameter);
-                        cmd.ExecuteNonQuery();
-                        adapter.SelectCommand = cmd;
-                        adapter.Fill(set);
-                        table = set.Tables[0];
-                    }
-
-                    catch (SqlException e)
-                    {
-                        throw e;
-                    }
+                    connection.ConnectionString = connectionstring;
+                    connection.Open();
+                    cmd.Parameters.AddRange(parameters.ToArray());
+                    cmd.ExecuteNonQuery();
+                    adapter.SelectCommand = cmd;
+                    adapter.Fill(set);
+                    table = set.Tables[0];
                 }
+                catch (SqlException e)
+                {
+                    if (e.Number == 53)
+                    {
+                        throw new Exception("Database connection failed, error code: " + e.Number);
+                    }
+                    throw new Exception($"SQL Exception, error code: {e.Number}. {e.Message}");
+                }
+                return table;
             }
-            return table;
         }
         /// <summary>
         /// Select query without parameterized query
@@ -62,24 +58,25 @@ namespace DataLayer
         {
             DataTable table = new DataTable();
             DataSet set = new DataSet();
-            using (connection = new SqlConnection(ConnectionString))
+            using (connection = new SqlConnection(connectionstring))
+            using (SqlCommand cmd = new SqlCommand(query, connection))
             {
-                using (SqlCommand cmd = new SqlCommand(query, connection))
+                try
                 {
-                    try
+                    connection.ConnectionString = connectionstring;
+                    connection.Open();
+                    cmd.ExecuteNonQuery();
+                    adapter.SelectCommand = cmd;
+                    adapter.Fill(set);
+                    table = set.Tables[0];
+                }
+                catch (SqlException e)
+                {
+                    if (e.Number == 53)
                     {
-                        connection.ConnectionString = ConnectionString;
-                        connection.Open();
-                        cmd.ExecuteNonQuery();
-                        adapter.SelectCommand = cmd;
-                        adapter.Fill(set);
-                        table = set.Tables[0];
+                        throw new Exception("Database connection failed, error code: " + e.Number);
                     }
-
-                    catch (SqlException e)
-                    {
-                        throw e;
-                    }
+                    throw new Exception("SQL Exception, error code: " + e.Number);
                 }
             }
             return table;
@@ -90,25 +87,31 @@ namespace DataLayer
         /// <param name="query"></param>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public int? ExecInsertQuery(string query, SqlParameter[] parameter)
+        public int? ExecInsertQuery(string query, List<SqlParameter> parameters)
         {
-            int id = 0;
-            using (connection = new SqlConnection(ConnectionString))
+            int id;
+            using (connection = new SqlConnection(connectionstring))
+            using (SqlCommand cmd = new SqlCommand(query + " SELECT CAST(SCOPE_IDENTITY() AS INT)", connection))
             {
-                using (SqlCommand cmd = new SqlCommand(query + " SELECT CAST(SCOPE_IDENTITY() AS INT)", connection))
+                try
                 {
-                    try
+                    connection.ConnectionString = connectionstring;
+                    connection.Open();
+                    cmd.Parameters.AddRange(parameters.ToArray());
+                    id = Convert.ToInt32(cmd.ExecuteScalar().ToString());
+                    return id;
+                }
+                catch (SqlException e)
+                {
+                    if (e.Number == 53)
                     {
-                        connection.ConnectionString = ConnectionString;
-                        connection.Open();
-                        cmd.Parameters.AddRange(parameter);
-                        id = Convert.ToInt32(cmd.ExecuteScalar().ToString());
-                        return id;
+                        throw new Exception("Database connection failed, error code: " + e.Number);
                     }
-                    catch
+                    if (e.Number == 2627)
                     {
-                        return null;
+                        throw new Exception("That Username or Email is already taken, error code: " + e.Number);
                     }
+                    throw new Exception("SQL Exception, error code: " + e.Number);
                 }
             }
         }
@@ -118,30 +121,32 @@ namespace DataLayer
         /// <param name="query"></param>
         /// <param name="parameter"></param>
         /// <returns></returns>
-        public bool ExecUpdateQuery(string query, SqlParameter[] parameter)
+        public bool ExecUpdateQuery(string query, List<SqlParameter> parameters)
         {
-            using (connection = new SqlConnection(ConnectionString))
+            using (connection = new SqlConnection(connectionstring))
+            using (SqlCommand cmd = new SqlCommand(query, connection))
             {
-                using (SqlCommand cmd = new SqlCommand(query, connection))
+                try
                 {
-                    try
+                    connection.ConnectionString = connectionstring;
+                    connection.Open();
+                    cmd.Parameters.AddRange(parameters.ToArray());
+                    cmd.ExecuteNonQuery();
+                    return true;
+                }
+                catch (StackOverflowException)
+                {
+                    throw new StackOverflowException();
+                }
+                catch (SqlException e)
+                {
+                    if (e.Number == 53)
                     {
-                        connection.ConnectionString = ConnectionString;
-                        connection.Open();
-                        cmd.Parameters.AddRange(parameter);
-                        cmd.ExecuteNonQuery();
+                        throw new Exception("Database connection failed, error code: " + e.Number);
                     }
-                    catch (StackOverflowException)
-                    {
-                        throw new StackOverflowException();
-                    }
-                    catch (SqlException e)
-                    {
-                        throw e;
-                    }
+                    throw new Exception("SQL Exception, error code: " + e.Number);
                 }
             }
-            return true;
         }
     }
 }
