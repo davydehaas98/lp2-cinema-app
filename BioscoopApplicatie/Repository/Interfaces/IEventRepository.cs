@@ -7,10 +7,8 @@ using Models;
 
 namespace Repository.Interfaces
 {
-    public interface IEventRepository
+    public interface IEventRepository : IRepository<Event>
     {
-        List<Event> GetAll();
-        Event GetEvent(int idevent);
         List<Seat> GetSeats(int idevent);
         void InsertEvent(DateTime datetime, int idcinema, int idmovie);
     }

@@ -16,9 +16,13 @@ namespace Repository.Repositories
         private IBookingContext context;
         public BookingRepository():this(new BookingContext()) { }
         public BookingRepository(IBookingContext context) { this.context = context; }
-        public List<Booking> GetAll()
+        public IQueryable<Booking> GetAll()
         {
-            return context.GetAll().ToList();
+            return context.GetAll();
+        }
+        public Booking GetByID(int bookingid)
+        {
+            return context.GetByID(bookingid);
         }
         public Client GetClient(int id)
         {

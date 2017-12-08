@@ -9,11 +9,10 @@ namespace Context.Interfaces
 {
     public interface IMovieContext : IContext<Movie>
     {
-        Movie GetMovie(int idmovie);
-        IQueryable<Movie> GetMoviesByReleaseDate(DateTime date);
+        IQueryable<Movie> GetMoviesReleased(DateTime date);
         IQueryable<Genre> GetGenres();
-        IQueryable<Genre> GetGenres(int idmovie);
-        void InsertMovie(string name, bool d3, int length, int minimumage, DateTime releasedate, byte[] image, List<int> genreids);
-        void UpdateMovie(int idmovie, byte[] image);
+        IQueryable<Genre> GetGenres(int movieid);
+        void InsertMovie(string moviename, bool movied3, int movielength, int movieminimumage, DateTime moviereleasedate, byte[] movieimage, List<int> genreids);
+        void UpdateMovie(int movieid, string moviename, bool movied3, int movielength, int movieminimumage, DateTime moviereleasedate, byte[] movieimage);
     }
 }

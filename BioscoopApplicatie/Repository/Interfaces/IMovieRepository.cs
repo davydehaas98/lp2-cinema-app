@@ -8,15 +8,13 @@ using Models;
 
 namespace Repository.Interfaces
 {
-    public interface IMovieRepository
+    public interface IMovieRepository : IRepository<Movie>
     {
-        List<Movie> GetAll();
-        Movie GetMovie(int idmovie);
         List<Movie> GetMoviesByReleaseDate(DateTime date);
         List<Genre> GetGenres();
-        List<Genre> GetGenres(int idmovie);
-        void InsertMovie(string name, bool d3, int length, int minimumage, DateTime releasedate, Image image, List<int> idgenres);
-        void UpdateMovie(int idmovie, Image image);
+        List<Genre> GetGenres(int movieid);
+        void InsertMovie(string moviename, bool movied3, int movielength, int movieminimumage, DateTime moviereleasedate, Image movieimage, List<int> genreids);
+        void UpdateMovie(int movieid, string moviename, bool movied3, int movielength, int movieminimumage, DateTime moviereleasedate, Image movieimage);
         bool CheckFields(string name, string length, DateTime releasedate, Image image, List<int> genres);
     }
 }

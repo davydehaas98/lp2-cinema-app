@@ -1,27 +1,15 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
 using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
 using System.Windows.Shapes;
-using System.Windows.Forms;
 using Repository.Interfaces;
 using Repository.Repositories;
 using Models;
 
 namespace CinemaTool
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
         private IBookingRepository bookingrepo;
@@ -46,7 +34,7 @@ namespace CinemaTool
         public void GenerateSeats(int eventid)
         {
             List<Seat> seats = new List<Seat>();
-            seats = eventrepo.GetEvent(eventid).Seats;
+            seats = eventrepo.GetByID(eventid).Seats;
             canvasEventSeats.Children.Clear();
             int x = 0;
             int y = 0;
@@ -84,7 +72,6 @@ namespace CinemaTool
                 imgEvent.Source = ((Event)dgEvents.SelectedItem).Movie.Image;
             }
         }
-
         private void dgMovies_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dgMovies.SelectedIndex > -1)
@@ -104,33 +91,28 @@ namespace CinemaTool
                 }
             }
         }
-
         private void btnEventAdd_Click(object sender, RoutedEventArgs e)
         {
             WindowEventAdd w = new WindowEventAdd();
             w.Show();
-            this.Close();
+            Close();
         }
         private void btnMovieAdd_Click(object sender, RoutedEventArgs e)
         {
             WindowMovieAdd w = new WindowMovieAdd();
             w.Show();
-            this.Close();
-
+            Close();
         }
-
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
             RefreshData();
         }
-
         private void btnBookSeats_Click(object sender, RoutedEventArgs e)
         {
             WindowBooking w = new WindowBooking();
             w.Show();
-            this.Close();
+            Close();
         }
-
         private void btnRefresh_Click(object sender, RoutedEventArgs e)
         {
             RefreshData();

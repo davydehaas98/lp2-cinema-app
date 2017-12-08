@@ -22,6 +22,13 @@ namespace Context.Context
             string query = "SELECT * FROM [Booking]";
             return ObjectBuilder.CreateBookingList(db.ExecSelectQuery(query));
         }
+        public Booking GetByID(int id)
+        {
+            string query = "SELECT * FROM [Booking] WHERE id = @id";
+            List<SqlParameter> pars = new List<SqlParameter>();
+            pars.Add(new SqlParameter("@clientid", SqlDbType.Int) { Value = id });
+            return ObjectBuilder.CreateBooking(db.ExecSelectQuery(query, pars).Rows[0]);
+        }
         public Client GetClient(int id)
         {
             string query = "SELECT * FROM [Client] WHERE id = @id";
@@ -31,14 +38,14 @@ namespace Context.Context
         }
         public IQueryable<Ticket> GetTickets(int bookingid)
         {
-            string query = "SELECT * FROM Booking_Ticket INNER JOIN Booking ON Booking_Ticket.BookingID = Booking.id INNER JOIN Ticket ON Booking_Ticket.TicketID = Ticket.id WHERE BookingID = @bookingid";
+            string query = "SELECT * FROM [TicketsByBooking] WHERE BookingID = @bookingid";
             List<SqlParameter> pars = new List<SqlParameter>();
             pars.Add(new SqlParameter("@bookingid", SqlDbType.Int) { Value = bookingid });
             return ObjectBuilder.CreateTicketList(db.ExecSelectQuery(query, pars));
         }
         public IQueryable<Seat> GetSeats(int bookingid)
         {
-            string query = "SELECT * FROM Event_Seat INNER JOIN[Event] ON Event_Seat.EventID = [Event].id INNER JOIN[Seat] ON Event_Seat.SeatID = Seat.id WHERE Event_Seat.BookingID = @bookingid";
+            string query = "EXEC [GetSeatsByBooking] @id = @bookingid";
             List<SqlParameter> pars = new List<SqlParameter>();
             pars.Add(new SqlParameter("@bookingid", SqlDbType.Int) { Value = bookingid });
             return ObjectBuilder.CreateSeatList(db.ExecSelectQuery(query, pars));

@@ -7,12 +7,10 @@ using Models;
 
 namespace Repository.Interfaces
 {
-    public interface ICinemaRepository
+    public interface ICinemaRepository : IRepository<Cinema>
     {
-        Cinema GetCinema(int idcinema);
-        MovieTheatre GetMovieTheatre(int idcinema);
-        List<MovieTheatre> GetMovieTheatres();
-        List<MovieTheatre> GetMovieTheatresByType(bool d3);
-        List<Cinema> GetCinemas(int idmovietheatre);
+        IQueryable<MovieTheatre> GetMovieTheatres();
+        IQueryable<MovieTheatre> GetMovieTheatresByType(bool movietheatred3);
+        IQueryable<Cinema> GetCinemas(int movietheatreid);
     }
 }

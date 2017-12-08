@@ -51,6 +51,7 @@
     <Compile Include="Interfaces\ICinemaRepository.cs" />
     <Compile Include="Interfaces\IEventRepository.cs" />
     <Compile Include="Interfaces\IMovieRepository.cs" />
+    <Compile Include="Interfaces\IRepository.cs" />
     <Compile Include="Repositories\BookingRepository.cs" />
     <Compile Include="Repositories\CinemaRepository.cs" />
     <Compile Include="Repositories\EventRepository.cs" />

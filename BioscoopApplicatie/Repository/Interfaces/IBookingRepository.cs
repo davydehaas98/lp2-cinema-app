@@ -7,10 +7,9 @@ using Models;
 
 namespace Repository.Interfaces
 {
-    public interface IBookingRepository
+    public interface IBookingRepository : IRepository<Booking>
     {
-        List<Booking> GetAll();
-        Client GetClient(int id);
+        Client GetClient(int clientid);
         List<Ticket> GetTickets(int bookingid);
         List<Seat> GetSeats(int bookingid);
         void InsertClient(string firstname, string lastname, string email, DateTime birthday, string gender, string password);

@@ -15,25 +15,25 @@ namespace Repository.Repositories
         private ICinemaContext context;
         public CinemaRepository() : this(new CinemaContext()) { }
         public CinemaRepository(ICinemaContext context) { this.context = context; }
-        public Cinema GetCinema(int idcinema)
+        public IQueryable<Cinema> GetAll()
         {
-            return context.GetCinema(idcinema);
+            return context.GetAll();
         }
-        public MovieTheatre GetMovieTheatre(int idcinema)
+        public Cinema GetByID(int idcinema)
         {
-            return context.GetMovieTheatre(idcinema);
+            return context.GetByID(idcinema);
         }
-        public List<MovieTheatre> GetMovieTheatres()
+        public IQueryable<MovieTheatre> GetMovieTheatres()
         {
-            return context.GetMovieTheatres().ToList();
+            return context.GetMovieTheatres();
         }
-        public List<MovieTheatre> GetMovieTheatresByType(bool d3)
+        public IQueryable<MovieTheatre> GetMovieTheatresByType(bool d3)
         {
-            return context.GetMovieTheatresByType(d3).ToList();
+            return context.GetMovieTheatresByType(d3);
         }
-        public List<Cinema> GetCinemas(int idmovietheatre)
+        public IQueryable<Cinema> GetCinemas(int movietheatreid)
         {
-            return context.GetCinemas(idmovietheatre).ToList();
+            return context.GetCinemas(movietheatreid);
         }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System.Linq;
 
-namespace Context.Interfaces
+namespace Repository.Interfaces
 {
-    public interface IContext<T>
+    public interface IRepository<T>
     {
         IQueryable<T> GetAll();
         T GetByID(int id);

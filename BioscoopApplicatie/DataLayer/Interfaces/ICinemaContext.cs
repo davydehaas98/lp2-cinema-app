@@ -9,10 +9,8 @@ namespace Context.Interfaces
 {
     public interface ICinemaContext : IContext<Cinema>
     {
-        Cinema GetCinema(int idcinema);
-        MovieTheatre GetMovieTheatre(int idcinema);
         IQueryable<MovieTheatre> GetMovieTheatres();
         IQueryable<MovieTheatre> GetMovieTheatresByType(bool d3);
-        IQueryable<Cinema> GetCinemas(int idmovietheatre);
+        IQueryable<Cinema> GetCinemas(int movietheatreid);
     }
 }

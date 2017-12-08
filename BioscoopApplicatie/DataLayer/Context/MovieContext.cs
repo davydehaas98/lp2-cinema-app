@@ -19,61 +19,66 @@ namespace Context.Context
         }
         public IQueryable<Movie> GetAll()
         {
-            string query = "SELECT * FROM [Movie] ORDER BY [Name]";
+            string query = "EXEC [GetMovies]";
             return ObjectBuilder.CreateMovieList(db.ExecSelectQuery(query));
         }
-        public Movie GetMovie(int idmovie)
+        public Movie GetByID(int movieid)
         {
-            string query = "SELECT * FROM [Movie] WHERE id = @idmovie";
+            string query = "EXEC [GetMovieByID] @id = @movieid";
             List<SqlParameter> pars = new List<SqlParameter>();
-            pars.Add(new SqlParameter("@idmovie", SqlDbType.Int) { Value = idmovie });
+            pars.Add(new SqlParameter("@movieid", SqlDbType.Int) { Value = movieid });
             return ObjectBuilder.CreateMovie(db.ExecSelectQuery(query, pars).Rows[0]);
         }
-        public IQueryable<Movie> GetMoviesByReleaseDate(DateTime date)
+        public IQueryable<Movie> GetMoviesReleased(DateTime moviereleasedate)
         {
-            string query = "SELECT * FROM [Movie] WHERE ReleaseDate <= @date";
+            string query = "EXEC [GetMoviesReleased] @releasedate = @moviereleasedate";
             List<SqlParameter> pars = new List<SqlParameter>();
-            pars.Add(new SqlParameter("@date", SqlDbType.Date) { Value = date });
+            pars.Add(new SqlParameter("@moviereleasedate", SqlDbType.Date) { Value = moviereleasedate });
             return ObjectBuilder.CreateMovieList(db.ExecSelectQuery(query, pars));
         }
         public IQueryable<Genre> GetGenres()
         {
-            string query = "SELECT Genre.id, Genre.Name FROM [Genre]";
+            string query = "EXEC [GetGenres]";
             return ObjectBuilder.CreateGenreList(db.ExecSelectQuery(query));
         }
-        public IQueryable<Genre> GetGenres(int idmovie)
+        public IQueryable<Genre> GetGenres(int movieid)
         {
-            string query = "SELECT Genre.* FROM Movie_Genre INNER JOIN Movie ON Movie_Genre.MovieID = Movie.id INNER JOIN Genre ON Movie_Genre.GenreID = Genre.id WHERE Movie.id = @idmovie";
+            string query = "EXEC [GetGenresByMovie] @id = @movieid";
             List<SqlParameter> pars = new List<SqlParameter>();
-            pars.Add(new SqlParameter("@idmovie", SqlDbType.Int) { Value = idmovie });
+            pars.Add(new SqlParameter("@movieid", SqlDbType.Int) { Value = movieid });
             return ObjectBuilder.CreateGenreList(db.ExecSelectQuery(query, pars));
         }
-        public void InsertMovie(string name, bool d3, int length, int minimumage, DateTime releasedate, byte[] image, List<int> genreids)
+        public void InsertMovie(string moviename, bool movied3, int movielength, int movieminimumage, DateTime moviereleasedate, byte[] movieimage, List<int> genreids)
         {
-            string query = "INSERT INTO [Movie] ([Name], [D3], [Length], [MinimumAge], [ReleaseDate], [Image]) VALUES (@name, @d3, @length, @minimumage, @releasedate, @image)";
             List<SqlParameter> pars = new List<SqlParameter>();
-            pars.Add(new SqlParameter("@name", SqlDbType.NVarChar) { Value = name });
-            pars.Add(new SqlParameter("@d3", SqlDbType.NVarChar) { Value = d3 });
-            pars.Add(new SqlParameter("@length", SqlDbType.Int) { Value = length });
-            pars.Add(new SqlParameter("@minimumage", SqlDbType.Int) { Value = minimumage });
-            pars.Add(new SqlParameter("@releasedate", SqlDbType.Date) { Value = releasedate });
-            pars.Add(new SqlParameter("@image", SqlDbType.VarBinary) { Value = image });
-            int? movieid = db.ExecInsertQuery(query, pars);
-            foreach(int genreid in genreids)
+            pars.Add(new SqlParameter("@name", SqlDbType.NVarChar) { Value = moviename });
+            pars.Add(new SqlParameter("@d3", SqlDbType.Bit) { Value = movied3 });
+            pars.Add(new SqlParameter("@length", SqlDbType.Int) { Value = movielength });
+            pars.Add(new SqlParameter("@minimumage", SqlDbType.Int) { Value = movieminimumage });
+            pars.Add(new SqlParameter("@releasedate", SqlDbType.Date) { Value = moviereleasedate });
+            pars.Add(new SqlParameter("@image", SqlDbType.VarBinary) { Value = movieimage });
+            DataRow row = db.ExecStoredProc("[InsertMovie]", pars).Tables[0].Rows[0];
+            int movieid = (int)row["Column1"];
+
+            List<SqlParameter> pars2 = new List<SqlParameter>();
+            foreach (int genreid in genreids)
             {
-                string query2 = "INSERT INTO [Movie_Genre] (MovieID, GenreID) VALUES (@movieid, @genreid)";
-                List<SqlParameter> pars2 = new List<SqlParameter>();
-                pars2.Add(new SqlParameter("@movieid", SqlDbType.Int) { Value = movieid });
                 pars2.Add(new SqlParameter("@genreid", SqlDbType.Int) { Value = genreid });
-                db.ExecInsertQuery(query2, pars2);
             }
+            pars2.Add(new SqlParameter("@movieid", SqlDbType.Int) { Value = movieid });
+            db.ExecStoredProc("AddGenreToMovie", pars2);
         }
-        public void UpdateMovie(int idmovie, byte[] image)
+        public void UpdateMovie(int movieid, string moviename, bool movied3, int movielength, int movieminimumage, DateTime moviereleasedate,  byte[] movieimage)
         {
-            string query = "UPDATE [Movie] SET Movie.[Image] = @image WHERE id = @idmovie";
+            string query = "EXEC [UpdateMovie] @id = @movieid, @name = @moviename, @d3 = @movied3, @length = @movielength, @minimumage = @movieminimumage, @releasedate = @moviereleasedate, @image = @movieimage";
             List<SqlParameter> pars = new List<SqlParameter>();
-            pars.Add(new SqlParameter("@idmovie", SqlDbType.Int) { Value = idmovie });
-            pars.Add(new SqlParameter("@image", SqlDbType.VarBinary) { Value = image });
+            pars.Add(new SqlParameter("@movieid", SqlDbType.Int) { Value = movieid });
+            pars.Add(new SqlParameter("moviename", SqlDbType.NVarChar) { Value = moviename });
+            pars.Add(new SqlParameter("movied3", SqlDbType.Bit) { Value = movied3 });
+            pars.Add(new SqlParameter("movielength", SqlDbType.Int) { Value = movielength });
+            pars.Add(new SqlParameter("movieminimumage", SqlDbType.Int) { Value = movieminimumage });
+            pars.Add(new SqlParameter("moviereleasedate", SqlDbType.Date) { Value = moviereleasedate });
+            pars.Add(new SqlParameter("@movieimage", SqlDbType.VarBinary) { Value = movieimage });
             db.ExecInsertQuery(query, pars);
         }
     }

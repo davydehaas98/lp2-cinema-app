@@ -74,7 +74,7 @@ namespace CinemaTool
             if(cbEventMovie.SelectedIndex > -1)
             {
                 ClearComboBoxes(2);
-                cinemarepo.GetMovieTheatresByType(((Movie)cbEventMovie.SelectedItem).D3).ForEach(movietheatre => cbEventMovieTheatre.Items.Add(movietheatre));
+                cinemarepo.GetMovieTheatresByType(((Movie)cbEventMovie.SelectedItem).D3).ToList().ForEach(movietheatre => cbEventMovieTheatre.Items.Add(movietheatre));
                 EnableButtons(true, true, false, false);
             }
         }

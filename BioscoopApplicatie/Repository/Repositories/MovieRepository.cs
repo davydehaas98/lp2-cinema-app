@@ -17,17 +17,17 @@ namespace Repository.Repositories
         private IMovieContext context;
         public MovieRepository() : this(new MovieContext()) { }
         public MovieRepository(IMovieContext context) { this.context = context; }
-        public List<Movie> GetAll()
+        public IQueryable<Movie> GetAll()
         {
-            return context.GetAll().ToList();
+            return context.GetAll();
         }
-        public Movie GetMovie(int idmovie)
+        public Movie GetByID(int idmovie)
         {
-            return context.GetMovie(idmovie);
+            return context.GetByID(idmovie);
         }
         public List<Movie> GetMoviesByReleaseDate(DateTime date)
         {
-            return context.GetMoviesByReleaseDate(date).ToList();
+            return context.GetMoviesReleased(date).ToList();
         }
         public List<Genre> GetGenres()
         {
@@ -37,18 +37,18 @@ namespace Repository.Repositories
         {
             return context.GetGenres(idmovie).ToList();
         }
-        public void InsertMovie(string name, bool d3, int length, int minimumage, DateTime releasedate, Image image, List<int> idgenres)
+        public void InsertMovie(string moviename, bool movied3, int movielength, int movieminimumage, DateTime moviereleasedate, Image movieimage, List<int> genreids)
         {
-            context.InsertMovie(name, d3, length, minimumage, releasedate, ImageBuilder.ImageToByteArray(image), idgenres);
+            context.InsertMovie(moviename, movied3, movielength, movieminimumage, moviereleasedate, ImageBuilder.ImageToByteArray(movieimage), genreids);
         }
-        public void UpdateMovie(int idmovie, Image image)
+        public void UpdateMovie(int movieid, string moviename, bool movied3, int movielength, int movieminimumage, DateTime moviereleasedate, Image movieimage)
         {
-            context.UpdateMovie(idmovie, ImageBuilder.ImageToByteArray(image));
+            context.UpdateMovie(movieid, moviename, movied3, movielength, movieminimumage, moviereleasedate, ImageBuilder.ImageToByteArray(movieimage));
         }
         public bool CheckFields(string name, string length, DateTime releasedate, Image image, List<int> genres)
         {
             Int32.TryParse(length, out int result);
-            if (String.IsNullOrWhiteSpace(name) || result <= 0 || image == null || GetAll().Exists(movie => movie.Name == name && movie.ReleaseDate == releasedate) || genres.Count < 1)
+            if (String.IsNullOrWhiteSpace(name) || result <= 0 || image == null || GetAll().ToList().Exists(movie => movie.Name == name && movie.ReleaseDate == releasedate) || genres.Count < 1)
                 return false;
             else
                 return true;

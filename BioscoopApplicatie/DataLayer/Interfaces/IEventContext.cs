@@ -9,7 +9,6 @@ namespace Context.Interfaces
 {
     public interface IEventContext : IContext<Event>
     {
-        Event GetEvent(int idevent);
         IQueryable<Seat> GetSeats(int idevent);
         void InsertEvent(DateTime datetime, int cinemaid, int movieid);
     }

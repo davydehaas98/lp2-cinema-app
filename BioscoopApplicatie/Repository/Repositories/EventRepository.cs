@@ -15,13 +15,13 @@ namespace Repository.Repositories
         private IEventContext context;
         public EventRepository() : this(new EventContext()) { }
         public EventRepository(IEventContext context) { this.context = context; }
-        public List<Event> GetAll()
+        public IQueryable<Event> GetAll()
         {
-            return context.GetAll().ToList();
+            return context.GetAll();
         }
-        public Event GetEvent(int idevent)
+        public Event GetByID(int idevent)
         {
-            return context.GetEvent(idevent);
+            return context.GetByID(idevent);
         }
         public List<Seat> GetSeats(int idevent)
         {
