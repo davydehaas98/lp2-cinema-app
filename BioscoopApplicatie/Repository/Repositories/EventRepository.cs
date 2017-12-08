@@ -25,7 +25,7 @@ namespace Repository.Repositories
         }
         public List<Seat> GetSeats(int idevent)
         {
-            return context.GetSeats(idevent).ToList();
+            return context.GetSeatsByEvent(idevent).ToList();
         }
         public void InsertEvent(DateTime datetime, int idcinema, int idmovie)
         {

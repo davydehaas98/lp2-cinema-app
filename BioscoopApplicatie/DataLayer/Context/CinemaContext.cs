@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using Models;
@@ -20,20 +18,23 @@ namespace Context.Context
 
         public IQueryable<Cinema> GetAll()
         {
-            string query = "SELECT * FROM [Cinema]";
-            return ObjectBuilder.CreateCinemaList(db.ExecSelectQuery(query));
+            return ObjectBuilder.CreateCinemaList(db.ExecStoredProcedure("[GetCinemas]").Tables[0]);
         }
         public Cinema GetByID(int id)
         {
-            string query = "SELECT * FROM [Cinema] WHERE id = @id";
             List<SqlParameter> pars = new List<SqlParameter>();
             pars.Add(new SqlParameter("@id", SqlDbType.Int) { Value = id });
-            return ObjectBuilder.CreateCinema(db.ExecSelectQuery(query, pars).Rows[0]);
+            return ObjectBuilder.CreateCinema(db.ExecStoredProcedure("[GetCinemaByID]", pars).Tables[0].Rows[0]);
         }
         public IQueryable<MovieTheatre> GetMovieTheatres()
         {
-            string query = "SELECT * FROM [MovieTheatre]";
-            return ObjectBuilder.CreateMovieTheatreList(db.ExecSelectQuery(query));
+            return ObjectBuilder.CreateMovieTheatreList(db.ExecStoredProcedure("[GetMovieTheatres]").Tables[0]);
+        }
+        public MovieTheatre GetMovieTheatreByID(int id)
+        {
+            List<SqlParameter> pars = new List<SqlParameter>();
+            pars.Add(new SqlParameter("@id", SqlDbType.Int) { Value = id });
+            return ObjectBuilder.CreateMovieTheatre(db.ExecStoredProcedure("[GetMovieTheatreByID]", pars).Tables[0].Rows[0]);
         }
         public IQueryable<MovieTheatre> GetMovieTheatresByType(bool d3)
         {
@@ -42,12 +43,11 @@ namespace Context.Context
             pars.Add(new SqlParameter("@d3", SqlDbType.Bit) { Value = d3 });
             return ObjectBuilder.CreateMovieTheatreList(db.ExecSelectQuery(query, pars));
         }
-        public IQueryable<Cinema> GetCinemas(int movietheatreid)
+        public IQueryable<Cinema> GetCinemasByMovieTheatre(int movietheatreid)
         {
-            string query = "SELECT * FROM [Cinema] WHERE MovieTheatreID = @movietheatreid";
             List<SqlParameter> pars = new List<SqlParameter>();
             pars.Add(new SqlParameter("@movietheatreid", SqlDbType.Int) { Value = movietheatreid });
-            return ObjectBuilder.CreateCinemaList(db.ExecSelectQuery(query, pars));
+            return ObjectBuilder.CreateCinemaList(db.ExecStoredProcedure("[GetCinemasByMovieTheatre]", pars).Tables[0]);
         }
     }
 }

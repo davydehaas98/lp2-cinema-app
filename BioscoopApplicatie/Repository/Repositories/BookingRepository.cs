@@ -30,11 +30,11 @@ namespace Repository.Repositories
         }
         public List<Ticket> GetTickets(int bookingid)
         {
-            return context.GetTickets(bookingid).ToList();
+            return context.GetTicketsByBooking(bookingid).ToList();
         }
         public List<Seat> GetSeats(int bookingid)
         {
-            return context.GetSeats(bookingid).ToList();
+            return context.GetSeatsByBooking(bookingid).ToList();
         }
         public void InsertClient(string firstname, string lastname, string email, DateTime birthday, string gender, string password)
         {

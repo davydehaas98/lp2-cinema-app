@@ -35,7 +35,7 @@ namespace Repository.Repositories
         }
         public List<Genre> GetGenres(int idmovie)
         {
-            return context.GetGenres(idmovie).ToList();
+            return context.GetGenresByMovie(idmovie).ToList();
         }
         public void InsertMovie(string moviename, bool movied3, int movielength, int movieminimumage, DateTime moviereleasedate, Image movieimage, List<int> genreids)
         {

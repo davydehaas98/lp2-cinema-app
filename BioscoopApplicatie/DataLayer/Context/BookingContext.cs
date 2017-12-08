@@ -1,8 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Data;
 using System.Data.SqlClient;
 using Models;
@@ -19,40 +17,38 @@ namespace Context.Context
         }
         public IQueryable<Booking> GetAll()
         {
-            string query = "SELECT * FROM [Booking]";
-            return ObjectBuilder.CreateBookingList(db.ExecSelectQuery(query));
+            return ObjectBuilder.CreateBookingList(db.ExecStoredProcedure("[GetBookings]").Tables[0]);
         }
         public Booking GetByID(int id)
         {
-            string query = "SELECT * FROM [Booking] WHERE id = @id";
             List<SqlParameter> pars = new List<SqlParameter>();
             pars.Add(new SqlParameter("@clientid", SqlDbType.Int) { Value = id });
-            return ObjectBuilder.CreateBooking(db.ExecSelectQuery(query, pars).Rows[0]);
+            return ObjectBuilder.CreateBooking(db.ExecStoredProcedure("[GetBookingByID]", pars).Tables[0].Rows[0]);
+        }
+        public IQueryable<Client> GetClients()
+        {
+            return ObjectBuilder.CreateClientList(db.ExecStoredProcedure("[GetClients]").Tables[0]);
         }
         public Client GetClient(int id)
         {
-            string query = "SELECT * FROM [Client] WHERE id = @id";
             List<SqlParameter> pars = new List<SqlParameter>();
-            pars.Add(new SqlParameter("@clientid", SqlDbType.Int) { Value = id });
-            return ObjectBuilder.CreateClient(db.ExecSelectQuery(query, pars).Rows[0]);
+            pars.Add(new SqlParameter("@id", SqlDbType.Int) { Value = id });
+            return ObjectBuilder.CreateClient(db.ExecStoredProcedure("[GetClientByID]").Tables[0].Rows[0]);
         }
-        public IQueryable<Ticket> GetTickets(int bookingid)
+        public IQueryable<Ticket> GetTicketsByBooking(int bookingid)
         {
-            string query = "SELECT * FROM [TicketsByBooking] WHERE BookingID = @bookingid";
             List<SqlParameter> pars = new List<SqlParameter>();
             pars.Add(new SqlParameter("@bookingid", SqlDbType.Int) { Value = bookingid });
-            return ObjectBuilder.CreateTicketList(db.ExecSelectQuery(query, pars));
+            return ObjectBuilder.CreateTicketList(db.ExecStoredProcedure("[GetTicketsByBooking]", pars).Tables[0]);
         }
-        public IQueryable<Seat> GetSeats(int bookingid)
+        public IQueryable<Seat> GetSeatsByBooking(int bookingid)
         {
-            string query = "EXEC [GetSeatsByBooking] @id = @bookingid";
             List<SqlParameter> pars = new List<SqlParameter>();
             pars.Add(new SqlParameter("@bookingid", SqlDbType.Int) { Value = bookingid });
-            return ObjectBuilder.CreateSeatList(db.ExecSelectQuery(query, pars));
+            return ObjectBuilder.CreateSeatList(db.ExecStoredProcedure("[GetSeatsByBooking]", pars).Tables[0]);
         }
-        public int? InsertClient(string firstname, string lastname, string email, DateTime birthday, string gender, string password, string salt)
+        public void InsertClient(string firstname, string lastname, string email, DateTime birthday, string gender, string password, string salt)
         {
-            string query = "INSERT INTO [Client] ([FirstName], [LastName], [Email], [Birthday], [Gender], [Password], [Salt]) VALUES (@firstname, @lastname, @email, @birthday, @gender, @password, @salt)";
             List<SqlParameter> pars = new List<SqlParameter>();
             pars.Add(new SqlParameter("@firstname", SqlDbType.NVarChar) { Value = firstname });
             pars.Add(new SqlParameter("@lastname", SqlDbType.NVarChar) { Value = lastname });
@@ -61,7 +57,7 @@ namespace Context.Context
             pars.Add(new SqlParameter("@gender", SqlDbType.NVarChar) { Value = gender });
             pars.Add(new SqlParameter("@password", SqlDbType.NVarChar) { Value = password });
             pars.Add(new SqlParameter("@salt", SqlDbType.NVarChar) { Value = salt });
-            return db.ExecInsertQuery(query, pars);
+            db.ExecStoredProcedure("[InsertClient]", pars);
         }
     }
 }

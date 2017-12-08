@@ -33,7 +33,7 @@ namespace Repository.Repositories
         }
         public IQueryable<Cinema> GetCinemas(int movietheatreid)
         {
-            return context.GetCinemas(movietheatreid);
+            return context.GetCinemasByMovieTheatre(movietheatreid);
         }
     }
 }

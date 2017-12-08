@@ -18,7 +18,7 @@ namespace Context
         private static BookingContext bookingcontext = new BookingContext();
         internal static Movie CreateMovie(DataRow row)
         {
-            return new Movie((int)row["id"], (string)row["Name"], (bool)row["D3"], (int)row["Length"], (int)row["MinimumAge"], (DateTime)row["ReleaseDate"], ImageBuilder.ByteToImageSource((byte[])row["Image"]), moviecontext.GetGenres((int)row["id"]).ToList());
+            return new Movie((int)row["id"], (string)row["Name"], (bool)row["D3"], (int)row["Length"], (int)row["MinimumAge"], (DateTime)row["ReleaseDate"], ImageBuilder.ByteToImageSource((byte[])row["Image"]), moviecontext.GetGenresByMovie((int)row["id"]).ToList());
         }
         internal static Genre CreateGenre(DataRow row)
         {
@@ -30,11 +30,11 @@ namespace Context
         }
         internal static MovieTheatre CreateMovieTheatre(DataRow row)
         {
-            return new MovieTheatre((int)row["id"], (string)row["Name"], (string)row["Address"], (string)row["PostalCode"], (string)row["City"], cinemacontext.GetCinemas((int)row["id"]).ToList());
+            return new MovieTheatre((int)row["id"], (string)row["Name"], (string)row["Address"], (string)row["PostalCode"], (string)row["City"], cinemacontext.GetCinemasByMovieTheatre((int)row["id"]).ToList());
         }
         internal static Event CreateEvent(DataRow row)
         {
-            return new Event((int)row["id"], (DateTime)row["DateTime"], moviecontext.GetByID((int)row["MovieID"]), cinemacontext.GetByID((int)row["CinemaID"]), eventcontext.GetSeats((int)row["id"]).ToList());
+            return new Event((int)row["id"], (DateTime)row["DateTime"], moviecontext.GetByID((int)row["MovieID"]), cinemacontext.GetByID((int)row["CinemaID"]), eventcontext.GetSeatsByEvent((int)row["id"]).ToList());
         }
         internal static Seat CreateSeat(DataRow row)
         {
@@ -42,7 +42,7 @@ namespace Context
         }
         internal static Booking CreateBooking(DataRow row)
         {
-            return new Booking((int)row["id"], (DateTime)row["DateTime"], bookingcontext.GetClient((int)row["ClientID"]), eventcontext.GetByID((int)row["EventID"]), bookingcontext.GetTickets((int)row["id"]).ToList(), bookingcontext.GetSeats((int)row["id"]).ToList(), (decimal)row["TotalPrice"]);
+            return new Booking((int)row["id"], (DateTime)row["DateTime"], bookingcontext.GetClient((int)row["ClientID"]), eventcontext.GetByID((int)row["EventID"]), bookingcontext.GetTicketsByBooking((int)row["id"]).ToList(), bookingcontext.GetSeatsByBooking((int)row["id"]).ToList(), (decimal)row["TotalPrice"]);
         }
         internal static Client CreateClient(DataRow row)
         {

@@ -11,6 +11,6 @@ namespace Context.Interfaces
     {
         IQueryable<MovieTheatre> GetMovieTheatres();
         IQueryable<MovieTheatre> GetMovieTheatresByType(bool d3);
-        IQueryable<Cinema> GetCinemas(int movietheatreid);
+        IQueryable<Cinema> GetCinemasByMovieTheatre(int movietheatreid);
     }
 }

@@ -9,19 +9,72 @@ namespace Context
     {
         private SqlDataAdapter adapter;
         private SqlConnection connection;
-        //private string ConnectionString = @"Server=mssql.fhict.local;Database=dbi369008;User Id=dbi369008;Password=Pannenkoek123;Connection Timeout=2;";
+        //private string connectionstring = @"Server=mssql.fhict.local;Database=dbi369008;User Id=dbi369008;Password=Pannenkoek123;Connection Timeout=2;";
         private string connectionstring = @"Server=tcp:davydehaas.database.windows.net,1433;Initial Catalog=CinemaApplicationDB;Persist Security Info=False;User ID=Davy98;Password=Pannenkoek123;MultipleActiveResultSets=False;Encrypt=True;TrustServerCertificate=False;Connection Timeout=5;";
         public DataAccess()
         {
             adapter = new SqlDataAdapter();
         }
-        /// <summary>
-        /// Select query with parameterized query
-        /// </summary>
-        /// <param name="query"></param>
-        /// <param name="parameter"></param>
-        /// <returns></returns>
-        internal DataTable ExecSelectQuery(string query, List<SqlParameter> parameters)
+        internal DataSet ExecStoredProcedure(string name)
+        {
+            DataSet set = new DataSet();
+            using (connection = new SqlConnection(connectionstring))
+            using (SqlCommand cmd = connection.CreateCommand())
+            {
+                try
+                {
+                    connection.Open();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = name;
+                    adapter.SelectCommand = cmd;
+                    adapter.Fill(set);
+                    return set;
+                }
+                catch (StackOverflowException)
+                {
+                    throw new StackOverflowException();
+                }
+                catch (SqlException e)
+                {
+                    if (e.Number == 53)
+                    {
+                        throw new Exception("Database connection failed, error code: " + e.Number);
+                    }
+                    throw new Exception("SQL Exception, error code: " + e.Number);
+                }
+            }
+        }
+        internal DataSet ExecStoredProcedure(string name, List<SqlParameter> pars)
+        {
+            DataSet set = new DataSet();
+            using (connection = new SqlConnection(connectionstring))
+            using (SqlCommand cmd = connection.CreateCommand())
+            {
+                try
+                {
+                    connection.Open();
+                    cmd.CommandType = CommandType.StoredProcedure;
+                    cmd.CommandText = name;
+                    cmd.Parameters.AddRange(pars.ToArray());
+                    adapter.SelectCommand = cmd;
+                    adapter.Fill(set);
+                    return set;
+                }
+                catch (StackOverflowException)
+                {
+                    throw new StackOverflowException();
+                }
+                catch (SqlException e)
+                {
+                    if (e.Number == 53)
+                    {
+                        throw new Exception("Database connection failed, error code: " + e.Number);
+                    }
+                    throw new Exception("SQL Exception, error code: " + e.Number);
+                }
+            }
+        }
+        internal DataTable ExecSelectQuery(string query, List<SqlParameter> pars)
         {
             DataTable table = new DataTable();
             DataSet set = new DataSet();
@@ -30,9 +83,8 @@ namespace Context
             {
                 try
                 {
-                    connection.ConnectionString = connectionstring;
                     connection.Open();
-                    cmd.Parameters.AddRange(parameters.ToArray());
+                    cmd.Parameters.AddRange(pars.ToArray());
                     cmd.ExecuteNonQuery();
                     adapter.SelectCommand = cmd;
                     adapter.Fill(set);
@@ -49,11 +101,6 @@ namespace Context
                 return table;
             }
         }
-        /// <summary>
-        /// Select query without parameterized query
-        /// </summary>
-        /// <param name="query"></param>
-        /// <returns></returns>
         internal DataTable ExecSelectQuery(string query)
         {
             DataTable table = new DataTable();
@@ -63,7 +110,6 @@ namespace Context
             {
                 try
                 {
-                    connection.ConnectionString = connectionstring;
                     connection.Open();
                     cmd.ExecuteNonQuery();
                     adapter.SelectCommand = cmd;
@@ -81,13 +127,7 @@ namespace Context
             }
             return table;
         }
-        /// <summary>
-        /// Executes an insert query
-        /// </summary>
-        /// <param name="query"></param>
-        /// <param name="parameter"></param>
-        /// <returns></returns>
-        internal int? ExecInsertQuery(string query, List<SqlParameter> parameters)
+        internal int? ExecInsertQuery(string query, List<SqlParameter> pars)
         {
             int id;
             using (connection = new SqlConnection(connectionstring))
@@ -95,11 +135,9 @@ namespace Context
             {
                 try
                 {
-                    connection.ConnectionString = connectionstring;
                     connection.Open();
-                    cmd.Parameters.AddRange(parameters.ToArray());
-                    id = Convert.ToInt32(cmd.ExecuteScalar().ToString());
-                    return id;
+                    cmd.Parameters.AddRange(pars.ToArray());
+                    return id = Convert.ToInt32(cmd.ExecuteScalar().ToString());
                 }
                 catch (SqlException e)
                 {
@@ -115,13 +153,7 @@ namespace Context
                 }
             }
         }
-        /// <summary>
-        /// Executes an update query
-        /// </summary>
-        /// <param name="query"></param>
-        /// <param name="parameter"></param>
-        /// <returns></returns>
-        internal bool ExecUpdateQuery(string query, List<SqlParameter> parameters)
+        internal bool ExecUpdateQuery(string query, List<SqlParameter> pars)
         {
             using (connection = new SqlConnection(connectionstring))
             using (SqlCommand cmd = new SqlCommand(query, connection))
@@ -129,43 +161,9 @@ namespace Context
                 try
                 {
                     connection.Open();
-                    cmd.Parameters.AddRange(parameters.ToArray());
+                    cmd.Parameters.AddRange(pars.ToArray());
                     cmd.ExecuteNonQuery();
                     return true;
-                }
-                catch (StackOverflowException)
-                {
-                    throw new StackOverflowException();
-                }
-                catch (SqlException e)
-                {
-                    if (e.Number == 53)
-                    {
-                        throw new Exception("Database connection failed, error code: " + e.Number);
-                    }
-                    throw new Exception("SQL Exception, error code: " + e.Number);
-                }
-            }
-        }
-        internal DataSet ExecStoredProc(string name, List<SqlParameter> pars)
-        {
-            DataSet set = new DataSet();
-            using (connection = new SqlConnection(connectionstring))
-            using (SqlCommand cmd = connection.CreateCommand())
-            {
-                try
-                {
-                    connection.Open();
-                    cmd.CommandType = CommandType.StoredProcedure;
-                    cmd.CommandText = name;
-                    foreach(SqlParameter par in pars)
-                    {
-                        cmd.Parameters.Add(par);
-                    }
-                    cmd.ExecuteNonQuery();
-                    adapter.SelectCommand = cmd;
-                    adapter.Fill(set);
-                    return set;
                 }
                 catch (StackOverflowException)
                 {
