@@ -66,7 +66,7 @@ namespace CinemaTool
         private void dpEventDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
         {
             ClearComboBoxes(3);
-            movierepo.GetMoviesByReleaseDate(dpEventDate.SelectedDate.Value).ForEach(movie => cbEventMovie.Items.Add(movie));
+            movierepo.GetMoviesByReleaseDate(dpEventDate.SelectedDate.Value).ToList().ForEach(movie => cbEventMovie.Items.Add(movie));
             EnableButtons(true, false, false, false);
         }
         private void cbEventMovie_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -74,7 +74,7 @@ namespace CinemaTool
             if(cbEventMovie.SelectedIndex > -1)
             {
                 ClearComboBoxes(2);
-                cinemarepo.GetMovieTheatresByType(((Movie)cbEventMovie.SelectedItem).D3).ToList().ForEach(movietheatre => cbEventMovieTheatre.Items.Add(movietheatre));
+                cinemarepo.GetMovieTheatres();
                 EnableButtons(true, true, false, false);
             }
         }

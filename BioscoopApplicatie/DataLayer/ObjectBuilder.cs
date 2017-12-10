@@ -42,7 +42,7 @@ namespace Context
         }
         internal static Booking CreateBooking(DataRow row)
         {
-            return new Booking((int)row["id"], (DateTime)row["DateTime"], bookingcontext.GetClient((int)row["ClientID"]), eventcontext.GetByID((int)row["EventID"]), bookingcontext.GetTicketsByBooking((int)row["id"]).ToList(), bookingcontext.GetSeatsByBooking((int)row["id"]).ToList(), (decimal)row["TotalPrice"]);
+            return new Booking((int)row["id"], (DateTime)row["DateTime"], bookingcontext.GetClientByID((int)row["ClientID"]), eventcontext.GetByID((int)row["EventID"]), bookingcontext.GetTicketsByBooking((int)row["id"]).ToList(), bookingcontext.GetSeatsByBooking((int)row["id"]).ToList(), (decimal)row["TotalPrice"]);
         }
         internal static Client CreateClient(DataRow row)
         {

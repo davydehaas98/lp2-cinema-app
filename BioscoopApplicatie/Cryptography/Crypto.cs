@@ -9,7 +9,6 @@ namespace Cryptography
 {
     public static class Crypto
     {
-        
         /// <summary>
         /// Generates a 64 bytelength hash for a given string and its salt
         /// </summary>
@@ -18,13 +17,9 @@ namespace Cryptography
         /// <returns></returns>
         public static string GenerateHash(string password, string salt)
         {
-            //Append generated salt to given password
             string saltedpw = password + salt;
             StringBuilder sb = new StringBuilder();
-
-            //Gets the bytes of the salted password
             var data = Encoding.UTF8.GetBytes(saltedpw);
-
             //SHA512 hash calculator
             using (var sha512 = new SHA512CryptoServiceProvider())
             {
@@ -49,23 +44,18 @@ namespace Cryptography
         {
             //Cryptographically secure pseudo-random number generator (CSPRNG)
             RNGCryptoServiceProvider rng = new RNGCryptoServiceProvider();
-
             StringBuilder sb = new StringBuilder();
-
             //Creates an array of bytes (length of the salt)
             var bytes = new Byte[64];
-
             //Disposes of object automatically when done
             using (rng = new RNGCryptoServiceProvider())
             {
                 rng.GetBytes(bytes);
-
                 foreach (byte b in bytes)
                 {
                     //Convert the bytes and append to a string in 2 hexadecimal characters
                     sb.Append(b.ToString("X2"));
                 }
-                Console.WriteLine("Salt: " + sb.ToString());
                 return sb.ToString();
             }
         }

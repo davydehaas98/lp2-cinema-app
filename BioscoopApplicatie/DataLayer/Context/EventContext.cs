@@ -10,7 +10,7 @@ namespace Context.Context
 {
     public class EventContext : IEventContext
     {
-        DataAccess db;
+        private DataAccess db;
         public EventContext()
         {
             db = new DataAccess();

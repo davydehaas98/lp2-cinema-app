@@ -6,7 +6,7 @@ namespace Context.Interfaces
 {
     public interface IBookingContext : IContext<Booking>
     {
-        Client GetClient(int id);
+        Client GetClientByID(int id);
         IQueryable<Client> GetClients();
         IQueryable<Ticket> GetTicketsByBooking(int bookingid);
         IQueryable<Seat> GetSeatsByBooking(int bookingid);

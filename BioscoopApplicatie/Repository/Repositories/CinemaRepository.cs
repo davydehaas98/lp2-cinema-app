@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Context.Context;
 using Context.Interfaces;
-using Models;
 using Repository.Interfaces;
+using Models;
 
 namespace Repository.Repositories
 {
@@ -27,11 +24,7 @@ namespace Repository.Repositories
         {
             return context.GetMovieTheatres();
         }
-        public IQueryable<MovieTheatre> GetMovieTheatresByType(bool d3)
-        {
-            return context.GetMovieTheatresByType(d3);
-        }
-        public IQueryable<Cinema> GetCinemas(int movietheatreid)
+        public IQueryable<Cinema> GetCinemasByMovieTheatre(int movietheatreid)
         {
             return context.GetCinemasByMovieTheatre(movietheatreid);
         }

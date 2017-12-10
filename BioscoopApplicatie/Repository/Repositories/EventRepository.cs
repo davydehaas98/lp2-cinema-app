@@ -1,12 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Context.Context;
 using Context.Interfaces;
-using Models;
 using Repository.Interfaces;
+using Models;
 
 namespace Repository.Repositories
 {
@@ -23,9 +20,9 @@ namespace Repository.Repositories
         {
             return context.GetByID(idevent);
         }
-        public List<Seat> GetSeats(int idevent)
+        public IQueryable<Seat> GetSeatsByEvent(int idevent)
         {
-            return context.GetSeatsByEvent(idevent).ToList();
+            return context.GetSeatsByEvent(idevent);
         }
         public void InsertEvent(DateTime datetime, int idcinema, int idmovie)
         {

@@ -10,7 +10,7 @@ namespace Context.Context
 {
     public class MovieContext : IMovieContext
     {
-        DataAccess db;
+        private DataAccess db;
         public MovieContext()
         {
             db = new DataAccess();

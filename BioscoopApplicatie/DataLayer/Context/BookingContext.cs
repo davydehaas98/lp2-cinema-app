@@ -10,7 +10,7 @@ namespace Context.Context
 {
     public class BookingContext : IBookingContext
     {
-        DataAccess db;
+        private DataAccess db;
         public BookingContext()
         {
             db = new DataAccess();
@@ -29,7 +29,7 @@ namespace Context.Context
         {
             return ObjectBuilder.CreateClientList(db.ExecStoredProcedure("[GetClients]").Tables[0]);
         }
-        public Client GetClient(int id)
+        public Client GetClientByID(int id)
         {
             List<SqlParameter> pars = new List<SqlParameter>();
             pars.Add(new SqlParameter("@id", SqlDbType.Int) { Value = id });

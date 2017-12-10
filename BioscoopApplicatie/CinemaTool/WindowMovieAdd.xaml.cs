@@ -35,12 +35,8 @@ namespace CinemaTool
             GenreList = new ObservableCollection<Genre>();
             SelectedGenresID = new List<int>();
             new int[5] { 0, 6, 9, 12, 16 }.ToList().ForEach(age => cbMovieMinimumAge.Items.Add(age));
-            movierepo.GetGenres().ForEach(genre => GenreList.Add(new Genre(genre.Id, genre.Name)));
+            movierepo.GetGenres().ToList().ForEach(genre => GenreList.Add(new Genre(genre.Id, genre.Name)));
             DataContext = this;
-        }
-        private bool CheckFields()
-        {
-            return movierepo.CheckFields(tbMovieTitle.Text, tbMovieLength.Text, dpMovieReleaseDate.SelectedDate.Value, image, SelectedGenresID);
         }
         private void btnMovieImage_Click(object sender, RoutedEventArgs e)
         {
@@ -56,12 +52,12 @@ namespace CinemaTool
         }
         private void btnMovieConfirm_Click(object sender, RoutedEventArgs e)
         {
-            if (CheckFields())
+            try
             {
                 movierepo.InsertMovie(tbMovieTitle.Text, (bool)chkb3D.IsChecked, Convert.ToInt32(tbMovieLength.Text), Convert.ToInt32(cbMovieMinimumAge.SelectedValue), dpMovieReleaseDate.SelectedDate.Value, image, SelectedGenresID);
                 this.Close();
             }
-            else
+            catch
             {
                 System.Windows.MessageBox.Show("Not all fields are filled in correctly!");
             }

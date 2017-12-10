@@ -1,13 +1,10 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Cryptography;
 using Context.Context;
 using Context.Interfaces;
-using Models;
 using Repository.Interfaces;
+using Models;
 
 namespace Repository.Repositories
 {
@@ -24,17 +21,21 @@ namespace Repository.Repositories
         {
             return context.GetByID(bookingid);
         }
-        public Client GetClient(int id)
+        public Client GetClientByID(int id)
         {
-            return context.GetClient(id);
+            return context.GetClientByID(id);
         }
-        public List<Ticket> GetTickets(int bookingid)
+        public IQueryable<Client> GetClients()
         {
-            return context.GetTicketsByBooking(bookingid).ToList();
+            return context.GetClients();
         }
-        public List<Seat> GetSeats(int bookingid)
+        public IQueryable<Ticket> GetTicketsByBooking(int bookingid)
         {
-            return context.GetSeatsByBooking(bookingid).ToList();
+            return context.GetTicketsByBooking(bookingid);
+        }
+        public IQueryable<Seat> GetSeatsByBooking(int bookingid)
+        {
+            return context.GetSeatsByBooking(bookingid);
         }
         public void InsertClient(string firstname, string lastname, string email, DateTime birthday, string gender, string password)
         {
