@@ -31,6 +31,7 @@ namespace CinemaTool
             this.cinemarepo = cinemarepo;
             this.eventrepo = eventrepo;
             this.movierepo = movierepo;
+            InitializeComponent();
         }
 
         private void Window_Closing(object sender, System.ComponentModel.CancelEventArgs e)
@@ -74,7 +75,7 @@ namespace CinemaTool
             if(cbEventMovie.SelectedIndex > -1)
             {
                 ClearComboBoxes(2);
-                cinemarepo.GetMovieTheatres();
+                cinemarepo.GetMovieTheatres().ToList();
                 EnableButtons(true, true, false, false);
             }
         }
@@ -98,8 +99,8 @@ namespace CinemaTool
 
         private void btnEventConfirm_Click(object sender, RoutedEventArgs e)
         {
-            eventrepo.InsertEvent(dpEventDate.SelectedDate.Value.Add(((DateTime)tpEventTime.Value).TimeOfDay),((Cinema)cbEventCinema.SelectedItem).Id,((Movie)cbEventMovie.SelectedItem).Id);
-            this.Close();
+            eventrepo.InsertEvent(dpEventDate.SelectedDate.Value.Add(((DateTime)tpEventTime.Value).TimeOfDay), ((Cinema)cbEventCinema.SelectedItem).Id, ((Movie)cbEventMovie.SelectedItem).Id);
+            Close();
         }
     }
 }

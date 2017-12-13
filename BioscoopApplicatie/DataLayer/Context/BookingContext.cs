@@ -19,20 +19,20 @@ namespace Context.Context
         {
             return ObjectBuilder.CreateBookingList(db.ExecStoredProcedure("[GetBookings]").Tables[0]);
         }
-        public Booking GetByID(int id)
+        public Booking GetByID(int bookingid)
         {
             List<SqlParameter> pars = new List<SqlParameter>();
-            pars.Add(new SqlParameter("@clientid", SqlDbType.Int) { Value = id });
+            pars.Add(new SqlParameter("@bookingid", SqlDbType.Int) { Value = bookingid });
             return ObjectBuilder.CreateBooking(db.ExecStoredProcedure("[GetBookingByID]", pars).Tables[0].Rows[0]);
         }
         public IQueryable<Client> GetClients()
         {
             return ObjectBuilder.CreateClientList(db.ExecStoredProcedure("[GetClients]").Tables[0]);
         }
-        public Client GetClientByID(int id)
+        public Client GetClientByID(int clientid)
         {
             List<SqlParameter> pars = new List<SqlParameter>();
-            pars.Add(new SqlParameter("@id", SqlDbType.Int) { Value = id });
+            pars.Add(new SqlParameter("@clientid", SqlDbType.Int) { Value = clientid });
             return ObjectBuilder.CreateClient(db.ExecStoredProcedure("[GetClientByID]").Tables[0].Rows[0]);
         }
         public IQueryable<Ticket> GetTicketsByBooking(int bookingid)

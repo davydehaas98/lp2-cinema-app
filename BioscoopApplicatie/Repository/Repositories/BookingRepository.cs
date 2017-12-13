@@ -21,9 +21,9 @@ namespace Repository.Repositories
         {
             return context.GetByID(bookingid);
         }
-        public Client GetClientByID(int id)
+        public Client GetClientByID(int clientid)
         {
-            return context.GetClientByID(id);
+            return context.GetClientByID(clientid);
         }
         public IQueryable<Client> GetClients()
         {
