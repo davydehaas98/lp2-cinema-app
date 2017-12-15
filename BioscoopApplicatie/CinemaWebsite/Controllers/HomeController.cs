@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using Models;
 using Repository.Interfaces;
 using Repository.Repositories;
@@ -25,22 +26,25 @@ namespace CinemaApplication.Controllers
         }
         public ActionResult Index()
         {
-            return View();
+            return View(eventrepo.GetAll().ToList());
         }
-
         public ActionResult Booking()
         {
             ViewBag.Message = "Your application booking page.";
-            return View(bookingrepo.GetAll());
+            return View(bookingrepo.GetAll().ToList());
         }
         public ActionResult Movies()
         {
             ViewBag.Message = "Your application movies page.";
-            return View(movierepo.GetAll());
+            return View(movierepo.GetAll().ToList());
         }
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
+            return View();
+        }
+        public ActionResult Login()
+        {
             return View();
         }
     }

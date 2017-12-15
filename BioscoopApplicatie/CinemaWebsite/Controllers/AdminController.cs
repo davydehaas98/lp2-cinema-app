@@ -6,9 +6,9 @@ using System.Web.Mvc;
 
 namespace CinemaApplicationWebsite.Controllers
 {
-    public class MovieController : Controller
+    public class AdminController : Controller
     {
-        // GET: Movie
+        // GET: Admin
         public ActionResult Index()
         {
             return View();

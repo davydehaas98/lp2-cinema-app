@@ -20,10 +20,6 @@ namespace Repository.Repositories
         {
             return context.GetByID(idevent);
         }
-        public IQueryable<Seat> GetSeatsByEvent(int idevent)
-        {
-            return context.GetSeatsByEvent(idevent);
-        }
         public void InsertEvent(DateTime datetime, int idcinema, int idmovie)
         {
             context.InsertEvent(datetime, idcinema, idmovie);

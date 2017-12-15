@@ -34,7 +34,7 @@ namespace Context
         }
         internal static Event CreateEvent(DataRow row)
         {
-            return new Event((int)row["id"], (DateTime)row["DateTime"], moviecontext.GetByID((int)row["MovieID"]), cinemacontext.GetByID((int)row["CinemaID"]), eventcontext.GetSeatsByEvent((int)row["id"]).ToList());
+            return new Event((int)row["id"], (DateTime)row["DateTime"], moviecontext.GetByID((int)row["MovieID"]), cinemacontext.GetByID((int)row["CinemaID"]));
         }
         internal static Seat CreateSeat(DataRow row)
         {

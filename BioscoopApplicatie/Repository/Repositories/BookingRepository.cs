@@ -5,6 +5,7 @@ using Context.Context;
 using Context.Interfaces;
 using Repository.Interfaces;
 using Models;
+using System.Collections.Generic;
 
 namespace Repository.Repositories
 {
@@ -20,6 +21,10 @@ namespace Repository.Repositories
         public Booking GetByID(int bookingid)
         {
             return context.GetByID(bookingid);
+        }
+        public IQueryable<Booking> GetBookingsByEvent(int eventid)
+        {
+            return context.GetBookingsByEvent(eventid);
         }
         public Client GetClientByID(int clientid)
         {
@@ -37,10 +42,18 @@ namespace Repository.Repositories
         {
             return context.GetSeatsByBooking(bookingid);
         }
+        public void InsertBooking(int clientid, int amount, decimal totalprice, List<int> ticketsid, int eventid, List<int> seatsid)
+        {
+            context.InsertBooking(clientid, amount, totalprice, ticketsid, eventid, seatsid);
+        }
         public void InsertClient(string firstname, string lastname, string email, DateTime birthday, string gender, string password)
         {
             string salt = Crypto.GenerateSalt();
             context.InsertClient(firstname, lastname, email, birthday, gender, Crypto.GenerateHash(password, salt), salt);
+        }
+        public void UpdateClient(int clientid, string firstname, string lastname, string email, DateTime birthday, string gender)
+        {
+            context.UpdateClient(clientid, firstname, lastname, email, birthday, gender);
         }
     }
 }

@@ -25,12 +25,6 @@ namespace Context.Context
             pars.Add(new SqlParameter("@id", SqlDbType.Int) { Value = id });
             return ObjectBuilder.CreateEvent(db.ExecStoredProcedure("[GetEventByID]", pars).Tables[0].Rows[0]);
         }
-        public IQueryable<Seat> GetSeatsByEvent(int eventid)
-        {
-            List<SqlParameter> pars = new List<SqlParameter>();
-            pars.Add(new SqlParameter("@eventid", SqlDbType.Int) { Value = eventid });
-            return ObjectBuilder.CreateSeatList(db.ExecStoredProcedure("[GetSeatsByEvent]", pars).Tables[0]);
-        }
         public void InsertEvent(DateTime datetime, int cinemaid, int movieid)
         {
             List<SqlParameter> pars = new List<SqlParameter>();

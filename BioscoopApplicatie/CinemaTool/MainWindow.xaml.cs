@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
@@ -34,7 +35,7 @@ namespace CinemaTool
         public void GenerateSeats(int eventid)
         {
             List<Seat> seats = new List<Seat>();
-            seats = eventrepo.GetByID(eventid).Seats;
+            bookingrepo.GetBookingsByEvent(eventid).ToList().ForEach(w => w.SeatsBooked.ForEach(seat => seats.Add(seat)));
             canvasEventSeats.Children.Clear();
             int x = 0;
             int y = 0;

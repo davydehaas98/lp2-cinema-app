@@ -1,8 +1,13 @@
-﻿
+﻿@using Models
+@model List<Booking>
 @{
     ViewBag.Title = "Booking";
 }
 <h2>@ViewBag.Title.</h2>
 <h3>@ViewBag.Message</h3>
-
-<p>Use this area to provide additional information.</p>
+<div class="allbookings">
+    @foreach (Booking b in Model)
+    {
+        @Html.ActionLink(b.Client.FirstName, "Movies", "Home", new { id = b.Id }, new { @class = "list-group-item" })
+    }
+</div>
