@@ -26,9 +26,17 @@ namespace Repository.Repositories
         {
             return context.GetBookingsByEvent(eventid);
         }
+        public IQueryable<Booking> GetBookingsByClient(int clientid)
+        {
+            return context.GetBookingsByClient(clientid);
+        }
         public Client GetClientByID(int clientid)
         {
             return context.GetClientByID(clientid);
+        }
+        public Client GetClientByEmail(string email)
+        {
+            return context.GetClientByEmail(email);
         }
         public IQueryable<Client> GetClients()
         {
@@ -54,6 +62,10 @@ namespace Repository.Repositories
         public void UpdateClient(int clientid, string firstname, string lastname, string email, DateTime birthday, string gender)
         {
             context.UpdateClient(clientid, firstname, lastname, email, birthday, gender);
+        }
+        public bool CheckIfEmailExists(string email)
+        {
+            return context.CheckIfEmailExists(email);
         }
     }
 }

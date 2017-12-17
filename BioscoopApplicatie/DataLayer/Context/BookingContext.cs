@@ -31,6 +31,12 @@ namespace Context.Context
             pars.Add(new SqlParameter("@eventid", SqlDbType.Int) { Value = eventid });
             return ObjectBuilder.CreateBookingList(db.ExecStoredProcedure("[GetBookingsByEvent]", pars).Tables[0]);
         }
+        public IQueryable<Booking> GetBookingsByClient(int clientid)
+        {
+            List<SqlParameter> pars = new List<SqlParameter>();
+            pars.Add(new SqlParameter("@clientid", SqlDbType.Int) { Value = clientid });
+            return ObjectBuilder.CreateBookingList(db.ExecStoredProcedure("[GetBookingsByClient]", pars).Tables[0]);
+        }
         public IQueryable<Client> GetClients()
         {
             return ObjectBuilder.CreateClientList(db.ExecStoredProcedure("[GetClients]").Tables[0]);
@@ -40,6 +46,12 @@ namespace Context.Context
             List<SqlParameter> pars = new List<SqlParameter>();
             pars.Add(new SqlParameter("@clientid", SqlDbType.Int) { Value = clientid });
             return ObjectBuilder.CreateClient(db.ExecStoredProcedure("[GetClientByID]", pars).Tables[0].Rows[0]);
+        }
+        public Client GetClientByEmail(string email)
+        {
+            List<SqlParameter> pars = new List<SqlParameter>();
+            pars.Add(new SqlParameter("@email", SqlDbType.NVarChar) { Value = email });
+            return ObjectBuilder.CreateClientWithPassword(db.ExecStoredProcedure("[GetClientByEmail]", pars).Tables[0].Rows[0]);
         }
         public IQueryable<Ticket> GetTicketsByBooking(int bookingid)
         {
@@ -98,6 +110,13 @@ namespace Context.Context
             pars.Add(new SqlParameter("@birthday", SqlDbType.Date) { Value = birthday });
             pars.Add(new SqlParameter("@gender", SqlDbType.NVarChar) { Value = gender });
             db.ExecStoredProcedure("[UpdateClient]", pars);
+        }
+        public bool CheckIfEmailExists(string email)
+        {
+            List<SqlParameter> pars = new List<SqlParameter>();
+            pars.Add(new SqlParameter("@email", SqlDbType.NVarChar) { Value = email });
+            DataTable result = db.ExecStoredProcedure("GetClientByEmail", pars).Tables[0];
+            return result.Rows.Count != 0;
         }
     }
 }

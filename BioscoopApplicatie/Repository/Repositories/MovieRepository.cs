@@ -1,12 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Drawing;
 using System.Linq;
 using Context.Context;
 using Context.Interfaces;
 using Repository.Interfaces;
 using Models;
-using ImageConverter;
 
 namespace Repository.Repositories
 {
@@ -35,13 +33,13 @@ namespace Repository.Repositories
         {
             return context.GetGenresByMovie(idmovie);
         }
-        public void InsertMovie(string moviename, bool movied3, int movielength, int movieminimumage, DateTime moviereleasedate, Image movieimage, List<int> genreids)
+        public void InsertMovie(string moviename, bool movied3, int movielength, int movieminimumage, DateTime moviereleasedate, string movieimage, List<int> genreids)
         {
-            context.InsertMovie(moviename, movied3, movielength, movieminimumage, moviereleasedate, ImageBuilder.ImageToByteArray(movieimage), genreids);
+            context.InsertMovie(moviename, movied3, movielength, movieminimumage, moviereleasedate, movieimage, genreids);
         }
-        public void UpdateMovie(int movieid, string moviename, bool movied3, int movielength, int movieminimumage, DateTime moviereleasedate, Image movieimage)
+        public void UpdateMovie(int movieid, string moviename, bool movied3, int movielength, int movieminimumage, DateTime moviereleasedate, string movieimage)
         {
-            context.UpdateMovie(movieid, moviename, movied3, movielength, movieminimumage, moviereleasedate, ImageBuilder.ImageToByteArray(movieimage));
+            context.UpdateMovie(movieid, moviename, movied3, movielength, movieminimumage, moviereleasedate, movieimage);
         }
     }
 }

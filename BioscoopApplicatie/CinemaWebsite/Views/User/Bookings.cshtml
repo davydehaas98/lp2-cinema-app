@@ -1,0 +1,10 @@
+﻿@using Models
+@model List<Booking>
+
+<h2>Bookings</h2>
+<div class="allbookings">
+    @foreach (Booking b in Model)
+    {
+        @Html.ActionLink("Movie: " + b.Event_.Movie.Name + " Date: " + b.Event_.DateTime + " Amount: " + b.Tickets.Count() + " Total Price: €" + b.TotalPrice, "Booking", "User", new { bookingid = b.Id }, new { @class = "list-group-item" })
+    }
+</div>

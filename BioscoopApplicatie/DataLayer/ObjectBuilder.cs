@@ -18,7 +18,7 @@ namespace Context
         private static BookingContext bookingcontext = new BookingContext();
         internal static Movie CreateMovie(DataRow row)
         {
-            return new Movie((int)row["id"], (string)row["Name"], (bool)row["D3"], (int)row["Length"], (int)row["MinimumAge"], (DateTime)row["ReleaseDate"], ImageBuilder.ByteToImageSource((byte[])row["Image"]), moviecontext.GetGenresByMovie((int)row["id"]).ToList());
+            return new Movie((int)row["id"], (string)row["Name"], (bool)row["D3"], (int)row["Length"], (int)row["MinimumAge"], (DateTime)row["ReleaseDate"], (string)row["Image"], moviecontext.GetGenresByMovie((int)row["id"]).ToList());
         }
         internal static Genre CreateGenre(DataRow row)
         {
@@ -43,6 +43,10 @@ namespace Context
         internal static Booking CreateBooking(DataRow row)
         {
             return new Booking((int)row["id"], (DateTime)row["DateTime"], bookingcontext.GetClientByID((int)row["ClientID"]), eventcontext.GetByID((int)row["EventID"]), bookingcontext.GetTicketsByBooking((int)row["id"]).ToList(), bookingcontext.GetSeatsByBooking((int)row["id"]).ToList(), (decimal)row["TotalPrice"]);
+        }
+        internal static Client CreateClientWithPassword(DataRow row)
+        {
+            return new Client((int)row["id"], (string)row["FirstName"], (string)row["LastName"], (DateTime)row["Birthday"], (string)row["Gender"], (string)row["Email"], (string)row["Password"], (string)row["Salt"], (bool)row["Admin"]);
         }
         internal static Client CreateClient(DataRow row)
         {

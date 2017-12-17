@@ -41,7 +41,7 @@ namespace Context.Context
             pars.Add(new SqlParameter("@movieid", SqlDbType.Int) { Value = movieid });
             return ObjectBuilder.CreateGenreList(db.ExecStoredProcedure("[GetGenresByMovie]", pars).Tables[0]);
         }
-        public void InsertMovie(string name, bool d3, int length, int minimumage, DateTime releasedate, byte[] image, List<int> genreids)
+        public void InsertMovie(string name, bool d3, int length, int minimumage, DateTime releasedate, string image, List<int> genreids)
         {
             List<SqlParameter> pars = new List<SqlParameter>();
             pars.Add(new SqlParameter("@name", SqlDbType.NVarChar) { Value = name });
@@ -49,7 +49,7 @@ namespace Context.Context
             pars.Add(new SqlParameter("@length", SqlDbType.Int) { Value = length });
             pars.Add(new SqlParameter("@minimumage", SqlDbType.Int) { Value = minimumage });
             pars.Add(new SqlParameter("@releasedate", SqlDbType.Date) { Value = releasedate });
-            pars.Add(new SqlParameter("@image", SqlDbType.VarBinary) { Value = image });
+            pars.Add(new SqlParameter("@image", SqlDbType.NVarChar) { Value = image });
             int movieid = (int)db.ExecStoredProcedure("[InsertMovie]", pars).Tables[0].Rows[0]["Column1"];
             foreach (int genreid in genreids)
             {
@@ -59,7 +59,7 @@ namespace Context.Context
                 db.ExecStoredProcedure("[AddGenreToMovie]", pars2);
             }
         }
-        public void UpdateMovie(int id, string name, bool d3, int length, int minimumage, DateTime releasedate,  byte[] image)
+        public void UpdateMovie(int id, string name, bool d3, int length, int minimumage, DateTime releasedate,  string image)
         {
             List<SqlParameter> pars = new List<SqlParameter>();
             pars.Add(new SqlParameter("@id", SqlDbType.Int) { Value = id });
@@ -68,7 +68,7 @@ namespace Context.Context
             pars.Add(new SqlParameter("@length", SqlDbType.Int) { Value = length });
             pars.Add(new SqlParameter("@minimumage", SqlDbType.Int) { Value = minimumage });
             pars.Add(new SqlParameter("@releasedate", SqlDbType.Date) { Value = releasedate });
-            pars.Add(new SqlParameter("@image", SqlDbType.VarBinary) { Value = image });
+            pars.Add(new SqlParameter("@image", SqlDbType.NVarChar) { Value = image });
             db.ExecStoredProcedure("[UpdateMovie]", pars);
         }
     }

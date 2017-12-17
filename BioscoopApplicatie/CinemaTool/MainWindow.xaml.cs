@@ -4,7 +4,9 @@ using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using ImageConverter;
 using Repository.Interfaces;
 using Repository.Repositories;
 using Models;
@@ -70,7 +72,7 @@ namespace CinemaTool
             if (dgEvents.SelectedIndex > -1)
             {
                 GenerateSeats(((Event)dgEvents.SelectedItem).Id);
-                imgEvent.Source = ((Event)dgEvents.SelectedItem).Movie.Image;
+                imgEvent.Source = ImageBuilder.LoadImage(((Event)dgEvents.SelectedItem).Movie.Image);
             }
         }
         private void dgMovies_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -84,7 +86,7 @@ namespace CinemaTool
                 }
                 try
                 {
-                    imgMovie.Source = ((Movie)dgMovies.SelectedItem).Image;
+                    imgMovie.Source = ImageBuilder.LoadImage(((Movie)dgMovies.SelectedItem).Image);
                 }
                 catch
                 {

@@ -11,7 +11,7 @@ namespace Repository.Interfaces
         IQueryable<Movie> GetMoviesByReleaseDate(DateTime date);
         IQueryable<Genre> GetGenres();
         IQueryable<Genre> GetGenres(int movieid);
-        void InsertMovie(string moviename, bool movied3, int movielength, int movieminimumage, DateTime moviereleasedate, Image movieimage, List<int> genreids);
-        void UpdateMovie(int movieid, string moviename, bool movied3, int movielength, int movieminimumage, DateTime moviereleasedate, Image movieimage);
+        void InsertMovie(string moviename, bool movied3, int movielength, int movieminimumage, DateTime moviereleasedate, string movieimage, List<int> genreids);
+        void UpdateMovie(int movieid, string moviename, bool movied3, int movielength, int movieminimumage, DateTime moviereleasedate, string movieimage);
     }
 }

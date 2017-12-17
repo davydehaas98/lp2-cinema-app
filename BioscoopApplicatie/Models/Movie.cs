@@ -3,7 +3,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using System.Windows.Media;
 
 namespace Models
 {
@@ -14,7 +13,7 @@ namespace Models
         private bool d3;
         private int length;
         private int minimalage;
-        private ImageSource image;
+        private string image;
         private DateTime releasedate;
         private List<Genre> genres;
         public int Id { get { return this.id; } }
@@ -22,10 +21,10 @@ namespace Models
         public bool D3 { get { return this.d3; } }
         public int Length { get { return this.length; } }
         public int MinimalAge { get { return this.minimalage; } }
-        public ImageSource Image { get { return this.image; } }
+        public string Image { get { return this.image; } }
         public List<Genre> Genres { get { return this.genres; } }
         public DateTime ReleaseDate { get { return this.releasedate; } }
-        public Movie(int id, string name, bool d3, int length, int minimalage, DateTime releasedate, ImageSource image, List<Genre> genres)
+        public Movie(int id, string name, bool d3, int length, int minimalage, DateTime releasedate, string image, List<Genre> genres)
         {
             this.id = id;
             this.name = name;

@@ -1,0 +1,27 @@
+﻿@using Models
+@using CinemaWebsite.ViewModels
+@model MovieWithEventsViewModel
+@Html.ActionLink("Go Back", "Index", "Home")
+<h1>@Model.Movie.Name</h1>
+<div class="single-movie">
+    <div class="movieinfo">
+        <img src="@Model.Movie.Image" width="300" />
+        <p>
+            Genres:
+            @foreach (Genre genre in Model.Movie.Genres)
+            {
+                <br /> @genre.Name
+            }
+        </p>
+        Minimal Age: @Model.Movie.MinimalAge<br />
+        Release Date: @Model.Movie.ReleaseDate<br />
+        Length: @Model.Movie.Length min
+    </div>
+    <div class="events">
+        <p>Events:</p>
+        @foreach (Event event_ in Model.Events)
+        {
+            @Html.ActionLink("Date: " + event_.DateTime.ToString() + " Cinema: " + event_.Cinema.ToString(), "Event", "Home", new { eventid = event_.Id }, new { @class = "list-group-item" });
+        }
+    </div>
+</div>

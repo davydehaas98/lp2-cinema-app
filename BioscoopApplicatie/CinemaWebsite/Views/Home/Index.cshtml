@@ -1,7 +1,11 @@
-﻿@{
-    ViewBag.Title = "Home Page";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
-
-<p>Use this area to provide additional information.</p>
+﻿@using Models
+@model List<Movie>
+<h2>Select a Movie</h2>
+<div class="allmovies">
+    @foreach (Movie movie in Model)
+    {
+        <a href='@Url.Action("Movie", "Home", new { movieid = movie.Id })'>
+            <img src="@movie.Image" width="200" title="@movie.Name" />
+        </a>
+    }
+</div>

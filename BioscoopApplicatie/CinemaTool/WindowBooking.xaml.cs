@@ -23,38 +23,38 @@ namespace CinemaTool
     public partial class WindowBooking : Window
     {
         private EventRepository eventrepo;
-        private Seat[] seats;
+        //private Seat[] seats;
         public WindowBooking()
         {
             InitializeComponent();
             eventrepo = new EventRepository();
-            GenerateSeats();
+            //GenerateSeats();
         }
-        public void GenerateSeats()
-        {
-            seats = eventrepo.GetAll().Single(eve => eve.Id == 1).Seats.ToArray();
-            int x = 0;
-            int y = 0;
-            for (int i = 1; i < 101; i++)
-            {
-                Ellipse ell = new Ellipse();
-                ell.Height = 30;
-                ell.Width = 30;
-                ell.Fill = Brushes.Black;
-                ell.MouseLeftButtonDown += ellipse_MouseLeftButtonDown;
-                ell.MouseEnter += ellipse_MouseEnter;
-                ell.MouseLeave += ellipse_MouseLeave;
-                Canvas.SetLeft(ell, x);
-                Canvas.SetTop(ell, y);
-                cnvsSeats.Children.Add(ell);
-                x += 30;
-                if (i % 10 == 0)
-                {
-                    x = 0;
-                    y += 30;
-                }
-            }
-        }
+        //public void GenerateSeats()
+        //{
+        //    seats = eventrepo.GetAll().Single(eve => eve.Id == 1).Seats.ToArray();
+        //    int x = 0;
+        //    int y = 0;
+        //    for (int i = 1; i < 101; i++)
+        //    {
+        //        Ellipse ell = new Ellipse();
+        //        ell.Height = 30;
+        //        ell.Width = 30;
+        //        ell.Fill = Brushes.Black;
+        //        ell.MouseLeftButtonDown += ellipse_MouseLeftButtonDown;
+        //        ell.MouseEnter += ellipse_MouseEnter;
+        //        ell.MouseLeave += ellipse_MouseLeave;
+        //        Canvas.SetLeft(ell, x);
+        //        Canvas.SetTop(ell, y);
+        //        cnvsSeats.Children.Add(ell);
+        //        x += 30;
+        //        if (i % 10 == 0)
+        //        {
+        //            x = 0;
+        //            y += 30;
+        //        }
+        //    }
+        //}
         private void ellipse_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
         {
             Ellipse el = (Ellipse)sender;

@@ -16,9 +16,13 @@ namespace Repository.Repositories
         {
             return context.GetAll();
         }
-        public Event GetByID(int idevent)
+        public Event GetByID(int eventid)
         {
-            return context.GetByID(idevent);
+            return context.GetByID(eventid);
+        }
+        public IQueryable<Event> GetEventsByMovie(int movieid)
+        {
+            return context.GetEventsByMovie(movieid);
         }
         public void InsertEvent(DateTime datetime, int idcinema, int idmovie)
         {

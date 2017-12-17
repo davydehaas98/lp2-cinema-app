@@ -26,7 +26,7 @@ namespace CinemaTool
         private IMovieRepository movierepo;
         public ObservableCollection<Genre> GenreList { get; set; }
         private List<int> SelectedGenresID;
-        private System.Drawing.Image image;
+        private string image;
         public WindowMovieAdd() : this(new MovieRepository()) { }
         public WindowMovieAdd(IMovieRepository movierepo)
         {
@@ -44,9 +44,8 @@ namespace CinemaTool
             dialog.ShowDialog();
             try
             {
-                image = System.Drawing.Image.FromFile(dialog.FileName);
-                if (image != null)
-                    btnMovieConfirm.IsEnabled = true;
+                image = ImageConverter.ImageBuilder.UploadImage(System.Drawing.Image.FromFile(dialog.FileName));
+                if (image != null) btnMovieConfirm.IsEnabled = true;
             }
             catch { }
         }
@@ -54,7 +53,7 @@ namespace CinemaTool
         {
             try
             {
-                movierepo.InsertMovie(tbMovieTitle.Text, (bool)chkb3D.IsChecked, Convert.ToInt32(tbMovieLength.Text), Convert.ToInt32(cbMovieMinimumAge.SelectedValue), dpMovieReleaseDate.SelectedDate.Value, image, SelectedGenresID);
+                movierepo.InsertMovie(tbMovieTitle.Text, (bool)chkb3D.IsChecked, Convert.ToInt32(tbMovieLength.Text), Convert.ToInt32(cbMovieMinimumAge.SelectedValue), dpMovieReleaseDate.SelectedDate.Value, image , SelectedGenresID);
                 this.Close();
             }
             catch
