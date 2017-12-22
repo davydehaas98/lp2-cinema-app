@@ -35,11 +35,11 @@ namespace CinemaWebsite.Controllers
         [HttpGet]
         public ActionResult Bookings()
         {
-            try { return View(bookingrepo.GetBookingsByClient(bookingrepo.GetClientByEmail(HttpContext.User.Identity.Name).Id).ToList()); }
+            try { return View(eventrepo.GetAll()); }
             catch { return RedirectToAction("Index", "Home"); }
         }
         [Authorize]
-        public ActionResult Profile()
+        public new ActionResult Profile()
         {
             return View(bookingrepo.GetClientByEmail(HttpContext.User.Identity.Name));
         }
@@ -53,16 +53,17 @@ namespace CinemaWebsite.Controllers
         [HttpPost]
         public ActionResult Edit(EditProfileViewModel vm)
         {
-            if (ModelState.IsValid && vm.Id == bookingrepo.GetClientByEmail(vm.Email).Id)
+            if (ModelState.IsValid && vm.Id == bookingrepo.GetClientByEmail(HttpContext.User.Identity.Name).Id)
             {
                 if (!bookingrepo.CheckIfEmailExists(vm.Email) || bookingrepo.GetClientByID(vm.Id).Email == vm.Email)
                 {
                     bookingrepo.UpdateClient(vm.Id, vm.FirstName, vm.LastName, vm.Email, vm.Birthday, vm.Gender);
+                    FormsAuthentication.SetAuthCookie(vm.Email, false);
                     return RedirectToAction("Profile", "User");
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "The email you filled in is already being used");
+                    ModelState.AddModelError("", "The email you filled in is already being used");
                     return View(vm);
                 }
             }

@@ -19,7 +19,6 @@ namespace CinemaWebsite.ViewModels
             this.Gender = client.Gender;
             this.Email = client.Email;
         }
-        [Required]
         public int Id { get; set; }
 
         [Required(ErrorMessage = "First Name is required!")]

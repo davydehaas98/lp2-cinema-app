@@ -15,7 +15,7 @@ namespace Context.Context
         {
             db = new DataAccess();
         }
-        public IQueryable<Booking> GetAll()
+        public List<Booking> GetAll()
         {
             return ObjectBuilder.CreateBookingList(db.ExecStoredProcedure("[GetBookings]").Tables[0]);
         }
@@ -25,19 +25,19 @@ namespace Context.Context
             pars.Add(new SqlParameter("@bookingid", SqlDbType.Int) { Value = bookingid });
             return ObjectBuilder.CreateBooking(db.ExecStoredProcedure("[GetBookingByID]", pars).Tables[0].Rows[0]);
         }
-        public IQueryable<Booking> GetBookingsByEvent(int eventid)
+        public List<Booking> GetBookingsByEvent(int eventid)
         {
             List<SqlParameter> pars = new List<SqlParameter>();
             pars.Add(new SqlParameter("@eventid", SqlDbType.Int) { Value = eventid });
             return ObjectBuilder.CreateBookingList(db.ExecStoredProcedure("[GetBookingsByEvent]", pars).Tables[0]);
         }
-        public IQueryable<Booking> GetBookingsByClient(int clientid)
+        public List<Booking> GetBookingsByClient(int clientid)
         {
             List<SqlParameter> pars = new List<SqlParameter>();
             pars.Add(new SqlParameter("@clientid", SqlDbType.Int) { Value = clientid });
             return ObjectBuilder.CreateBookingList(db.ExecStoredProcedure("[GetBookingsByClient]", pars).Tables[0]);
         }
-        public IQueryable<Client> GetClients()
+        public List<Client> GetClients()
         {
             return ObjectBuilder.CreateClientList(db.ExecStoredProcedure("[GetClients]").Tables[0]);
         }
@@ -53,13 +53,13 @@ namespace Context.Context
             pars.Add(new SqlParameter("@email", SqlDbType.NVarChar) { Value = email });
             return ObjectBuilder.CreateClientWithPassword(db.ExecStoredProcedure("[GetClientByEmail]", pars).Tables[0].Rows[0]);
         }
-        public IQueryable<Ticket> GetTicketsByBooking(int bookingid)
+        public List<Ticket> GetTicketsByBooking(int bookingid)
         {
             List<SqlParameter> pars = new List<SqlParameter>();
             pars.Add(new SqlParameter("@bookingid", SqlDbType.Int) { Value = bookingid });
             return ObjectBuilder.CreateTicketList(db.ExecStoredProcedure("[GetTicketsByBooking]", pars).Tables[0]);
         }
-        public IQueryable<Seat> GetSeatsByBooking(int bookingid)
+        public List<Seat> GetSeatsByBooking(int bookingid)
         {
             List<SqlParameter> pars = new List<SqlParameter>();
             pars.Add(new SqlParameter("@bookingid", SqlDbType.Int) { Value = bookingid });
@@ -116,7 +116,7 @@ namespace Context.Context
             List<SqlParameter> pars = new List<SqlParameter>();
             pars.Add(new SqlParameter("@email", SqlDbType.NVarChar) { Value = email });
             DataTable result = db.ExecStoredProcedure("GetClientByEmail", pars).Tables[0];
-            return result.Rows.Count != 0;
+            return result.Rows.Count > 0;
         }
     }
 }

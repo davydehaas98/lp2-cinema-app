@@ -29,15 +29,15 @@ namespace CinemaWebsite.Controllers
         [HttpGet]
         public ActionResult Index()
         {
-            return View(movierepo.GetAll().ToList());
+            return View(movierepo.GetAll());
         }
         [HttpGet]
         public ActionResult Movies()
         {
             ViewBag.Message = "Your application movies page.";
-            return View(movierepo.GetAll().ToList());
+            return View(movierepo.GetAll());
         }
-        [Authorize]
+        [HttpGet]
         public ActionResult Contact()
         {
             ViewBag.Message = "Your contact page.";
@@ -96,7 +96,7 @@ namespace CinemaWebsite.Controllers
         [HttpGet]
         public ActionResult Movie(int? movieid)
         {
-            try { return View(new MovieWithEventsViewModel(movierepo.GetByID((int)movieid),eventrepo.GetEventsByMovie((int)movieid).ToList())); }
+            try { return View(new MovieWithEventsViewModel(movierepo.GetByID((int)movieid),eventrepo.GetEventsByMovie((int)movieid))); }
             catch { return RedirectToAction("Movies", "Home"); }
         }
         [HttpGet]

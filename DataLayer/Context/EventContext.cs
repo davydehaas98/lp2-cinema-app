@@ -15,7 +15,7 @@ namespace Context.Context
         {
             db = new DataAccess();
         }
-        public IQueryable<Event> GetAll()
+        public List<Event> GetAll()
         {
             return ObjectBuilder.CreateEventList(db.ExecStoredProcedure("[GetEvents]").Tables[0]);
         }
@@ -25,7 +25,7 @@ namespace Context.Context
             pars.Add(new SqlParameter("@id", SqlDbType.Int) { Value = id });
             return ObjectBuilder.CreateEvent(db.ExecStoredProcedure("[GetEventByID]", pars).Tables[0].Rows[0]);
         }
-        public IQueryable<Event> GetEventsByMovie(int movieid)
+        public List<Event> GetEventsByMovie(int movieid)
         {
             List<SqlParameter> pars = new List<SqlParameter>();
             pars.Add(new SqlParameter("@movieid", SqlDbType.Int) { Value = movieid });

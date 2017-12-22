@@ -11,27 +11,27 @@ namespace Models
         private int id;
         private DateTime datetime;
         private Client client;
-        private Event event_;
-        private List<Ticket> tickets;
-        private List<Seat> seatsbooked;
+        private int amount;
         private decimal totalprice;
+        private List<Ticket> tickets;
+        private List<Seat> seats;
 
         public int Id { get { return this.id; } }
         public DateTime DateTime { get { return this.datetime; } }
         public Client Client { get { return this.client; } }
-        public Event Event_ { get { return this.event_; } }
-        public List<Ticket> Tickets { get { return this.tickets; } }
-        public List<Seat> SeatsBooked { get { return this.seatsbooked; } }
+        public decimal Amount { get { return this.amount; } }
         public decimal TotalPrice { get { return this.totalprice; } }
-        public Booking(int id, DateTime datetime, Client client, Event event_, List<Ticket> tickets, List<Seat> seatsbooked, decimal totalprice)
+        public List<Ticket> Tickets { get { return this.tickets; } }
+        public List<Seat> Seats { get { return this.seats; } }
+        public Booking(int id, Client client, DateTime datetime,int amount, decimal totalprice, List<Ticket> tickets, List<Seat> seats)
         {
             this.id = id;
-            this.datetime = datetime;
             this.client = client;
-            this.event_ = event_;
-            this.tickets = tickets;
-            this.seatsbooked = seatsbooked;
+            this.datetime = datetime;
+            this.amount = amount;
             this.totalprice = totalprice;
+            this.tickets = tickets;
+            this.seats = seats;
         }
         public void CalcTotalPrice()
         {

@@ -12,16 +12,19 @@ namespace Models
         private DateTime datetime;
         private Cinema cinema;
         private Movie movie;
+        private List<Booking> bookings;
         public int Id { get { return this.id; } }
         public DateTime DateTime { get { return this.datetime; } }
         public Cinema Cinema { get { return this.cinema; } }
         public Movie Movie { get { return this.movie; } }
-        public Event(int id, DateTime datetime, Movie movie, Cinema cinema)
+        public List<Booking> Bookings { get { return this.bookings; } }
+        public Event(int id, DateTime datetime, Movie movie, Cinema cinema, List<Booking> bookings)
         {
             this.id = id;
             this.datetime = datetime;
             this.movie = movie;
             this.cinema = cinema;
+            this.bookings = bookings;
         }
         public void BookSeat(List<Seat> bookedseats)
         {

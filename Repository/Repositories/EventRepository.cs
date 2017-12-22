@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Context.Context;
 using Context.Interfaces;
@@ -12,7 +13,7 @@ namespace Repository.Repositories
         private IEventContext context;
         public EventRepository() : this(new EventContext()) { }
         public EventRepository(IEventContext context) { this.context = context; }
-        public IQueryable<Event> GetAll()
+        public List<Event> GetAll()
         {
             return context.GetAll();
         }
@@ -20,7 +21,7 @@ namespace Repository.Repositories
         {
             return context.GetByID(eventid);
         }
-        public IQueryable<Event> GetEventsByMovie(int movieid)
+        public List<Event> GetEventsByMovie(int movieid)
         {
             return context.GetEventsByMovie(movieid);
         }

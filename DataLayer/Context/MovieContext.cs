@@ -15,7 +15,7 @@ namespace Context.Context
         {
             db = new DataAccess();
         }
-        public IQueryable<Movie> GetAll()
+        public List<Movie> GetAll()
         {
             return ObjectBuilder.CreateMovieList(db.ExecStoredProcedure("[GetMovies]").Tables[0]);
         }
@@ -25,17 +25,17 @@ namespace Context.Context
             pars.Add(new SqlParameter("@id", SqlDbType.Int) { Value = id });
             return ObjectBuilder.CreateMovie(db.ExecStoredProcedure("[GetMovieByID]", pars).Tables[0].Rows[0]);
         }
-        public IQueryable<Movie> GetMoviesReleased(DateTime releasedate)
+        public List<Movie> GetMoviesReleased(DateTime releasedate)
         {
             List<SqlParameter> pars = new List<SqlParameter>();
             pars.Add(new SqlParameter("@releasedate", SqlDbType.Date) { Value = releasedate });
             return ObjectBuilder.CreateMovieList(db.ExecStoredProcedure("[GetMoviesReleased]", pars).Tables[0]);
         }
-        public IQueryable<Genre> GetGenres()
+        public List<Genre> GetGenres()
         {
             return ObjectBuilder.CreateGenreList(db.ExecStoredProcedure("[GetGenres]").Tables[0]);
         }
-        public IQueryable<Genre> GetGenresByMovie(int movieid)
+        public List<Genre> GetGenresByMovie(int movieid)
         {
             List<SqlParameter> pars = new List<SqlParameter>();
             pars.Add(new SqlParameter("@movieid", SqlDbType.Int) { Value = movieid });

@@ -31,7 +31,7 @@ namespace CinemaWebsite.ViewModels
         [Required(ErrorMessage = "Email is required!")]
         [StringLength(50, ErrorMessage = "The {0} can't be longer than {1} characters")]
         [EmailAddress(ErrorMessage = "Invalid Email Address")]
-        [Display(Name = "Email (This Email alse be used as your Username)")]
+        [Display(Name = "Email (This will also be used as your Username)")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "Password is required!")]

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Context.Context;
 using Context.Interfaces;
@@ -12,7 +13,7 @@ namespace Repository.Repositories
         private ICinemaContext context;
         public CinemaRepository() : this(new CinemaContext()) { }
         public CinemaRepository(ICinemaContext context) { this.context = context; }
-        public IQueryable<Cinema> GetAll()
+        public List<Cinema> GetAll()
         {
             return context.GetAll();
         }
@@ -20,11 +21,11 @@ namespace Repository.Repositories
         {
             return context.GetByID(idcinema);
         }
-        public IQueryable<MovieTheatre> GetMovieTheatres()
+        public List<MovieTheatre> GetMovieTheatres()
         {
             return context.GetMovieTheatres();
         }
-        public IQueryable<Cinema> GetCinemasByMovieTheatre(int movietheatreid)
+        public List<Cinema> GetCinemasByMovieTheatre(int movietheatreid)
         {
             return context.GetCinemasByMovieTheatre(movietheatreid);
         }

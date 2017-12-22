@@ -8,6 +8,6 @@ namespace Repository.Interfaces
     public interface IEventRepository : IRepository<Event>
     {
         void InsertEvent(DateTime datetime, int idcinema, int idmovie);
-        IQueryable<Event> GetEventsByMovie(int movieid);
+        List<Event> GetEventsByMovie(int movieid);
     }
 }

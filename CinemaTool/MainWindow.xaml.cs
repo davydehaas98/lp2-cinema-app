@@ -37,7 +37,7 @@ namespace CinemaTool
         public void GenerateSeats(int eventid)
         {
             List<Seat> seats = new List<Seat>();
-            bookingrepo.GetBookingsByEvent(eventid).ToList().ForEach(w => w.SeatsBooked.ForEach(seat => seats.Add(seat)));
+            bookingrepo.GetBookingsByEvent(eventid).ToList().ForEach(w => w.Seats.ForEach(seat => seats.Add(seat)));
             canvasEventSeats.Children.Clear();
             int x = 0;
             int y = 0;

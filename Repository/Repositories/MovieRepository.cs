@@ -13,7 +13,7 @@ namespace Repository.Repositories
         private IMovieContext context;
         public MovieRepository() : this(new MovieContext()) { }
         public MovieRepository(IMovieContext context) { this.context = context; }
-        public IQueryable<Movie> GetAll()
+        public List<Movie> GetAll()
         {
             return context.GetAll();
         }
@@ -21,15 +21,15 @@ namespace Repository.Repositories
         {
             return context.GetByID(idmovie);
         }
-        public IQueryable<Movie> GetMoviesByReleaseDate(DateTime date)
+        public List<Movie> GetMoviesByReleaseDate(DateTime date)
         {
             return context.GetMoviesReleased(date);
         }
-        public IQueryable<Genre> GetGenres()
+        public List<Genre> GetGenres()
         {
             return context.GetGenres();
         }
-        public IQueryable<Genre> GetGenres(int idmovie)
+        public List<Genre> GetGenres(int idmovie)
         {
             return context.GetGenresByMovie(idmovie);
         }

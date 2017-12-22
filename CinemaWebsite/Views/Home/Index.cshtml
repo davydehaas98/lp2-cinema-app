@@ -9,3 +9,34 @@
         </a>
     }
 </div>
+
+@*API inplementation *@
+<div class="col-md-12">
+    <h3>The weather in <span data-bind="text:name"></span></h3>
+    <hr />
+</div>
+<div class="col-md-12">
+    Temperature is <b><span data-bind="text:main.temp"></span>&deg; C</b>
+
+</div>
+
+<div class="col-md-12">
+
+    Min  <span data-bind="text:main.temp_min"></span>&deg; C
+    Max  <span data-bind="text:main.temp_max"></span>&deg; C
+
+</div>
+<div class="col-md-12" data-bind="weather.description"></div>
+
+<script>
+    var weather = Object();
+    var appid = "487c09f0279d40846f8424031451eabc";
+    $(document).ready(function () {
+        $.get("http://api.openweathermap.org/data/2.5/weather?q=Eindhoven&APPID=487c09f0279d40846f8424031451eabc&units=metric", function (response) {
+            //response
+            console.log(response);
+            weather = ko.mapping.fromJS(response);  //populate the weather object
+            ko.applyBindings(weather);
+        });
+    });
+</script>

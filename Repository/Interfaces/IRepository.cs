@@ -1,10 +1,11 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 
 namespace Repository.Interfaces
 {
     public interface IRepository<T>
     {
-        IQueryable<T> GetAll();
+        List<T> GetAll();
         T GetByID(int id);
     }
 }

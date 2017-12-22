@@ -2,11 +2,11 @@
 @model Booking
 
 <h2>Booking</h2>
-<p>Id: @Model.Id</p>
+@*<p>Id: @Model.Id</p>
 <p>Movie: @Model.Event_.Movie</p>
 <p>Cinema: @Model.Event_.Cinema</p>
 <p>Date And Time: @Model.Event_.DateTime</p>
-<h4>Tickets:</h4>
+<h4>Tickets:</h4>*@
 @foreach (Ticket ticket in Model.Tickets)
 {
     <p>@ticket.Name €@ticket.Price</p>

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.27004.2010
+VisualStudioVersion = 15.0.27130.2010
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Context", "DataLayer\Context.csproj", "{9E09687C-0DF6-40B1-BFCD-7DDF751006B3}"
 EndProject
@@ -16,6 +16,8 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Repository", "Repository\Repository.csproj", "{944ED985-21A3-4A98-96CB-6D272F4DC13E}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaWebsite", "CinemaWebsite\CinemaWebsite.csproj", "{1F86E95A-C7BC-47CC-B7CE-B5776C919480}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CinemaUnitTests", "CinemaUnitTests\CinemaUnitTests.csproj", "{E026C54C-1B59-4AFE-BC5D-1A91DF2E95FE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{1F86E95A-C7BC-47CC-B7CE-B5776C919480}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1F86E95A-C7BC-47CC-B7CE-B5776C919480}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1F86E95A-C7BC-47CC-B7CE-B5776C919480}.Release|Any CPU.Build.0 = Release|Any CPU
+		{E026C54C-1B59-4AFE-BC5D-1A91DF2E95FE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{E026C54C-1B59-4AFE-BC5D-1A91DF2E95FE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{E026C54C-1B59-4AFE-BC5D-1A91DF2E95FE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{E026C54C-1B59-4AFE-BC5D-1A91DF2E95FE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

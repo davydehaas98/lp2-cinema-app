@@ -3,6 +3,10 @@
 <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="~/Scripts/modernizr-2.6.2.js"></script>
+    <script src="~/Scripts/jquery-2.1.4.js"></script>
+    <script src="~/Scripts/knockout-2.0.0.js"></script>
+    <script src="~/Scripts/knockout.mapping-latest.js"></script>
     <title>@ViewBag.Title - My ASP.NET Application</title>
     @Styles.Render("~/Content/css")
     @Scripts.Render("~/bundles/modernizr")
@@ -20,7 +24,6 @@
             </div>
             <div class="navbar-collapse collapse">
                 <ul class="nav navbar-nav">
-                    <li>@Html.ActionLink("Bookings", "Bookings", "User")</li>
                     <li>@Html.ActionLink("Movies", "Movies", "Home")</li>
                     <li>@Html.ActionLink("Contact", "Contact", "Home")</li>
                     @Html.Partial("_LoginPartial")

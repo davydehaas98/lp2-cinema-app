@@ -14,7 +14,7 @@ namespace Repository.Repositories
         private IBookingContext context;
         public BookingRepository():this(new BookingContext()) { }
         public BookingRepository(IBookingContext context) { this.context = context; }
-        public IQueryable<Booking> GetAll()
+        public List<Booking> GetAll()
         {
             return context.GetAll();
         }
@@ -22,11 +22,11 @@ namespace Repository.Repositories
         {
             return context.GetByID(bookingid);
         }
-        public IQueryable<Booking> GetBookingsByEvent(int eventid)
+        public List<Booking> GetBookingsByEvent(int eventid)
         {
             return context.GetBookingsByEvent(eventid);
         }
-        public IQueryable<Booking> GetBookingsByClient(int clientid)
+        public List<Booking> GetBookingsByClient(int clientid)
         {
             return context.GetBookingsByClient(clientid);
         }
@@ -38,15 +38,15 @@ namespace Repository.Repositories
         {
             return context.GetClientByEmail(email);
         }
-        public IQueryable<Client> GetClients()
+        public List<Client> GetClients()
         {
             return context.GetClients();
         }
-        public IQueryable<Ticket> GetTicketsByBooking(int bookingid)
+        public List<Ticket> GetTicketsByBooking(int bookingid)
         {
             return context.GetTicketsByBooking(bookingid);
         }
-        public IQueryable<Seat> GetSeatsByBooking(int bookingid)
+        public List<Seat> GetSeatsByBooking(int bookingid)
         {
             return context.GetSeatsByBooking(bookingid);
         }

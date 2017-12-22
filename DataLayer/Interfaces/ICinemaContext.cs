@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using Models;
 
@@ -6,8 +7,8 @@ namespace Context.Interfaces
 {
     public interface ICinemaContext : IContext<Cinema>
     {
-        IQueryable<MovieTheatre> GetMovieTheatres();
+        List<MovieTheatre> GetMovieTheatres();
         MovieTheatre GetMovieTheatreByID(int id);
-        IQueryable<Cinema> GetCinemasByMovieTheatre(int movietheatreid);
+        List<Cinema> GetCinemasByMovieTheatre(int movietheatreid);
     }
 }
