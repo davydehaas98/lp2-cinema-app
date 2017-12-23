@@ -22,12 +22,3 @@ select,
 textarea {
     max-width: 280px;
 }
-
-
-
-.seat {
-    height: 50px;
-    width: 50px;
-    background-color: black;
-    border-radius: 50%;
-}

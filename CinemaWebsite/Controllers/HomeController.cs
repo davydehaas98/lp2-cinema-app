@@ -102,8 +102,17 @@ namespace CinemaWebsite.Controllers
         [HttpGet]
         public ActionResult Event(int? eventid)
         {
-            try { return View(eventrepo.GetByID((int)eventid)); }
+            try { return View(new BookingViewModel(eventrepo.GetByID((int)eventid), eventrepo.GetBookedSeatsByEvent((int)eventid))); }
             catch { return RedirectToAction("Index", "Home"); }
+        }
+        [HttpPost]
+        public ActionResult Book(BookingViewModel vm)
+        {
+            if (ModelState.IsValid)
+            {
+
+            }
+            return View(vm);
         }
     }
 }

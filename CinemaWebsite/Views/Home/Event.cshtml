@@ -1,72 +1,30 @@
-﻿@using Models
-@model Event
-@{
-    List<Seat> seats = new List<Seat>();
-    Model.Bookings.ForEach(booking => booking.Seats.ForEach(seat => seats.Add(seat)));
-}
+﻿@using CinemaWebsite.ViewModels
+@model BookingViewModel
 <h2>Event</h2>
-<p>Id: @Model.Id</p>
-<p>Movie: @Model.Movie.Name</p>
-<p>Cinema: @Model.Cinema.Name</p>
-<p>Date And Time: @Model.DateTime</p>
-<p>Amount of Bookings: @Model.Bookings.Count</p>
-<p>Seats Booked: @Model.Bookings.Sum(book => book.Amount)</p>
-
+<p>Id: @Model.Event_.Id<br />
+Movie: @Model.Event_.Movie.Name<br />
+Cinema: @Model.Event_.Cinema.Name<br />
+Date And Time: @Model.Event_.DateTime<br />
+Amount of Bookings: @Model.Event_.Bookings.Count<br />
+Seats Booked: @Model.BookedSeats.Count</p>
+<div>
+    @for()
+</div>
 <div class="tableseats">
     @for (int row = 1; row < 11; row++)
     {
     <div class="rowseats">
         @for (int number = 1; number < 11; number++)
         {
-            if (seats.Exists(s => s.Number == number && s.Row == row))
+            if (Model.BookedSeats.Exists(s => s.Number == number && s.Row == row))
             {
-                <div class="seat" id="@row-@number" style="background-color: grey"></div>
+                <div class="bookedseat" id="@row-@number"></div>
             }
             else
             {
-                <div class="seat" id="@row-@number" style="background-color: black"; onclick="selectseats(this, 5)"></div>
+                <div class="seat" id="@row-@number" onclick="selectseats(this, 9)"></div>
             }
         }
     </div>
     }
 </div>
-<style>
-    .seat {
-        width: 50px;
-        height: 50px;
-        border-radius: 50%;
-        display: inline-block;
-    }
-</style>
-<script type="text/javascript">
-    function selectseats(elem, amount) {
-        var rowseats = document.getElementsByClassName("rowseats")
-        for (var i = 0; i < rowseats.length; i++) {
-            for (var j = 0; j < rowseats[i].children.length; j++) {
-                var seat = document.getElementById(rowseats[i].children[j].id)
-                if (seat.style.backgroundColor != "grey")
-                    seat.style.backgroundColor = "black"
-            }
-        }
-        elem.style.backgroundColor = "red"
-        var rownumber = elem.id.split("-")
-        var left = parseInt(rownumber[1])
-        var right = parseInt(rownumber[1])
-        for (var i = 0; i < amount - 1; i++) {
-            if (i % 2) {
-                left--
-                var seat = document.getElementById(rownumber[0] + "-" + left)
-                if (seat.style.backgroundColor != "grey") {
-                    seat.style.backgroundColor = "yellow"
-                }
-            }
-            else {
-                right++
-                var seat = document.getElementById(rownumber[0] + "-" + right)
-                if (seat.style.backgroundColor != "grey") {
-                    seat.style.backgroundColor = "yellow"
-                }
-            }
-        }
-    }
-</script>
