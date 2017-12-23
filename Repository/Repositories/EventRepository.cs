@@ -21,6 +21,10 @@ namespace Repository.Repositories
         {
             return context.GetByID(eventid);
         }
+        public List<Seat> GetBookedSeatsByEvent(int eventid)
+        {
+            return context.GetBookedSeatsByEvent(eventid);
+        }
         public List<Event> GetEventsByMovie(int movieid)
         {
             return context.GetEventsByMovie(movieid);

@@ -171,13 +171,14 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\BookingViewModel.cs" />
     <Compile Include="ViewModels\EditUserViewModel.cs" />
-    <Compile Include="ViewModels\EventViewModel.cs" />
     <Compile Include="ViewModels\LoginViewModel.cs" />
     <Compile Include="ViewModels\MovieWithEventsViewModel.cs" />
     <Compile Include="ViewModels\RegisterViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Content\style.css" />
     <Content Include="Errors\404.aspx" />
     <Content Include="Errors\404.html" />
     <Content Include="Errors\500.aspx" />
@@ -220,6 +221,7 @@
     <Content Include="Scripts\knockout-2.0.0.js" />
     <Content Include="Scripts\knockout.mapping-latest.debug.js" />
     <Content Include="Scripts\knockout.mapping-latest.js" />
+    <Content Include="Scripts\main.js" />
     <Content Include="Scripts\modernizr-2.6.2.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
     <Content Include="Scripts\respond.js" />
