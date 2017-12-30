@@ -5,7 +5,7 @@
     <h2>Edit Profile</h2>
     <section id="EditForm">
         @using (Html.BeginForm("Edit", "User", FormMethod.Post))
-    {
+        {
         @Html.AntiForgeryToken()
         <hr />
         @Html.HiddenFor(m => m.Id)
@@ -54,6 +54,6 @@
                 <input type="submit" value="Confirm Changes" class="btn btn-default" />
             </div>
         </div>
-}
+        }
     </section>
 </div>

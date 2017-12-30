@@ -9,7 +9,6 @@ namespace CinemaWebsite.ViewModels
 {
     public class EditProfileViewModel
     {
-        public EditProfileViewModel() { }
         public EditProfileViewModel(Client client)
         {
             this.Id = client.Id;

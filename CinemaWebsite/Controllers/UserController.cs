@@ -26,11 +26,6 @@ namespace CinemaWebsite.Controllers
             this.eventrepo = eventrepo;
             this.movierepo = movierepo;
         }
-        // GET: User
-        public ActionResult Index()
-        {
-            return View();
-        }
         [Authorize]
         [HttpGet]
         public ActionResult Bookings()
@@ -39,6 +34,7 @@ namespace CinemaWebsite.Controllers
             catch { return RedirectToAction("Index", "Home"); }
         }
         [Authorize]
+        [HttpGet]
         public new ActionResult Profile()
         {
             return View(bookingrepo.GetClientByEmail(HttpContext.User.Identity.Name));

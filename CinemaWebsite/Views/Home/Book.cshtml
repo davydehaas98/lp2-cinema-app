@@ -1,6 +1,6 @@
 ﻿@using CinemaWebsite.ViewModels
 @model BookingViewModel
-<h2>Event</h2>
+<h2>Book</h2>
 <p>Id: @Model.Event_.Id<br />
 Movie: @Model.Event_.Movie.Name<br />
 Cinema: @Model.Event_.Cinema.Name<br />
@@ -8,7 +8,6 @@ Date And Time: @Model.Event_.DateTime<br />
 Amount of Bookings: @Model.Event_.Bookings.Count<br />
 Seats Booked: @Model.BookedSeats.Count</p>
 <div>
-    @for()
 </div>
 <div class="tableseats">
     @for (int row = 1; row < 11; row++)
@@ -22,9 +21,10 @@ Seats Booked: @Model.BookedSeats.Count</p>
             }
             else
             {
-                <div class="seat" id="@row-@number" onclick="selectseats(this, 9)"></div>
+                <div class="seat" id="@row-@number" onclick="selectseats(this, 3)"></div>
             }
         }
     </div>
     }
 </div>
+<p>@Html.ActionLink("Submit Booking", "Book", "User")</p>

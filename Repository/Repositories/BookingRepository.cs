@@ -42,6 +42,10 @@ namespace Repository.Repositories
         {
             return context.GetClients();
         }
+        public List<Ticket> GetTickets()
+        {
+            return context.GetTickets();
+        }
         public List<Ticket> GetTicketsByBooking(int bookingid)
         {
             return context.GetTicketsByBooking(bookingid);

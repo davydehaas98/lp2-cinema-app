@@ -53,6 +53,10 @@ namespace Context.Context
             pars.Add(new SqlParameter("@email", SqlDbType.NVarChar) { Value = email });
             return ObjectBuilder.CreateClientWithPassword(db.ExecStoredProcedure("[GetClientByEmail]", pars).Tables[0].Rows[0]);
         }
+        public List<Ticket> GetTickets()
+        {
+            return ObjectBuilder.CreateTicketList(db.ExecStoredProcedure("[GetTickets]").Tables[0]);
+        }
         public List<Ticket> GetTicketsByBooking(int bookingid)
         {
             List<SqlParameter> pars = new List<SqlParameter>();

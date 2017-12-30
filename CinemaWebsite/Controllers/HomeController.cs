@@ -34,13 +34,11 @@ namespace CinemaWebsite.Controllers
         [HttpGet]
         public ActionResult Movies()
         {
-            ViewBag.Message = "Your application movies page.";
             return View(movierepo.GetAll());
         }
         [HttpGet]
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
             return View();
         }
         [HttpGet]
@@ -56,12 +54,6 @@ namespace CinemaWebsite.Controllers
                 Client client = bookingrepo.GetClientByEmail(vm.Username);
                 if (Crypto.GenerateHash(vm.Password, client.Salt) == client.Password)
                 {
-                    //if(client.Admin)
-                    //{
-                    //    Roles.CreateRole("Admin");
-                    //    Roles.AddUserToRole(client.Email, "Admin");
-                    //}
-                    //else { Roles.AddUserToRole(client.Email, "User"); }
                     FormsAuthentication.SetAuthCookie(vm.Username, false);
                     return RedirectToAction("Index", "Home");
                 }
@@ -100,10 +92,14 @@ namespace CinemaWebsite.Controllers
             catch { return RedirectToAction("Movies", "Home"); }
         }
         [HttpGet]
-        public ActionResult Event(int? eventid)
+        public ActionResult Book(int? eventid)
         {
-            try { return View(new BookingViewModel(eventrepo.GetByID((int)eventid), eventrepo.GetBookedSeatsByEvent((int)eventid))); }
-            catch { return RedirectToAction("Index", "Home"); }
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                try { return View(new BookingViewModel(eventrepo.GetByID((int)eventid), eventrepo.GetBookedSeatsByEvent((int)eventid), bookingrepo.GetTickets())); }
+                catch { return RedirectToAction("Index", "Home"); }
+            }
+            return RedirectToAction("Login", "Home");
         }
         [HttpPost]
         public ActionResult Book(BookingViewModel vm)

@@ -12,6 +12,7 @@ namespace Repository.Interfaces
         Client GetClientByID(int clientid);
         Client GetClientByEmail(string email);
         List<Client> GetClients();
+        List<Ticket> GetTickets();
         List<Ticket> GetTicketsByBooking(int bookingid);
         List<Seat> GetSeatsByBooking(int bookingid);
         void InsertBooking(int clientid, int amount, decimal totalprice, List<int> ticketsid, int eventid, List<int> seatsid);
