@@ -1,13 +1,13 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?>
 <diagram program="umlet" version="14.2">
-  <zoom_level>9</zoom_level>
+  <zoom_level>8</zoom_level>
   <element>
     <id>UMLPackage</id>
     <coordinates>
       <x>0</x>
       <y>0</y>
-      <w>1746</w>
-      <h>585</h>
+      <w>1552</w>
+      <h>520</h>
     </coordinates>
     <panel_attributes>Context
 --
@@ -18,10 +18,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>630</x>
-      <y>63</y>
-      <w>801</w>
-      <h>126</h>
+      <x>560</x>
+      <y>56</y>
+      <w>712</w>
+      <h>112</h>
     </coordinates>
     <panel_attributes>DataAccess
 -
@@ -37,10 +37,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>513</x>
-      <y>216</y>
-      <w>306</w>
-      <h>162</h>
+      <x>456</x>
+      <y>192</y>
+      <w>264</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>BookingContext
 -
@@ -58,10 +58,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1350</x>
-      <y>216</y>
-      <w>378</w>
-      <h>162</h>
+      <x>1200</x>
+      <y>192</y>
+      <w>336</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>CinemaContext
 -
@@ -77,10 +77,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1035</x>
-      <y>216</y>
-      <w>297</w>
-      <h>162</h>
+      <x>904</x>
+      <y>192</y>
+      <w>288</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>MovieContext
 -
@@ -88,9 +88,9 @@ layer=-1</panel_attributes>
 -
 +GetAll(): List&lt;Movie&gt;
 +GetByID(movieid: int): Movie
-+GetMoviesReleased(releasedate: DateTime)
++GetMoviesReleased(releasedate: DateTime): List&lt;Movie&gt;
 +GetGenres(): List&lt;Genre&gt;
-+GetGenresByMovie(movieid: int)
++GetGenresByMovie(movieid: int): List&lt;Genre&gt;
 +InsertMovie(movie: Movie)
 +UpdateMovie(movie: Movie)</panel_attributes>
     <additional_attributes/>
@@ -98,10 +98,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>657</x>
-      <y>180</y>
-      <w>27</w>
-      <h>54</h>
+      <x>584</x>
+      <y>160</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
@@ -109,10 +109,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1179</x>
-      <y>180</y>
-      <w>27</w>
-      <h>54</h>
+      <x>1048</x>
+      <y>160</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
@@ -120,10 +120,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1386</x>
-      <y>180</y>
-      <w>27</w>
-      <h>54</h>
+      <x>1232</x>
+      <y>160</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
@@ -131,10 +131,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>918</x>
-      <y>180</y>
-      <w>27</w>
-      <h>54</h>
+      <x>808</x>
+      <y>160</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
@@ -142,10 +142,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>918</x>
-      <y>369</y>
-      <w>27</w>
-      <h>54</h>
+      <x>808</x>
+      <y>328</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
@@ -153,10 +153,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1566</x>
-      <y>369</y>
-      <w>27</w>
-      <h>54</h>
+      <x>1392</x>
+      <y>328</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
@@ -164,10 +164,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>657</x>
-      <y>369</y>
-      <w>27</w>
-      <h>54</h>
+      <x>584</x>
+      <y>328</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
@@ -175,10 +175,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>657</x>
-      <y>558</y>
-      <w>558</w>
-      <h>72</h>
+      <x>584</x>
+      <y>496</y>
+      <w>496</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>600.0;60.0;10.0;60.0;10.0;10.0</additional_attributes>
@@ -186,10 +186,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>918</x>
-      <y>558</y>
-      <w>27</w>
-      <h>72</h>
+      <x>816</x>
+      <y>496</y>
+      <w>24</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
@@ -197,10 +197,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1188</x>
-      <y>558</y>
-      <w>27</w>
-      <h>99</h>
+      <x>1056</x>
+      <y>496</y>
+      <w>24</w>
+      <h>88</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;90.0;10.0;10.0</additional_attributes>
@@ -208,10 +208,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1188</x>
-      <y>558</y>
-      <w>405</w>
-      <h>72</h>
+      <x>1056</x>
+      <y>496</y>
+      <w>360</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>10.0;60.0;430.0;60.0;430.0;10.0</additional_attributes>
@@ -219,89 +219,88 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>666</x>
-      <y>765</y>
-      <w>234</w>
-      <h>162</h>
+      <x>456</x>
+      <y>680</y>
+      <w>272</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>BookingRepository
 -
 -context IBookingContext
 -
-+GetAll()
-+GetByID(int bookingid)
-+GetClients()
-+GetClientByID(int clientidid)
-+GetTicketsByBooking(int bookingid)
-+GetSeatsByBooking(int bookingid)
-+InsertClient(Client client)</panel_attributes>
++GetAll(): List&lt;Booking&gt;
++GetByID(bookingid: int): Booking
++GetClients(): List&lt;Client&gt;
++GetClientByID(clientid: int): Client
++GetTicketsByBooking(bookingid: int): List&lt;Tickets&gt;
++GetSeatsByBooking(bookingid:int): List&lt;Seat&gt;
++InsertClient(client: Client)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>918</x>
-      <y>765</y>
-      <w>189</w>
-      <h>162</h>
+      <x>744</x>
+      <y>680</y>
+      <w>168</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>EventRepository
 -
 -context: IEventContext
 -
-+GetAll()
-+GetByID(int eventid)
-+GetSeatsByEvent(int eventid)
-+InsertEvent(Event event)</panel_attributes>
++GetAll(): List&lt;Event&gt;
++GetByID(eventid: int): Event
++InsertEvent(evennt: Event)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1125</x>
-      <y>765</y>
-      <w>288</w>
-      <h>162</h>
+      <x>928</x>
+      <y>680</y>
+      <w>256</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>MovieRepository
 -
 -context: IMovieContext
 -
-+GetAll()
-+GetByID(int movieid)
-+GetMoviesReleased(DateTime releasedate)
-+GetGenres()
-+GetGenresByMovie(int movieid)
-+InsertMovie(Movie movie)
-+UpdateMovie(Movie movie)</panel_attributes>
++GetAll(): List&lt;Movie&gt;
++GetByID(movieid: int): Movie
++GetMoviesReleased(releasedate: DateTime)
++GetGenres(): List&lt;Genre&gt;
++GetGenresByMovie(movieid: int): List&lt;Genre&gt;
++InsertMovie(movie: Movie)
++UpdateMovie(movie: Movie)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1431</x>
-      <y>765</y>
-      <w>297</w>
-      <h>162</h>
+      <x>1200</x>
+      <y>680</y>
+      <w>336</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>CinemaRepository
 -
 -context: ICinemaContext
 -
-+GetAll()
-+GetByID(int cinemaid)
-+GetMovieTheatres()
-+GetMovieTheatreByID(int movietheatreid)
-+GetCinemasByMovieTheatre(int movietheatreid)</panel_attributes>
++GetAll(): List&lt;Cinema&gt;
++GetByID(cinemaid: int): Cinema
++GetMovieTheatres(): List&lt;MovieTheatre&gt;
++GetMovieTheatreByID(movietheatreid: int): MovieTheatre
++GetCinemasByMovieTheatre(movietheatreid: int): List&lt;Cinema&gt;</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>999</x>
-      <y>666</y>
-      <w>27</w>
-      <h>117</h>
+      <x>816</x>
+      <y>592</y>
+      <w>24</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
@@ -309,21 +308,21 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>774</x>
-      <y>666</y>
-      <w>387</w>
-      <h>117</h>
+      <x>584</x>
+      <y>592</y>
+      <w>448</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
-    <additional_attributes>10.0;110.0;10.0;10.0;410.0;10.0</additional_attributes>
+    <additional_attributes>10.0;110.0;10.0;10.0;540.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1296</x>
-      <y>666</y>
-      <w>27</w>
-      <h>117</h>
+      <x>1152</x>
+      <y>592</y>
+      <w>24</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
@@ -331,10 +330,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1251</x>
-      <y>666</y>
-      <w>342</w>
-      <h>117</h>
+      <x>1112</x>
+      <y>592</y>
+      <w>304</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>lt=&lt;.</panel_attributes>
     <additional_attributes>360.0;110.0;360.0;10.0;10.0;10.0</additional_attributes>
@@ -342,10 +341,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>648</x>
-      <y>729</y>
-      <w>1098</w>
-      <h>378</h>
+      <x>440</x>
+      <y>648</y>
+      <w>1112</w>
+      <h>336</h>
     </coordinates>
     <panel_attributes>Repository
 --
@@ -354,166 +353,67 @@ layer=-1</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
-    <id>UMLInterface</id>
+    <id>Relation</id>
     <coordinates>
-      <x>675</x>
-      <y>954</y>
-      <w>216</w>
-      <h>135</h>
+      <x>584</x>
+      <y>816</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
-    <panel_attributes>IBookingRepository
---
-GetClients()
-GetClientByID(int clientidid)
-GetTicketsByBooking(int bookingid)
-GetSeatsByBooking(int bookingid)
-InsertClient(Client client)</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLInterface</id>
-    <coordinates>
-      <x>918</x>
-      <y>954</y>
-      <w>180</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>IEventRepository
---
-GetSeatsByEvent(int eventid)
-InsertEvent(Event event)</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLInterface</id>
-    <coordinates>
-      <x>1134</x>
-      <y>954</y>
-      <w>270</w>
-      <h>135</h>
-    </coordinates>
-    <panel_attributes>IMovieRepository
---
-GetMoviesReleased(DateTime releasedate)
-GetGenres()
-GetGenresByMovie(int movieid)
-InsertMovie(Movie movie)
-UpdateMovie(Movie movie)</panel_attributes>
-    <additional_attributes/>
-  </element>
-  <element>
-    <id>UMLInterface</id>
-    <coordinates>
-      <x>1440</x>
-      <y>954</y>
-      <w>288</w>
-      <h>108</h>
-    </coordinates>
-    <panel_attributes>ICinemaRepository
---
-GetMovieTheatres()
-GetMovieTheatreByID(int movietheatreid)
-GetCinemasByMovieTheatre(int movietheatreid)</panel_attributes>
-    <additional_attributes/>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>774</x>
-      <y>918</y>
-      <w>27</w>
-      <h>63</h>
+      <x>816</x>
+      <y>816</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>999</x>
-      <y>918</y>
-      <w>27</w>
-      <h>63</h>
+      <x>1048</x>
+      <y>816</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1260</x>
-      <y>918</y>
-      <w>27</w>
-      <h>63</h>
+      <x>1376</x>
+      <y>816</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1575</x>
-      <y>918</y>
-      <w>27</w>
-      <h>63</h>
+      <x>592</x>
+      <y>960</y>
+      <w>488</w>
+      <h>96</h>
     </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;50.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>UMLInterface</id>
-    <coordinates>
-      <x>1143</x>
-      <y>1161</y>
-      <w>108</w>
-      <h>90</h>
-    </coordinates>
-    <panel_attributes>IRepository
---
-GetAll()
-GetByID(int id)</panel_attributes>
-    <additional_attributes/>
+    <panel_attributes>lt=&lt;&lt;-</panel_attributes>
+    <additional_attributes>590.0;100.0;590.0;60.0;10.0;60.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>756</x>
-      <y>1080</y>
-      <w>459</w>
-      <h>108</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>490.0;100.0;490.0;60.0;10.0;60.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>999</x>
-      <y>1035</y>
-      <w>27</w>
-      <h>117</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;110.0;10.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1188</x>
-      <y>1053</y>
-      <w>414</w>
-      <h>99</h>
-    </coordinates>
-    <panel_attributes>lt=-</panel_attributes>
-    <additional_attributes>10.0;90.0;440.0;90.0;440.0;10.0</additional_attributes>
-  </element>
-  <element>
-    <id>Relation</id>
-    <coordinates>
-      <x>1260</x>
-      <y>1080</y>
-      <w>27</w>
-      <h>72</h>
+      <x>824</x>
+      <y>960</y>
+      <w>24</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=-</panel_attributes>
     <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
@@ -521,10 +421,32 @@ GetByID(int id)</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1188</x>
-      <y>369</y>
-      <w>27</w>
-      <h>54</h>
+      <x>1056</x>
+      <y>960</y>
+      <w>368</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;60.0;440.0;60.0;440.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1104</x>
+      <y>960</y>
+      <w>24</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>lt=-</panel_attributes>
+    <additional_attributes>10.0;60.0;10.0;10.0</additional_attributes>
+  </element>
+  <element>
+    <id>Relation</id>
+    <coordinates>
+      <x>1048</x>
+      <y>328</y>
+      <w>24</w>
+      <h>48</h>
     </coordinates>
     <panel_attributes>lt=&lt;&lt;-</panel_attributes>
     <additional_attributes>10.0;40.0;10.0;10.0</additional_attributes>
@@ -532,10 +454,10 @@ GetByID(int id)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>837</x>
-      <y>216</y>
-      <w>180</w>
-      <h>162</h>
+      <x>736</x>
+      <y>192</y>
+      <w>152</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>EventContext
 -
@@ -549,10 +471,10 @@ GetByID(int id)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2088</x>
-      <y>342</y>
-      <w>189</w>
-      <h>225</h>
+      <x>1856</x>
+      <y>304</y>
+      <w>168</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>_Event_
 --
@@ -561,16 +483,18 @@ GetByID(int id)</panel_attributes>
 -cinema: Cinema
 -movie: Movie
 -bookings: List&lt;Booking&gt;
---</panel_attributes>
+--
++Event(id: int, datetime: DateTime, cinema: Cinema, movie: Movie, bookings: List&lt;Booking&gt;)
+style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2088</x>
-      <y>27</y>
-      <w>189</w>
-      <h>225</h>
+      <x>1856</x>
+      <y>24</y>
+      <w>168</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>_Movie_
 --
@@ -583,47 +507,53 @@ GetByID(int id)</panel_attributes>
 -releasedate: Date
 -genres: List&lt;Genre&gt;
 --
-+GetInfo()</panel_attributes>
++Movie(id: int, name: string, type: string, length: int, minimalage: int, image: string, releasedate: Date, genres: List&lt;Genre&gt;)
++GetInfo()
+style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2088</x>
-      <y>657</y>
-      <w>189</w>
-      <h>225</h>
+      <x>1864</x>
+      <y>584</y>
+      <w>168</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>_Seat_
 --
 -id: int
 -row: int
 -number: int
---</panel_attributes>
+--
++Seat(id: int, row: int, number: int)
+style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2367</x>
-      <y>27</y>
-      <w>189</w>
-      <h>225</h>
+      <x>2104</x>
+      <y>24</y>
+      <w>168</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>_Genre_
 --
 -id: int
 -name: string
---</panel_attributes>
+--
++Genre(id: int, name: string)
+style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2367</x>
-      <y>657</y>
-      <w>189</w>
-      <h>225</h>
+      <x>2104</x>
+      <y>584</y>
+      <w>168</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>_MovieTheatre_
 --
@@ -633,50 +563,55 @@ GetByID(int id)</panel_attributes>
 -postalcode: string
 -city: string
 -cinemas: List&lt;Cinema&gt;
---</panel_attributes>
+--
++MovieTheatre(id: int, name: string, address: string, postalcode: string, city: string, cinemas: List&lt;Cinema&gt;)
+style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>2367</x>
-      <y>342</y>
-      <w>189</w>
-      <h>225</h>
+      <x>2104</x>
+      <y>304</y>
+      <w>168</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>_Cinema_
 --
 -id: int
--movietheatre: MovieTheatre
 -name: string
 -D3: string
 --
-+GetInfo()</panel_attributes>
++Cinema(id: int, name: string, D3: bool)
++GetInfo()
+style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1800</x>
-      <y>657</y>
-      <w>189</w>
-      <h>225</h>
+      <x>1600</x>
+      <y>584</y>
+      <w>168</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>_Ticket_
 --
 -id: int
 -name: string
 -price: decimal
---</panel_attributes>
+--
++Ticket(id: int, name: string, price: decimal)
+style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1800</x>
-      <y>342</y>
-      <w>189</w>
-      <h>225</h>
+      <x>1600</x>
+      <y>304</y>
+      <w>168</w>
+      <h>200</h>
     </coordinates>
     <panel_attributes>_Booking_
 --
@@ -687,16 +622,18 @@ GetByID(int id)</panel_attributes>
 -totalprice: decimal
 -tickets: List&lt;Ticket&gt;
 -seatsbooked: List&lt;Seat&gt;
---</panel_attributes>
+--
++Booking(id: int, datetime: DateTime, client: Client, amount: int, totalprice: decimal, tickets: List&lt;Ticket&gt;, seatsbooked: List&lt;Seat&gt;)
+style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2169</x>
-      <y>243</y>
-      <w>45</w>
-      <h>117</h>
+      <x>1928</x>
+      <y>216</y>
+      <w>40</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=0..n
@@ -706,10 +643,10 @@ m2=</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2268</x>
-      <y>432</y>
-      <w>117</w>
-      <h>36</h>
+      <x>2016</x>
+      <y>384</y>
+      <w>104</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=-
 m1=
@@ -720,22 +657,22 @@ m2=
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1926</x>
-      <y>558</y>
-      <w>306</w>
-      <h>117</h>
+      <x>1712</x>
+      <y>496</y>
+      <w>280</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=1..n</panel_attributes>
-    <additional_attributes>300.0;110.0;300.0;60.0;10.0;60.0;10.0;10.0</additional_attributes>
+    <additional_attributes>310.0;110.0;300.0;60.0;10.0;60.0;10.0;10.0</additional_attributes>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2448</x>
-      <y>558</y>
-      <w>45</w>
-      <h>117</h>
+      <x>2176</x>
+      <y>496</y>
+      <w>40</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 m1=1..n
@@ -745,10 +682,10 @@ m2=</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>2268</x>
-      <y>126</y>
-      <w>117</w>
-      <h>36</h>
+      <x>2016</x>
+      <y>112</y>
+      <w>104</w>
+      <h>32</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 m1=
@@ -758,10 +695,10 @@ m2=1..n</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1980</x>
-      <y>432</y>
-      <w>126</w>
-      <h>45</h>
+      <x>1760</x>
+      <y>384</y>
+      <w>112</w>
+      <h>40</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 m1=0..n
@@ -772,10 +709,10 @@ m2=
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1890</x>
-      <y>288</y>
-      <w>45</w>
-      <h>72</h>
+      <x>1680</x>
+      <y>256</y>
+      <w>40</w>
+      <h>64</h>
     </coordinates>
     <panel_attributes>lt=&lt;-
 m1=
@@ -786,10 +723,10 @@ m2=1..n
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1800</x>
-      <y>27</y>
-      <w>189</w>
-      <h>270</h>
+      <x>1600</x>
+      <y>24</y>
+      <w>168</w>
+      <h>240</h>
     </coordinates>
     <panel_attributes>_Client_
 --
@@ -803,17 +740,17 @@ m2=1..n
 -salt: string
 -admin: bool
 --
-Client(id: int, firstname: string, lastname: string, birthday: DateTime, gender: string, email: string, admin: bool)
++Client(id: int, firstname: string, lastname: string, birthday: DateTime, gender: string, email: string, admin: bool)
 style=wordwrap</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1881</x>
-      <y>558</y>
-      <w>45</w>
-      <h>117</h>
+      <x>1672</x>
+      <y>496</y>
+      <w>40</w>
+      <h>104</h>
     </coordinates>
     <panel_attributes>lt=-&gt;
 m1=
@@ -824,10 +761,10 @@ m2=1..n
   <element>
     <id>UMLPackage</id>
     <coordinates>
-      <x>1782</x>
+      <x>1584</x>
       <y>0</y>
-      <w>792</w>
-      <h>909</h>
+      <w>704</w>
+      <h>808</h>
     </coordinates>
     <panel_attributes>Models
 --
@@ -838,10 +775,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>63</x>
-      <y>63</y>
-      <w>423</w>
-      <h>387</h>
+      <x>56</x>
+      <y>56</y>
+      <w>376</w>
+      <h>344</h>
     </coordinates>
     <panel_attributes>ObjectCreator
 --
@@ -874,10 +811,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1737</x>
-      <y>369</y>
-      <w>63</w>
-      <h>27</h>
+      <x>1544</x>
+      <y>328</y>
+      <w>56</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
@@ -885,10 +822,10 @@ layer=-1</panel_attributes>
   <element>
     <id>Relation</id>
     <coordinates>
-      <x>1737</x>
-      <y>846</y>
-      <w>63</w>
-      <h>27</h>
+      <x>1544</x>
+      <y>752</y>
+      <w>56</w>
+      <h>24</h>
     </coordinates>
     <panel_attributes>lt=&lt;-</panel_attributes>
     <additional_attributes>10.0;10.0;50.0;10.0</additional_attributes>
@@ -896,10 +833,10 @@ layer=-1</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>513</x>
-      <y>405</y>
-      <w>306</w>
-      <h>162</h>
+      <x>456</x>
+      <y>360</y>
+      <w>272</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>IBookingContext
 --
@@ -913,10 +850,10 @@ InsertClient(client: Client)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>837</x>
-      <y>405</y>
-      <w>162</w>
-      <h>162</h>
+      <x>744</x>
+      <y>360</y>
+      <w>144</w>
+      <h>144</h>
     </coordinates>
     <panel_attributes>IEventContext
 --
@@ -926,10 +863,85 @@ InsertEvent(event: Event)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1017</x>
-      <y>405</y>
-      <w>333</w>
-      <h>162</h>
+      <x>904</x>
+      <y>360</y>
+      <w>296</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>IMovieContext
+--
+GetMoviesReleased(releasedate: DateTime) List&lt;Movie&gt;
+GetGenres(): List&lt;Genre&gt;
+GetGenresByMovie(movieid: int): List&lt;Genre&gt;
+InsertMovie(movie: Movie)
+UpdateMovie(movie: Movie)</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1216</x>
+      <y>360</y>
+      <w>320</w>
+      <h>144</h>
+    </coordinates>
+    <panel_attributes>ICinemaContext
+--
+GetMovieTheatres(): List&lt;MovieTheatre&gt;
+GetMovieTheatreByID(movietheatreid: int): MovieTheatre
+GetCinemasByMovieTheatre(movietheatreid: int) List&lt;Cinema&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1016</x>
+      <y>568</y>
+      <w>104</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>IContext
+--
+GetAll(): List&lt;T&gt;
+GetByID(id: int): T</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1016</x>
+      <y>1040</y>
+      <w>104</w>
+      <h>64</h>
+    </coordinates>
+    <panel_attributes>IRepository
+--
+GetAll(): List&lt;T&gt;
+GetByID(id: int): T</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>1200</x>
+      <y>848</y>
+      <w>336</w>
+      <h>120</h>
+    </coordinates>
+    <panel_attributes>ICinemaRepository
+--
+GetMovieTheatres(): List&lt;MovieTheatre&gt;
+GetMovieTheatreByID(movietheatreid: int): MovieTheatre
+GetCinemasByMovieTheatre(movietheatreid: int) List&lt;Cinema&gt;</panel_attributes>
+    <additional_attributes/>
+  </element>
+  <element>
+    <id>UMLClass</id>
+    <coordinates>
+      <x>896</x>
+      <y>848</y>
+      <w>296</w>
+      <h>120</h>
     </coordinates>
     <panel_attributes>IMovieRepository
 --
@@ -943,30 +955,31 @@ UpdateMovie(movie: Movie)</panel_attributes>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1368</x>
-      <y>405</y>
-      <w>360</w>
-      <h>162</h>
+      <x>744</x>
+      <y>848</y>
+      <w>144</w>
+      <h>120</h>
     </coordinates>
-    <panel_attributes>ICinemaRepository
+    <panel_attributes>IEventRepository
 --
-GetMovieTheatres(): List&lt;MovieTheatre&gt;
-GetMovieTheatreByID(int movietheatreid): MovieTheatre
-GetCinemasByMovieTheatre(movietheatreid: int) List&lt;Cinema&gt;</panel_attributes>
+InsertEvent(event: Event)</panel_attributes>
     <additional_attributes/>
   </element>
   <element>
     <id>UMLClass</id>
     <coordinates>
-      <x>1143</x>
-      <y>639</y>
-      <w>117</w>
-      <h>72</h>
+      <x>456</x>
+      <y>848</y>
+      <w>272</w>
+      <h>120</h>
     </coordinates>
-    <panel_attributes>IContext
+    <panel_attributes>IBookingRepository
 --
-GetAll(): List&lt;T&gt;
-GetByID(int id): T</panel_attributes>
+GetClients() : List&lt;Client&gt;
+GetClientByID(clientid: int): Client
+GetTicketsByBooking(bookingid: int): List&lt;Ticket&gt;
+GetSeatsByBooking(bookingid: int): List&lt;Seat&gt;
+InsertClient(client: Client)</panel_attributes>
     <additional_attributes/>
   </element>
 </diagram>
