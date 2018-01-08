@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Data.SqlClient;
 using Context.Context;
 using Context.Interfaces;
 using Repository.Interfaces;
@@ -35,11 +35,53 @@ namespace Repository.Repositories
         }
         public void InsertMovie(string moviename, bool movied3, int movielength, int movieminimumage, DateTime moviereleasedate, string movieimage, List<int> genreids)
         {
-            context.InsertMovie(moviename, movied3, movielength, movieminimumage, moviereleasedate, movieimage, genreids);
+            if (!string.IsNullOrWhiteSpace(moviename) && movielength > 0 && movieminimumage > 0 && moviereleasedate.Date != null && movieimage.Contains("i.imgur.com"))
+            {
+                if (moviename.Length < 51 && movielength.ToString().Length < 51 && movieminimumage.ToString().Length < 50 && movieimage.Length < 51)
+                {
+                    try
+                    {
+                        context.InsertMovie(moviename, movied3, movielength, movieminimumage, moviereleasedate, movieimage, genreids);
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw new Exception("Database Failure. Error Code: " + ex.Number, ex);
+                    }
+                }
+                else
+                {
+                    throw new OverflowException();
+                }
+            }
+            else
+            {
+                throw new InvalidOperationException();
+            }
         }
         public void UpdateMovie(int movieid, string moviename, bool movied3, int movielength, int movieminimumage, DateTime moviereleasedate, string movieimage)
         {
-            context.UpdateMovie(movieid, moviename, movied3, movielength, movieminimumage, moviereleasedate, movieimage);
+            if (!string.IsNullOrWhiteSpace(moviename) && movielength > 0 && movieminimumage > 0 && moviereleasedate.Date != null && movieimage.Contains("i.imgur.com"))
+            {
+                if (moviename.Length < 51 && movielength.ToString().Length < 51 && movieminimumage.ToString().Length < 50 && movieimage.Length < 51)
+                {
+                    try
+                    {
+                        context.UpdateMovie(movieid, moviename, movied3, movielength, movieminimumage, moviereleasedate, movieimage);
+                    }
+                    catch (SqlException ex)
+                    {
+                        throw new Exception("Database Failure. Error Code: " + ex.Number, ex);
+                    }
+                }
+                else
+                {
+                    throw new OverflowException();
+                }
+            }
+            else
+            {
+                throw new InvalidOperationException();
+            }
         }
     }
 }

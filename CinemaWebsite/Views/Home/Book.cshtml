@@ -1,30 +1,67 @@
 ﻿@using CinemaWebsite.ViewModels
+@using Models
 @model BookingViewModel
 <h2>Book</h2>
-<p>Id: @Model.Event_.Id<br />
-Movie: @Model.Event_.Movie.Name<br />
-Cinema: @Model.Event_.Cinema.Name<br />
-Date And Time: @Model.Event_.DateTime<br />
-Amount of Bookings: @Model.Event_.Bookings.Count<br />
-Seats Booked: @Model.BookedSeats.Count</p>
-<div>
+<p>
+    Id: @Model.Event_.Id<br />
+    Movie: @Model.Event_.Movie.Name<br />
+    Cinema: @Model.Event_.Cinema.Name<br />
+    Date And Time: @Model.Event_.DateTime<br />
+    Amount of Bookings: @Model.Event_.Bookings.Count<br />
+    Seats Booked: @Model.Seats.Count
+</p>
+<div class="tickets">
+    @foreach (Ticket ticket in Model.Tickets)
+    {
+    <div class="ticket" id="@ticket.ID">
+        <strong>@ticket.Name</strong>
+        €@ticket.Price
+        <div class="amount">
+            <button class="minus">-</button>
+            <input class="orderedtickets" value="0" disabled />
+            <button class="plus">+</button>
+        </div>
+    </div>
+    }
 </div>
 <div class="tableseats">
     @for (int row = 1; row < 11; row++)
     {
-    <div class="rowseats">
-        @for (int number = 1; number < 11; number++)
-        {
-            if (Model.BookedSeats.Exists(s => s.Number == number && s.Row == row))
+        <div class="rowseats">
+            @for (int number = 1; number < 11; number++)
             {
-                <div class="bookedseat" id="@row-@number"></div>
+                if (Model.Seats.Exists(s => s.Number == number && s.Row == row))
+                {
+                    <div class="bookedseat" id="@row-@number"></div>
+                }
+                else
+                {
+                    <div class="seat" id="@row-@number"></div>
+                }
             }
-            else
-            {
-                <div class="seat" id="@row-@number" onclick="selectseats(this, 3)"></div>
-            }
-        }
-    </div>
+        </div>
     }
 </div>
 <p>@Html.ActionLink("Submit Booking", "Book", "User")</p>
+<script>
+    $(document).ready(function () {
+        let totalproducts = 0
+        $('.plus').click(function () {
+            let amount = parseInt($(this).parent().children('.orderedtickets').val())
+            if (totalproducts < 10) {
+                $(this).parent().children('.orderedtickets').val(amount + 1)
+                totalproducts++
+            }
+        })
+        $('.minus').click(function () {
+            let amount = parseInt($(this).parent().children('.orderedtickets').val())
+            if (amount > 0) {
+                $(this).parent().children('.orderedtickets').val(amount - 1)
+                totalproducts--
+            }
+        })
+        $(".seat").click(function () {
+            selectseats(this, totalproducts)
+        })
+    })
+</script>

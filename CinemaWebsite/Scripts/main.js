@@ -3,9 +3,9 @@
     let rownumber = elem.id.split('-')
     //Get the selected Seat Number and move the amount of seats to the left
     let begin = rownumber[1] - Math.round(amount/2) + 1
-    let booked = false;
+    let booked = false
     //Check if the beginning of the selected Seats is less than 1 or greater than 11
-    begin < 1 ? begin = 1 : begin + amount > 11 ? begin = 11 - amount : begin;
+    begin < 1 ? begin = 1 : begin + amount > 11 ? begin = 11 - amount : begin
     //Check if any of the Seats in the selected Row are booked
     for(let i = 0; i < amount; i++){
         if(document.getElementById(rownumber[0] + '-' + (begin + i)).className == 'bookedseat'){
@@ -16,7 +16,8 @@
     if(!booked){
         resetseats()
         for(let i = 0; i < amount; i++){
-            document.getElementById(rownumber[0] + '-' + (begin + i)).style.backgroundColor = 'yellow'
+            let element = document.getElementById(rownumber[0] + '-' + (begin + i))
+            element.style.backgroundColor = 'yellow'
         }
     }
 }

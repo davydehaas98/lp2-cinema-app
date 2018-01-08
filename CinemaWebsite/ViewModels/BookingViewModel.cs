@@ -9,14 +9,16 @@ namespace CinemaWebsite.ViewModels
 {
     public class BookingViewModel
     {
-        public BookingViewModel(Event event_, List<Seat> bookedseats, List<Ticket> tickets)
+        public BookingViewModel(Event event_, List<Seat> seats, List<Ticket> tickets)
         {
             this.Event_ = event_;
-            this.BookedSeats = bookedseats;
+            this.Seats = seats;
             this.Tickets = tickets;
         }
         public Event Event_ { get; set; }
-        public List<Seat> BookedSeats { get; set; }
+        public List<Seat> Seats { get; set; }
         public List<Ticket> Tickets { get; set; }
+        public List<Seat> BookSeats { get; set; }
+        public List<Ticket> BookTickets { get; set; }
     }
 }

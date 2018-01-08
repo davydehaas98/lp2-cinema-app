@@ -1,10 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using Context.Context;
+﻿using Context.Context;
 using Context.Interfaces;
-using Repository.Interfaces;
 using Models;
+using Repository.Interfaces;
+using System;
+using System.Collections.Generic;
+using System.Data.SqlClient;
 
 namespace Repository.Repositories
 {
@@ -31,7 +31,18 @@ namespace Repository.Repositories
         }
         public void InsertEvent(DateTime datetime, int idcinema, int idmovie)
         {
-            context.InsertEvent(datetime, idcinema, idmovie);
+            if(datetime.Date >= DateTime.Now)
+            {
+                try
+                {
+                    context.InsertEvent(datetime, idcinema, idmovie);
+                }
+                catch (SqlException ex)
+                {
+                    throw new Exception("Database Failure. Error Code: " + ex.Number, ex);
+                }
+            }
+            else { throw new InvalidOperationException(); }
         }
     }
 }
