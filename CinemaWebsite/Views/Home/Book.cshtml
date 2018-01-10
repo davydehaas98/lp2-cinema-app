@@ -13,13 +13,13 @@
 <div class="tickets">
     @foreach (Ticket ticket in Model.Tickets)
     {
-    <div class="ticket" id="@ticket.ID">
+    <div class="ticket-@ticket.ID">
         <strong>@ticket.Name</strong>
         €@ticket.Price
         <div class="amount">
-            <button class="minus">-</button>
-            <input class="orderedtickets" value="0" disabled />
-            <button class="plus">+</button>
+            <button class="minus" id="@ticket.ID">-</button>
+            <input class="orderedtickets-@ticket.ID" value="0" disabled autocomplete="off" />
+            <button class="plus" id="@ticket.ID">+</button>
         </div>
     </div>
     }
@@ -45,7 +45,7 @@
 <p>@Html.ActionLink("Submit Booking", "Book", "User")</p>
 <script>
     $(document).ready(function () {
-        let totalproducts = 0
+        let totalproducts = 0;
         $('.plus').click(function () {
             let amount = parseInt($(this).parent().children('.orderedtickets').val())
             if (totalproducts < 10) {
