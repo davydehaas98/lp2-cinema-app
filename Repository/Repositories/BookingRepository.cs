@@ -50,6 +50,10 @@ namespace Repository.Repositories
         {
             return context.GetTicketsByBooking(bookingid);
         }
+        public List<Seat> GetSeats()
+        {
+            return context.GetSeats();
+        }
         public List<Seat> GetSeatsByBooking(int bookingid)
         {
             return context.GetSeatsByBooking(bookingid);

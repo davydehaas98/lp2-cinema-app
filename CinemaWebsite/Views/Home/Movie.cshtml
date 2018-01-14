@@ -21,7 +21,7 @@
         <p>Events:</p>
         @foreach (Event event_ in Model.Events)
         {
-            @Html.ActionLink("Date: " + event_.DateTime.ToString() + " Cinema: " + event_.Cinema.ToString(), "Book", "Home", new { eventid = event_.Id }, new { @class = "list-group-item" });
+            @Html.ActionLink("Date: " + event_.DateTime.ToString() + " Cinema: " + event_.Cinema.ToString(), "Book", "User", new { eventid = event_.Id }, new { @class = "list-group-item" });
         }
     </div>
 </div>

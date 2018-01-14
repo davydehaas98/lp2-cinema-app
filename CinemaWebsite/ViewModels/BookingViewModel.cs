@@ -15,10 +15,12 @@ namespace CinemaWebsite.ViewModels
             this.Seats = seats;
             this.Tickets = tickets;
         }
+        public BookingViewModel() { }
         public Event Event_ { get; set; }
         public List<Seat> Seats { get; set; }
         public List<Ticket> Tickets { get; set; }
-        public List<Seat> BookSeats { get; set; }
-        public List<Ticket> BookTickets { get; set; }
+        public int eventid { get; set; }
+        public string OrderedSeat { get; set; }
+        public Dictionary<int, int> OrderedTickets { get; set; }
     }
 }

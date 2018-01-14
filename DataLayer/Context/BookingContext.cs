@@ -63,6 +63,10 @@ namespace Context.Context
             pars.Add(new SqlParameter("@bookingid", SqlDbType.Int) { Value = bookingid });
             return ObjectBuilder.CreateTicketList(db.ExecStoredProcedure("[GetTicketsByBooking]", pars).Tables[0]);
         }
+        public List<Seat> GetSeats()
+        {
+            return ObjectBuilder.CreateSeatList(db.ExecStoredProcedure("[GetSeats]").Tables[0]);
+        }
         public List<Seat> GetSeatsByBooking(int bookingid)
         {
             List<SqlParameter> pars = new List<SqlParameter>();
@@ -75,6 +79,7 @@ namespace Context.Context
             pars.Add(new SqlParameter("@clientid", SqlDbType.Int) { Value = clientid });
             pars.Add(new SqlParameter("@amount", SqlDbType.Int) { Value = amount });
             pars.Add(new SqlParameter("@totalprice", SqlDbType.Decimal) { Value = totalprice });
+            pars.Add(new SqlParameter("@eventid", SqlDbType.Int) { Value = eventid });
             int bookingid = (int)db.ExecStoredProcedure("InsertBooking", pars).Tables[0].Rows[0]["Column1"];
             foreach(int ticketid in ticketsid)
             {
@@ -86,7 +91,6 @@ namespace Context.Context
             foreach(int seatid in seatsid)
             {
                 List<SqlParameter> parsseat = new List<SqlParameter>();
-                parsseat.Add(new SqlParameter("@eventid", SqlDbType.Int) { Value = eventid });
                 parsseat.Add(new SqlParameter("@seatid", SqlDbType.Int) { Value = seatid });
                 parsseat.Add(new SqlParameter("@bookingid", SqlDbType.Int) { Value = bookingid });
                 db.ExecStoredProcedure("[AddSeatToBooking]", parsseat);

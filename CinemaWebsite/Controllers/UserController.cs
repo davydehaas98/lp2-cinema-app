@@ -78,5 +78,52 @@ namespace CinemaWebsite.Controllers
             try { return View(bookingrepo.GetByID((int)bookingid)); }
             catch { return RedirectToAction("Index", "Home"); }
         }
+        [HttpGet]
+        public ActionResult Book(int? eventid)
+        {
+            if (HttpContext.User.Identity.IsAuthenticated)
+            {
+                try { return View(new BookingViewModel(eventrepo.GetByID((int)eventid), eventrepo.GetBookedSeatsByEvent((int)eventid), bookingrepo.GetTickets())); }
+                catch { return RedirectToAction("Index", "Home"); }
+            }
+            return RedirectToAction("Login", "Home");
+        }
+        [HttpPost]
+        public ActionResult Book(BookingViewModel vm)
+        {
+            int empty = 0;
+            foreach(int amount in vm.OrderedTickets.Values)
+            {
+                if (amount == 0) empty++;
+            }
+            if(empty == vm.OrderedTickets.Count)
+            {
+                ModelState.AddModelError(string.Empty, "Select the amount of Tickets");
+                return View(new BookingViewModel(eventrepo.GetByID(vm.eventid), eventrepo.GetBookedSeatsByEvent(vm.eventid), bookingrepo.GetTickets()));
+            }
+            if(vm.OrderedSeat == null)
+            {
+                ModelState.AddModelError(string.Empty, "Select the Seats");
+                return View(new BookingViewModel(eventrepo.GetByID(vm.eventid), eventrepo.GetBookedSeatsByEvent(vm.eventid), bookingrepo.GetTickets()));
+            }
+            if (ModelState.IsValid)
+            {
+                List<int> orderedticketsid = new List<int>();
+                List<int> orderedseatsid = new List<int>();
+                string[] rownumber = (vm.OrderedSeat.Split('-'));
+                int firstseatid = bookingrepo.GetSeats().First(s => s.Row.ToString() == rownumber[0] && s.Number.ToString() == rownumber[1]).Id;
+                foreach(KeyValuePair<int, int> ticket in vm.OrderedTickets)
+                {
+                    for (int i = 0; i < ticket.Value; i++)
+                    {
+                        orderedticketsid.Add(ticket.Key);
+                        orderedseatsid.Add(firstseatid);
+                        firstseatid++;
+                    }
+                }
+                bookingrepo.InsertBooking(bookingrepo.GetClientByEmail(HttpContext.User.Identity.Name).Id, 0, 0, orderedticketsid, vm.eventid, orderedseatsid);
+            }
+            return RedirectToAction("Bookings", "User");
+        }
     }
 }

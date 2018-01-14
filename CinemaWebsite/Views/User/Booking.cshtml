@@ -2,12 +2,16 @@
 @model Booking
 
 <h2>Booking</h2>
-@*<p>Id: @Model.Id</p>
-<p>Movie: @Model.Event_.Movie</p>
-<p>Cinema: @Model.Event_.Cinema</p>
-<p>Date And Time: @Model.Event_.DateTime</p>
-<h4>Tickets:</h4>*@
+<p>Date And Time: @Model.DateTime</p>
+<p>Persons: @Model.Amount</p>
+<p>Price: €@Model.TotalPrice</p>
+<h4>Tickets</h4>
 @foreach (Ticket ticket in Model.Tickets)
 {
     <p>@ticket.Name €@ticket.Price</p>
+}
+<h4>Seats</h4>
+@foreach (Seat seat in Model.Seats)
+{
+    <p>@seat.Row-@seat.Number</p>
 }

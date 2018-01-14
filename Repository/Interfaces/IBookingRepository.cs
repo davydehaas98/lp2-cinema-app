@@ -14,6 +14,7 @@ namespace Repository.Interfaces
         List<Client> GetClients();
         List<Ticket> GetTickets();
         List<Ticket> GetTicketsByBooking(int bookingid);
+        List<Seat> GetSeats();
         List<Seat> GetSeatsByBooking(int bookingid);
         void InsertBooking(int clientid, int amount, decimal totalprice, List<int> ticketsid, int eventid, List<int> seatsid);
         void InsertClient(string firstname, string lastname, string email, DateTime birthday, string gender, string password);

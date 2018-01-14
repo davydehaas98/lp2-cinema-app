@@ -8,6 +8,7 @@ namespace CinemaUnitTests
     [TestClass]
     public class AddMovieTest
     {
+        MovieRepository movierepo = new MovieRepository();
         [TestMethod]
         [ExpectedException(typeof(InvalidOperationException), "No Exception was thrown.")]
         public void AddMovieWithoutName()
@@ -19,7 +20,6 @@ namespace CinemaUnitTests
             DateTime releasedate = DateTime.Now;
             string image = "https://i.imgur.com/yaUGvHI.jpg";
             List<int> genreids = new List<int>() { 30, 31 };
-            MovieRepository movierepo = new MovieRepository();
             movierepo.InsertMovie(name, d3, length, minimumage, releasedate, image, genreids);
         }
         [TestMethod]
@@ -33,7 +33,6 @@ namespace CinemaUnitTests
             DateTime releasedate = DateTime.Now;
             string image = "https://i.imgur.com/yaUGvHI.jpg";
             List<int> genreids = new List<int>() { 30, 31 };
-            MovieRepository movierepo = new MovieRepository();
             movierepo.InsertMovie(name, d3, length, minimumage, releasedate, image, genreids);
         }
         [TestMethod]
@@ -47,7 +46,6 @@ namespace CinemaUnitTests
             DateTime releasedate = DateTime.Now;
             string image = "https://i.imgur.com/yaUGvHI.jpg";
             List<int> genreids = new List<int>() { 30, 31 };
-            MovieRepository movierepo = new MovieRepository();
             movierepo.InsertMovie(name, d3, length, minimumage, releasedate, image, genreids);
         }
     }

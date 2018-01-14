@@ -91,24 +91,5 @@ namespace CinemaWebsite.Controllers
             try { return View(new MovieWithEventsViewModel(movierepo.GetByID((int)movieid),eventrepo.GetEventsByMovie((int)movieid))); }
             catch { return RedirectToAction("Movies", "Home"); }
         }
-        [HttpGet]
-        public ActionResult Book(int? eventid)
-        {
-            if (HttpContext.User.Identity.IsAuthenticated)
-            {
-                try { return View(new BookingViewModel(eventrepo.GetByID((int)eventid), eventrepo.GetBookedSeatsByEvent((int)eventid), bookingrepo.GetTickets())); }
-                catch { return RedirectToAction("Index", "Home"); }
-            }
-            return RedirectToAction("Login", "Home");
-        }
-        [HttpPost]
-        public ActionResult Book(BookingViewModel vm)
-        {
-            if (ModelState.IsValid)
-            {
-
-            }
-            return View(vm);
-        }
     }
 }

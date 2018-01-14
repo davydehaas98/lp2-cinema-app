@@ -7,7 +7,7 @@
     {
         foreach (Booking b in ev.Bookings)
         {
-            @Html.ActionLink("Movie: " + ev.Movie.Name + " Date: " + ev.DateTime + " Amount: " + b.Tickets.Count() + " Total Price: €" + b.TotalPrice, "Booking", "User", new { bookingid = b.Id }, new { @class = "list-group-item" })
+            @Html.ActionLink(ev.DateTime + " | Amount: " + b.Tickets.Count() + " | €" + b.TotalPrice + " | " + ev.Movie.Name, "Booking", "User", new { bookingid = b.Id }, new { @class = "list-group-item" })
         }
     }
 </div>

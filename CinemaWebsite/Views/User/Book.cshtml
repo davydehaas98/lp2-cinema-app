@@ -1,0 +1,78 @@
+﻿@using CinemaWebsite.ViewModels
+@using Models
+@model BookingViewModel
+<h2>Book</h2>
+<p>
+    Movie: @Model.Event_.Movie.Name<br />
+    Cinema: @Model.Event_.Cinema.Name<br />
+    Date And Time: @Model.Event_.DateTime<br />
+    Amount of Bookings: @Model.Event_.Bookings.Count<br />
+    Seats Booked: @Model.Seats.Count
+</p>
+@using (Html.BeginForm("Book", "User", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    <input type="number" name="eventid" value="@Model.Event_.Id" hidden readonly/>
+    <div class="tickets">
+        @for (int i = 0; i < Model.Tickets.Count; i++)
+        {
+            <div class="ticket">
+                <strong>@Model.Tickets[i].Name</strong>
+                €@Model.Tickets[i].Price
+                <div class="amount">
+                    <button type="button" class="minus">-</button>
+                    <input type="number" name="OrderedTickets[@i].Key" value="@Model.Tickets[i].ID" hidden min="0" readonly />
+                    <input class="orderedtickets" type="number" name="OrderedTickets[@i].Value" value="0" min="0" autocomplete="off" readonly />
+                    <button type="button" class="plus">+</button>
+                </div>
+            </div>
+        }
+    </div>
+    <div class="tableseats">
+        @for (int row = 1; row < 11; row++)
+        {
+            <div class="rowseats">
+                @for (int number = 1; number < 11; number++)
+                {
+                    if (Model.Seats.Exists(s => s.Number == number && s.Row == row))
+                    {
+                        <div class="bookedseat" id="@row-@number"></div>
+                    }
+                    else
+                    {
+                        <div class="seat" id="@row-@number"></div>
+                    }
+                }
+            </div>
+        }
+        <input class="orderedseat" type="text" name="OrderedSeat" value="" hidden readonly />
+    </div>
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" id="placeorder" value="Submit Order" class="btn btn-default" />
+        </div>
+    </div>
+}
+<script>
+    $(document).ready(function () {
+        let totalproducts = 0;
+        $('.plus').click(function () {
+            let amount = parseInt($(this).siblings('.orderedtickets').val())
+            if (totalproducts < 10) {
+                $(this).siblings('.orderedtickets').val(amount + 1)
+                totalproducts++
+                resetseats()
+            }
+        })
+        $('.minus').click(function () {
+            let amount = parseInt($(this).siblings('.orderedtickets').val())
+            if (amount > 0) {
+                $(this).siblings('.orderedtickets').val(amount - 1)
+                totalproducts--
+                resetseats()
+            }
+        })
+        $(".seat").click(function () {
+            $(".orderedseat").val(selectseats(this, totalproducts));
+        })
+    })
+</script>

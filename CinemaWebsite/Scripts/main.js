@@ -20,6 +20,12 @@
             element.style.backgroundColor = 'yellow'
         }
     }
+    let seats = document.getElementsByClassName('seat')
+    for(let i = 0; i < seats.length; i++){
+        if(seats[i].style.backgroundColor == 'yellow'){
+            return seats[i].id.toString()
+        }
+    }
 }
 function resetseats(){
     let seats = document.getElementsByClassName('seat')

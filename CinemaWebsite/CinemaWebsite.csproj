@@ -230,7 +230,7 @@
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\User\Profile.cshtml" />
     <Content Include="Views\Home\Movie.cshtml" />
-    <Content Include="Views\Home\Book.cshtml" />
+    <Content Include="Views\User\Book.cshtml" />
     <Content Include="Views\User\Booking.cshtml" />
     <Content Include="Views\User\Edit.cshtml" />
   </ItemGroup>
