@@ -1,5 +1,0 @@
-goede interface pijl-
-overal return types erbij-
-parameter types op de goede volgorde-
-constructor-
-objectcreator models connectie-
